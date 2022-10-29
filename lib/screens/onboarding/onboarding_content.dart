@@ -1,0 +1,140 @@
+import 'package:flutter/material.dart';
+import 'package:shoppa_app/components/defaultButton.dart';
+import '../../constants/colors.dart';
+import '../../constants/constants.dart';
+import '../../constants/size_configurations.dart';
+import 'onboarding_screen.dart';
+
+List<Map<String, String>> onBoardingData = [
+  {
+    'text1': "Manage your customers, in one app.",
+    'text2':
+        "No more juggling between multiple social media, Shoppa gives you access to manage your inventory and customers.",
+    'buttontext': "Get Started",
+    'image': 'assets/images/Onboarding_img_1.png'
+  },
+  {
+    'text1': "Your personal store, a link just for you.",
+    'text2':
+        "Have all your products in one page, share your product page and have your customers enjoy shopping better.",
+    'buttontext': "Get Started",
+    'image': 'assets/images/Onboarding_img_2.png'
+  },
+  {
+    'text1': "Get Started",
+    'text2': '',
+    'buttontext': "Sign Up",
+    'image': 'assets/images/Onboarding_img_3.png'
+  }
+];
+
+class OnboardingContent extends StatefulWidget {
+  const OnboardingContent(
+      {super.key,
+      required this.text1,
+      required this.text2,
+      required this.buttonText,
+      required this.image,
+      required this.press});
+
+  final String text1, text2, buttonText, image;
+  final GestureTapCallback press;
+
+  @override
+  State<OnboardingContent> createState() => _OnboardingContentState();
+}
+
+class _OnboardingContentState extends State<OnboardingContent> {
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      fit: StackFit.loose,
+      children: [
+        Container(
+          width: double.infinity,
+          height: MediaQuery.of(context).size.height,
+          decoration: const BoxDecoration(color: bgColor),
+        ),
+        Image.asset(widget.image, fit: BoxFit.fitWidth),
+        Positioned(
+          top: 550,
+          child: Container(
+            // height: MediaQuery.of(context).size.height * 0.4,
+            width: MediaQuery.of(context).size.width,
+            padding: EdgeInsets.symmetric(horizontal: getPropWidth(20)),
+            decoration: const BoxDecoration(
+                color: bgColor,
+                borderRadius: BorderRadius.only(topRight: Radius.circular(35))),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: getPropWidth(25),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: List.generate(
+                      onBoardingData.length, (index) => buildDot(index: index)),
+                ),
+                SizedBox(
+                  height: getPropWidth(10),
+                ),
+                Text(
+                  widget.text1,
+                  style: headerStyle,
+                ),
+                SizedBox(
+                  height: getPropWidth(10),
+                ),
+                Text(widget.text2, style: subHeaderStyle),
+                SizedBox(
+                  height: getPropWidth(15),
+                ),
+                DefaultButton(text: widget.buttonText, press: widget.press),
+                SizedBox(
+                  height: getPropWidth(10),
+                ),
+                const LoginWidget(),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class LoginWidget extends StatelessWidget {
+  const LoginWidget({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          "Already have an account?",
+          style: TextStyle(
+            color: headerTextColor,
+            fontFamily: 'Lato',
+            fontSize: getPropHeight(16),
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+        const SizedBox(
+          width: 2,
+        ),
+        TextButton(
+            onPressed: () {},
+            child: Text('Login',
+                style: TextStyle(
+                    color: secondaryButtonTextColor,
+                    fontFamily: 'Lato',
+                    fontSize: getPropHeight(16),
+                    fontWeight: FontWeight.w400)))
+      ],
+    );
+  }
+}
