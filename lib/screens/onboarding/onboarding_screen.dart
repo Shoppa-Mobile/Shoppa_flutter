@@ -1,11 +1,12 @@
 // ignore_for_file: unused_local_variable
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:shoppa_app/screens/onboarding/onboarding_content.dart';
+import 'package:shoppa_app/screens/onBoarding/onboarding_content.dart';
 import '../../constants/colors.dart';
 import '../../constants/constants.dart';
 
 class OnBoardingScreen extends StatefulWidget {
+  static String routeName = "/Onboarding";
   const OnBoardingScreen({super.key});
 
   @override

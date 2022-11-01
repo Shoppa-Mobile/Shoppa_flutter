@@ -22,7 +22,7 @@ class DefaultButton extends StatelessWidget {
         height: getPropHeight(65),
         child: MaterialButton(
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           color: primaryColor,
           onPressed: press,
           child: Text(text, style: primaryButtonText),

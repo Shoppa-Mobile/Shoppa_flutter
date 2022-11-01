@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shoppa_app/constants/colors.dart';
+import 'package:shoppa_app/routes.dart';
 import 'package:shoppa_app/screens/splash/splash_screen.dart';
 
 void main() {
@@ -12,11 +14,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Shoppa',
-        theme: ThemeData(
-          fontFamily: "Lato",
-          backgroundColor: Colors.white,
+      debugShowCheckedModeBanner: false,
+      title: 'Shoppa',
+      theme: ThemeData(
+        appBarTheme: const AppBarTheme(
+          iconTheme: IconThemeData(color: regularTextColor),
+          backgroundColor: bgColor,
         ),
-        home: const SplashScreen());
+        fontFamily: "Lato",
+        backgroundColor: bgColor,
+      ),
+      initialRoute: SplashScreen.routeName,
+      routes: routes,
+    );
   }
 }

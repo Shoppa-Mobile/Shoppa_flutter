@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoppa_app/components/defaultButton.dart';
+import 'package:shoppa_app/screens/login/login_screen.dart';
 import '../../constants/colors.dart';
 import '../../constants/constants.dart';
 import '../../constants/size_configurations.dart';
@@ -127,7 +128,9 @@ class LoginWidget extends StatelessWidget {
           width: 2,
         ),
         TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, LoginScreen.routeName);
+            },
             child: Text('Login',
                 style: TextStyle(
                     color: secondaryButtonTextColor,
