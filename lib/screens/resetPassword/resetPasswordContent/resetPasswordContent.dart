@@ -23,11 +23,11 @@ class _ResetPasswordContentState extends State<ResetPasswordContent> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                getPropHeight(27),
+               height: getPropHeight(27),
               ),
               Text("Reset Password",
                   style: headerStyle2),
-              SizedBox(getPropHeight(16)),
+              SizedBox(height: getPropHeight(16)),
               Text('Put in your new password', style: subHeaderStyle),
               SizedBox(
                 height: getPropHeight(61),

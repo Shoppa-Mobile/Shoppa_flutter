@@ -5,6 +5,7 @@ import 'package:shoppa_app/constants/colors.dart';
 import 'package:shoppa_app/screens/resetPassword/resetPassword_screen.dart';
 import '../../../constants/constants.dart';
 import 'package:shoppa_app/components/formError.dart';
+import '../../../constants/size_configurations.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -53,7 +54,7 @@ class _LoginFormState extends State<LoginForm> {
               alignment: Alignment.centerRight,
               child: ForgotPassword(),
             ),
-            const SizedBox(height: getPropHeight(10)),
+            SizedBox(height: getPropHeight(10)),
             FormError(errors: errors),
             SizedBox(height: getPropHeight(100)),
             DefaultButton(

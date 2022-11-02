@@ -20,8 +20,7 @@ class OtpContent extends StatelessWidget {
               SizedBox(
                 height: SizeConfig.screenHeight * 0.06,
               ),
-              Text("Reset Password",
-                  style: headerStyle2),
+              Text("Reset Password", style: headerStyle2),
               const SizedBox(height: 8),
               Text(
                   'A four digit code has been sent to 080********. \nKindly input it below:',
@@ -82,14 +81,10 @@ Row buildTimer() {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
-      const Text(
+      Text(
         "Retry in ",
         style: TextStyle(color: headerTextColor, fontSize: getPropHeight(16)),
       ),
-      // Text(
-      //   ("00:30s"),
-      //   style: TextStyle(color: primaryColor),
-      // )
       TweenAnimationBuilder(
         tween: IntTween(begin: 5, end: 0),
         duration: const Duration(seconds: 5), // because we allow 30 secs

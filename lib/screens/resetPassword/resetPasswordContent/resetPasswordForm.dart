@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shoppa_app/components/defaultButton.dart';
 import 'package:shoppa_app/components/formError.dart';
-
+import '../../../constants/size_configurations.dart';
 import '../../../constants/constants.dart';
 
 class ResetPasswordForm extends StatefulWidget {
