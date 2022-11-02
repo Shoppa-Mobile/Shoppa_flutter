@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoppa_app/constants/constants.dart';
 import 'package:shoppa_app/screens/resetPassword/resetPasswordContent/resetPasswordForm.dart';
-
 import '../../../constants/colors.dart';
 import '../../../constants/size_configurations.dart';
 
@@ -24,19 +23,14 @@ class _ResetPasswordContentState extends State<ResetPasswordContent> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                height: SizeConfig.screenHeight * 0.06,
+                getPropHeight(27),
               ),
               Text("Reset Password",
-                  style: TextStyle(
-                      color: headerTextColor,
-                      fontFamily: 'Manrope',
-                      fontSize: getPropHeight(24),
-                      fontWeight: FontWeight.w700,
-                      letterSpacing: 2.0)),
-              const SizedBox(height: 8),
+                  style: headerStyle2),
+              SizedBox(getPropHeight(16)),
               Text('Put in your new password', style: subHeaderStyle),
               SizedBox(
-                height: SizeConfig.screenHeight * 0.04,
+                height: getPropHeight(61),
               ),
               const ResetPasswordForm()
             ],

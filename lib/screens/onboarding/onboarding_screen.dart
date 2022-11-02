@@ -2,8 +2,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:shoppa_app/screens/onBoarding/onboarding_content.dart';
-import '../../constants/colors.dart';
-import '../../constants/constants.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   static String routeName = "/Onboarding";
@@ -81,17 +79,4 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
       )),
     );
   }
-}
-
-AnimatedContainer buildDot({required int index}) {
-  int currentPage = 0;
-  return AnimatedContainer(
-    duration: animationduration,
-    margin: const EdgeInsets.only(right: 5),
-    height: 6,
-    width: currentPage == index ? 10 : 6,
-    decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(3),
-        color: currentPage == index ? primaryColor : lightPrimaryColor),
-  );
 }

@@ -42,18 +42,20 @@ class _LoginFormState extends State<LoginForm> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Email Address", style: fieldDesTextStyle()),
+            Text("Email Address", style: regTextStyle),
+            SizedBox(height: getPropHeight(8)),
             buildEmailField(),
-            const SizedBox(height: 25),
-            Text("Password", style: fieldDesTextStyle()),
+            SizedBox(height: getPropHeight(16)),
+            Text("Password", style: regTextStyle),
+            SizedBox(height: getPropHeight(8)),
             buildPasswordField(),
             const Align(
               alignment: Alignment.centerRight,
               child: ForgotPassword(),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: getPropHeight(10)),
             FormError(errors: errors),
-            const SizedBox(height: 50),
+            SizedBox(height: getPropHeight(100)),
             DefaultButton(
               text: "Login",
               press: () {

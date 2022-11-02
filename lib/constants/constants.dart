@@ -9,10 +9,38 @@ TextStyle headerStyle = TextStyle(
     fontWeight: FontWeight.w600,
     letterSpacing: 2.0);
 
+TextStyle headerStyle2 = TextStyle(
+    color: headerTextColor,
+    fontFamily: 'Manrope',
+    fontSize: getPropHeight(24),
+    fontWeight: FontWeight.w700,
+    letterSpacing: 2.0);
+
 TextStyle subHeaderStyle = TextStyle(
   color: subHeaderTextColor,
   fontFamily: 'Lato',
   fontSize: getPropHeight(16),
+  fontWeight: FontWeight.w400,
+);
+
+TextStyle subHeaderStyle2 = TextStyle(
+  color: subHeaderTextColor,
+  fontFamily: 'Lato',
+  fontSize: getPropHeight(14),
+  fontWeight: FontWeight.w400,
+);
+
+TextStyle regTextStyle = TextStyle(
+  color: regularTextColor,
+  fontFamily: 'Lato',
+  fontSize: getPropHeight(16),
+  fontWeight: FontWeight.w400,
+);
+
+TextStyle subTextStyle = TextStyle(
+  color: subTextColor,
+  fontFamily: 'Lato',
+  fontSize: getPropHeight(12),
   fontWeight: FontWeight.w400,
 );
 
@@ -49,11 +77,7 @@ InputDecoration textFieldDecoration(String fieldtext) {
   return InputDecoration(
       contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
       hintText: fieldtext,
-      hintStyle: const TextStyle(
-          fontSize: 14,
-          color: textFieldBorderColor,
-          fontFamily: "Lato",
-          fontWeight: FontWeight.w400),
+      hintStyle: subTextStyle,
       border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
           borderSide: const BorderSide(
@@ -62,11 +86,4 @@ InputDecoration textFieldDecoration(String fieldtext) {
           gapPadding: 10));
 }
 
-TextStyle fieldDesTextStyle() {
-  return TextStyle(
-    color: headerTextColor,
-    fontFamily: 'Manrope',
-    fontSize: getPropHeight(16),
-    fontWeight: FontWeight.w700,
-  );
-}
+

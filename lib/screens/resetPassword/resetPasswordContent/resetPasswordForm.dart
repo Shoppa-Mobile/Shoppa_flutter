@@ -40,16 +40,16 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("New Password", style: fieldDesTextStyle()),
-            const SizedBox(height: 8),
+            Text("New Password", style: regTextStyle),
+            SizedBox(height: getPropHeight(8)),
             buildPasswordField(),
-            const SizedBox(height: 35),
-            Text("Confirm Password", style: fieldDesTextStyle()),
-            const SizedBox(height: 8),
+            SizedBox(height: getPropHeight(16)),
+            Text("Confirm Password", style: regTextStyle),
+            SizedBox(height: getPropHeight(8)),
             buildConfirmPasswordField(),
-            const SizedBox(height: 16),
+            SizedBox(height: getPropHeight(16)),
             FormError(errors: errors),
-            const SizedBox(height: 50),
+            SizedBox(height: getPropHeight(117)),
             DefaultButton(
               text: "Reset Password",
               press: () {

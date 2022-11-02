@@ -24,21 +24,16 @@ class _LoginContentState extends State<LoginContent> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                height: SizeConfig.screenHeight * 0.06,
+                height: getPropHeight(27),
               ),
               Text("Login",
-                  style: TextStyle(
-                    color: headerTextColor,
-                    fontFamily: 'Manrope',
-                    fontSize: getPropHeight(24),
-                    fontWeight: FontWeight.w700,
-                  )),
+                  style: headerStyle2),
               SizedBox(
-                height: SizeConfig.screenHeight * 0.04,
+                height: getPropHeight(49),
               ),
               const LoginForm(),
               SizedBox(
-                height: SizeConfig.screenHeight * 0.08,
+                height: getPropHeight(73),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -49,8 +44,8 @@ class _LoginContentState extends State<LoginContent> {
                   )
                 ],
               ),
-              const SizedBox(
-                height: 16,
+              SizedBox(
+                height: getPropHeight(16),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
