@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:shoppa_app/components/defaultButton.dart';
 import 'package:shoppa_app/screens/login/login_screen.dart';
 import '../../constants/colors.dart';
@@ -36,10 +37,11 @@ class OnboardingContent extends StatefulWidget {
       required this.text2,
       required this.buttonText,
       required this.image,
-      required this.press});
+      required this.press, });
 
   final String text1, text2, buttonText, image;
   final GestureTapCallback press;
+  
 
   @override
   State<OnboardingContent> createState() => _OnboardingContentState();
@@ -71,7 +73,7 @@ class _OnboardingContentState extends State<OnboardingContent> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: getPropWidth(63),
+                  height: getPropWidth(24),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -79,7 +81,7 @@ class _OnboardingContentState extends State<OnboardingContent> {
                       onBoardingData.length, (index) => buildDot(index: index)),
                 ),
                 SizedBox(
-                  height: getPropWidth(47),
+                  height: getPropWidth(24),
                 ),
                 Text(
                   widget.text1,
@@ -90,7 +92,7 @@ class _OnboardingContentState extends State<OnboardingContent> {
                 ),
                 Text(widget.text2, style: subHeaderStyle),
                 SizedBox(
-                  height: getPropWidth(24),
+                  height: getPropWidth(14),
                 ),
                 DefaultButton(text: widget.buttonText, press: widget.press),
                 SizedBox(
@@ -106,17 +108,17 @@ class _OnboardingContentState extends State<OnboardingContent> {
   }
 
   AnimatedContainer buildDot({required int index}) {
-  int currentPage = 0;
-  return AnimatedContainer(
-    duration: animationduration,
-    margin: const EdgeInsets.only(right: 5),
-    height: 6,
-    width: currentPage == index ? 10 : 6,
-    decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(3),
-        color: currentPage == index ? primaryColor : lightPrimaryColor),
-  );
-}
+    int currentPage = 0;
+    return AnimatedContainer(
+      duration: animationduration,
+      margin: const EdgeInsets.only(right: 5),
+      height: 6,
+      width: currentPage == index ? 10 : 6,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(3),
+          color: currentPage == index ? primaryColor : lightPrimaryColor),
+    );
+  }
 }
 
 class LoginWidget extends StatelessWidget {

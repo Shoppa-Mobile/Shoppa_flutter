@@ -3,6 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:shoppa_app/screens/onBoarding/onboarding_content.dart';
 
+import '../../constants/colors.dart';
+import '../../constants/constants.dart';
+
 class OnBoardingScreen extends StatefulWidget {
   static String routeName = "/Onboarding";
   const OnBoardingScreen({super.key});
@@ -65,6 +68,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
                     text1: onBoardingData[index]['text1'].toString(),
                     text2: onBoardingData[index]['text2'].toString(),
                     buttonText: onBoardingData[index]['buttontext'].toString(),
+                    
                     press: () {
                       pageController.animateToPage(currentPage = 2,
                           duration: const Duration(milliseconds: 100),
@@ -77,6 +81,19 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
           ],
         ),
       )),
+    );
+  }
+
+  buildDot({required int index}) {
+    int currentPage = 0;
+    return AnimatedContainer(
+      duration: animationduration,
+      margin: const EdgeInsets.only(right: 5),
+      height: 6,
+      width: currentPage == index ? 10 : 6,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(3),
+          color: currentPage == index ? primaryColor : lightPrimaryColor),
     );
   }
 }
