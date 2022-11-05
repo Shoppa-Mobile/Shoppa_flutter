@@ -2,6 +2,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:shoppa_app/screens/onBoarding/onboarding_content.dart';
+import 'package:shoppa_app/screens/signUp/signUp_screen1.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/constants.dart';
@@ -68,11 +69,14 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
                     text1: onBoardingData[index]['text1'].toString(),
                     text2: onBoardingData[index]['text2'].toString(),
                     buttonText: onBoardingData[index]['buttontext'].toString(),
-                    
                     press: () {
                       pageController.animateToPage(currentPage = 2,
                           duration: const Duration(milliseconds: 100),
                           curve: Curves.easeInOutCirc);
+                      if (currentPage == 2) {
+                        Navigator.of(context)
+                            .pushNamed(SignUpScreen1.routeName);
+                      }
                     },
                   );
                 },

@@ -16,6 +16,13 @@ TextStyle headerStyle2 = TextStyle(
     fontWeight: FontWeight.w700,
     letterSpacing: 2.0);
 
+TextStyle headerStyle3 = TextStyle(
+    color: headerTextColor,
+    fontFamily: 'Manrope',
+    fontSize: getPropHeight(18),
+    fontWeight: FontWeight.w600,
+    letterSpacing: 2.0);
+
 TextStyle subHeaderStyle = TextStyle(
   color: subHeaderTextColor,
   fontFamily: 'Lato',
@@ -71,7 +78,12 @@ const String shortPassError = "Password is too short";
 const String passMatchError = "Password's does not match";
 const String nameNullError = "Please enter your name";
 const String phoneNumberNullError = "Please enter your phone number";
-const String addressNullError = "Please enter your address";
+const String firstNameNullError = "Please enter your First Name";
+const String lastNameNullError = "Please enter your Last Name";
+const String phoneNumNullError = "Please enter your Phone Number";
+const String storeNameNullError = "Please enter your Store Name";
+const String addressNullError = "Please enter your Store address";
+const String storeNumNullError = "Please enter your Store's Phone Number";
 
 InputDecoration textFieldDecoration(String fieldtext) {
   return InputDecoration(
@@ -85,5 +97,3 @@ InputDecoration textFieldDecoration(String fieldtext) {
           ),
           gapPadding: 10));
 }
-
-

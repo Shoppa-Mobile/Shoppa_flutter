@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoppa_app/constants/constants.dart';
 import 'package:shoppa_app/screens/resetPassword/resetPasswordContent/resetPasswordForm.dart';
-import '../../../constants/colors.dart';
 import '../../../constants/size_configurations.dart';
 
 class ResetPasswordContent extends StatefulWidget {
@@ -24,7 +23,7 @@ class _ResetPasswordContentState extends State<ResetPasswordContent> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: getPropHeight(27),
+                  height: getPropHeight(15),
                 ),
                 Text("Reset Password", style: headerStyle2),
                 SizedBox(height: getPropHeight(16)),

@@ -56,13 +56,15 @@ class _LoginFormState extends State<LoginForm> {
             ),
             SizedBox(height: getPropHeight(10)),
             FormError(errors: errors),
-            SizedBox(height: getPropHeight(100)),
+            SizedBox(height: getPropHeight(60)),
             DefaultButton(
               text: "Login",
               press: () {
                 if (_formkey.currentState!.validate()) {
                   // Go to Home screen
-                  () {};
+                  () {
+                    _formkey.currentState!.save();
+                  };
                 }
               },
             )

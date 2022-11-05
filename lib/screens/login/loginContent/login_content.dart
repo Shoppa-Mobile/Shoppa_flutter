@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shoppa_app/constants/colors.dart';
 import 'package:shoppa_app/screens/login/loginContent/loginForm.dart';
 import '../../../components/socialCard.dart';
 import '../../../constants/constants.dart';
@@ -25,7 +24,7 @@ class _LoginContentState extends State<LoginContent> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: getPropHeight(27),
+                  height: getPropHeight(15),
                 ),
                 Text("Login", style: headerStyle2),
                 SizedBox(
@@ -33,7 +32,7 @@ class _LoginContentState extends State<LoginContent> {
                 ),
                 const LoginForm(),
                 SizedBox(
-                  height: getPropHeight(73),
+                  height: getPropHeight(60),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

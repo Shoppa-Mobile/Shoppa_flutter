@@ -55,7 +55,7 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
               press: () {
                 if (_formkey.currentState!.validate()) {
                   // Go to Home screen
-                  () {};
+                  _formkey.currentState!.save();
                 }
               },
             )

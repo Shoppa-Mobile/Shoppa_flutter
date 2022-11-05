@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:shoppa_app/components/defaultButton.dart';
 import 'package:shoppa_app/constants/constants.dart';
@@ -5,8 +7,17 @@ import '../../../constants/colors.dart';
 import '../../../constants/size_configurations.dart';
 import 'otpForm.dart';
 
-class OtpContent extends StatelessWidget {
+class OtpContent extends StatefulWidget {
   const OtpContent({super.key});
+
+  @override
+  State<OtpContent> createState() => _OtpContentState();
+}
+
+class _OtpContentState extends State<OtpContent> {
+  bool toResendAgain = false;
+  late Timer timer;
+  int start = 30;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +30,7 @@ class OtpContent extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: SizeConfig.screenHeight * 0.06,
+                  height: getPropHeight(15),
                 ),
                 Text("Reset Password", style: headerStyle2),
                 const SizedBox(height: 8),
@@ -50,7 +61,9 @@ class OtpContent extends StatelessWidget {
                 ),
                 DefaultButton(
                   text: "Next",
-                  press: () {},
+                  press: () {
+                    // Go to POI Screen
+                  },
                 ),
                 SizedBox(
                   height: getPropHeight(42),
@@ -77,25 +90,49 @@ class OtpContent extends StatelessWidget {
               fontWeight: FontWeight.w400),
         ));
   }
-}
 
-Row buildTimer() {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      Text(
-        "Retry in ",
-        style: TextStyle(color: headerTextColor, fontSize: getPropHeight(16)),
+  TextButton buildTimer() {
+    return TextButton(
+        onPressed: () {},
+        child: Text(
+          toResendAgain ? "Resend Code" : "Retry in 30secs",
+          style: TextStyle(
+              color: toResendAgain ? primaryColor : headerTextColor,
+              fontSize: getPropHeight(16)),
+        ));
+  }
+
+  void resend() {
+    setState(() {
+      toResendAgain = true;
+    });
+
+    const oneSec = Duration(seconds: 30);
+    timer = Timer.periodic(oneSec, (timer) {
+      setState(() {
+        if (start == 0) {
+          start = 30;
+          toResendAgain = false;
+          timer.cancel();
+        } else {
+          start--;
+        }
+      });
+    });
+  }
+
+  TweenAnimationBuilder<int> tweenTimer() {
+    return TweenAnimationBuilder(
+      tween: IntTween(begin: 10, end: 0),
+      duration: const Duration(seconds: 10), // because we allow 10 secs
+      builder: (context, value, child) => Text(
+        ("$value secs"),
       ),
-      TweenAnimationBuilder(
-        tween: IntTween(begin: 5, end: 0),
-        duration: const Duration(seconds: 5), // because we allow 30 secs
-        builder: (context, value, child) => Text(
-          ("$value secs"),
-          style: TextStyle(color: headerTextColor, fontSize: getPropHeight(16)),
-        ),
-        onEnd: () {},
-      ),
-    ],
-  );
+      onEnd: () {
+        setState(() {
+          toResendAgain = true;
+        });
+      },
+    );
+  }
 }
