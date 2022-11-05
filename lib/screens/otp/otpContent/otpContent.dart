@@ -10,57 +10,59 @@ class OtpContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-        width: double.infinity,
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: getPropWidth(15)),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: SizeConfig.screenHeight * 0.06,
-              ),
-              Text("Reset Password", style: headerStyle2),
-              const SizedBox(height: 8),
-              Text(
-                  'A four digit code has been sent to 080********. \nKindly input it below:',
-                  style: subHeaderStyle),
-              SizedBox(
-                height: getPropHeight(38),
-              ),
-              const OTPForm(),
-              SizedBox(
-                height: getPropHeight(21),
-              ),
-              Align(
-                alignment: Alignment.centerRight,
-                child: Row(
-                  children: [
-                    Text(
-                      "Didn't get an OTP?",
-                      style: subHeaderStyle,
-                    ),
-                    buildTimer()
-                  ],
+    return SingleChildScrollView(
+      child: SizedBox(
+          width: double.infinity,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: getPropWidth(15)),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: SizeConfig.screenHeight * 0.06,
                 ),
-              ),
-              SizedBox(
-                height: getPropHeight(95),
-              ),
-              DefaultButton(
-                text: "Next",
-                press: () {},
-              ),
-              SizedBox(
-                height: getPropHeight(42),
-              ),
-              Align(
-                alignment: Alignment.center,
-                child: buildEmailInstead(),
-              )
-            ],
-          ),
-        ));
+                Text("Reset Password", style: headerStyle2),
+                const SizedBox(height: 8),
+                Text(
+                    'A four digit code has been sent to 080********. \nKindly input it below:',
+                    style: subHeaderStyle),
+                SizedBox(
+                  height: getPropHeight(38),
+                ),
+                const OTPForm(),
+                SizedBox(
+                  height: getPropHeight(21),
+                ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Row(
+                    children: [
+                      Text(
+                        "Didn't get an OTP?",
+                        style: subHeaderStyle,
+                      ),
+                      buildTimer()
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: getPropHeight(95),
+                ),
+                DefaultButton(
+                  text: "Next",
+                  press: () {},
+                ),
+                SizedBox(
+                  height: getPropHeight(42),
+                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: buildEmailInstead(),
+                )
+              ],
+            ),
+          )),
+    );
   }
 
   TextButton buildEmailInstead() {

@@ -31,17 +31,17 @@ List<Map<String, String>> onBoardingData = [
 ];
 
 class OnboardingContent extends StatefulWidget {
-  const OnboardingContent(
-      {super.key,
-      required this.text1,
-      required this.text2,
-      required this.buttonText,
-      required this.image,
-      required this.press, });
+  const OnboardingContent({
+    super.key,
+    required this.text1,
+    required this.text2,
+    required this.buttonText,
+    required this.image,
+    required this.press,
+  });
 
   final String text1, text2, buttonText, image;
   final GestureTapCallback press;
-  
 
   @override
   State<OnboardingContent> createState() => _OnboardingContentState();
@@ -51,59 +51,62 @@ class _OnboardingContentState extends State<OnboardingContent> {
   int currentPage = 0;
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      fit: StackFit.loose,
-      children: [
-        Container(
-          width: double.infinity,
-          height: MediaQuery.of(context).size.height,
-          decoration: const BoxDecoration(color: bgColor),
-        ),
-        Image.asset(widget.image, fit: BoxFit.fitWidth),
-        Positioned(
-          top: 550,
-          child: Container(
-            // height: MediaQuery.of(context).size.height * 0.4,
-            width: MediaQuery.of(context).size.width,
-            padding: EdgeInsets.symmetric(horizontal: getPropWidth(20)),
-            decoration: const BoxDecoration(
-                color: bgColor,
-                borderRadius: BorderRadius.only(topRight: Radius.circular(35))),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: getPropWidth(24),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: List.generate(
-                      onBoardingData.length, (index) => buildDot(index: index)),
-                ),
-                SizedBox(
-                  height: getPropWidth(24),
-                ),
-                Text(
-                  widget.text1,
-                  style: headerStyle,
-                ),
-                SizedBox(
-                  height: getPropWidth(8),
-                ),
-                Text(widget.text2, style: subHeaderStyle),
-                SizedBox(
-                  height: getPropWidth(14),
-                ),
-                DefaultButton(text: widget.buttonText, press: widget.press),
-                SizedBox(
-                  height: getPropWidth(10),
-                ),
-                const LoginWidget(),
-              ],
+    return SingleChildScrollView(
+      child: Stack(
+        fit: StackFit.loose,
+        children: [
+          Container(
+            width: double.infinity,
+            height: MediaQuery.of(context).size.height,
+            decoration: const BoxDecoration(color: bgColor),
+          ),
+          Image.asset(widget.image, fit: BoxFit.fitWidth),
+          Positioned(
+            top: 550,
+            child: Container(
+              // height: MediaQuery.of(context).size.height * 0.4,
+              width: MediaQuery.of(context).size.width,
+              padding: EdgeInsets.symmetric(horizontal: getPropWidth(20)),
+              decoration: const BoxDecoration(
+                  color: bgColor,
+                  borderRadius:
+                      BorderRadius.only(topRight: Radius.circular(35))),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: getPropWidth(24),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: List.generate(onBoardingData.length,
+                        (index) => buildDot(index: index)),
+                  ),
+                  SizedBox(
+                    height: getPropWidth(24),
+                  ),
+                  Text(
+                    widget.text1,
+                    style: headerStyle,
+                  ),
+                  SizedBox(
+                    height: getPropWidth(8),
+                  ),
+                  Text(widget.text2, style: subHeaderStyle),
+                  SizedBox(
+                    height: getPropWidth(14),
+                  ),
+                  DefaultButton(text: widget.buttonText, press: widget.press),
+                  SizedBox(
+                    height: getPropWidth(10),
+                  ),
+                  const LoginWidget(),
+                ],
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
