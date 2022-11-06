@@ -18,10 +18,14 @@ class OtpContent extends StatefulWidget {
 class _OtpContentState extends State<OtpContent> {
   bool toResendAgain = false;
   late Timer timer;
-  int start = 30;
+  int start = 10;
 
   @override
   Widget build(BuildContext context) {
+    // ? = object can accept null,
+    // ! =  tells the compiler that the variable is not null, and can be used safely
+    final Object? number = ModalRoute.of(context)!.settings.arguments;
+    startTimer();
     return SingleChildScrollView(
       child: SizedBox(
           width: double.infinity,
@@ -36,7 +40,7 @@ class _OtpContentState extends State<OtpContent> {
                 Text("Reset Password", style: headerStyle2),
                 const SizedBox(height: 8),
                 Text(
-                    'A four digit code has been sent to 080********. \nKindly input it below:',
+                    'A four digit code has been sent to $number \nKindly input it below:',
                     style: subHeaderStyle),
                 SizedBox(
                   height: getPropHeight(38),
@@ -94,27 +98,34 @@ class _OtpContentState extends State<OtpContent> {
 
   TextButton buildTimer() {
     return TextButton(
-        onPressed: () {},
+        onPressed: () {
+          if (toResendAgain = true) {
+            setState(() {
+              toResendAgain = false;
+              startTimer();
+            });
+          }
+        },
         child: Text(
-          toResendAgain ? "Resend Code" : "Retry in 30secs",
+          toResendAgain ? "Resend Code" : "Retry in $start",
           style: TextStyle(
               color: toResendAgain ? primaryColor : headerTextColor,
               fontSize: getPropHeight(16)),
         ));
   }
 
-  void resend() {
-    setState(() {
-      toResendAgain = true;
-    });
+  void startTimer() {
+    // setState(() {
+    //   toResendAgain = true;
+    // });
 
-    const oneSec = Duration(seconds: 30);
+    const oneSec = Duration(seconds: 4);
     timer = Timer.periodic(oneSec, (timer) {
       setState(() {
         if (start == 0) {
-          start = 30;
-          toResendAgain = false;
           timer.cancel();
+          start = 10;
+          toResendAgain = true;
         } else {
           start--;
         }

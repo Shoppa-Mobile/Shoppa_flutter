@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shoppa_app/components/defaultButton.dart';
 import 'package:shoppa_app/constants/colors.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
+import 'package:shoppa_app/screens/proofOfIdentity/p_O_IUpload/p_O_IUploadScreen.dart';
 import '../../constants/constants.dart';
 import 'enum.dart';
 
@@ -111,7 +112,9 @@ class _ProofOfIdentityContentState extends State<ProofOfIdentityContent> {
             ),
             DefaultButton(
               text: "Next",
-              press: () {},
+              press: () {
+                Navigator.of(context).pushNamed(POIUploadScreen.routeName);
+              },
             )
           ],
         ),

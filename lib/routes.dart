@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shoppa_app/screens/login/login_screen.dart';
 import 'package:shoppa_app/screens/onBoarding/onboarding_screen.dart';
 import 'package:shoppa_app/screens/otp/otpScreen.dart';
+import 'package:shoppa_app/screens/proofOfIdentity/p_O_IUpload/p_O_IUploadScreen.dart';
 import 'package:shoppa_app/screens/proofOfIdentity/proofOfIdentityScreen.dart';
 import 'package:shoppa_app/screens/resetPassword/resetPassword_screen.dart';
 import 'package:shoppa_app/screens/signUp/signUp_Screen2.dart';
@@ -16,5 +17,6 @@ final Map<String, WidgetBuilder> routes = {
   LoginScreen.routeName: (context) => const LoginScreen(),
   ResetPasswordScreen.routeName: (context) => const ResetPasswordScreen(),
   OtpScreen.routeName: (context) => const OtpScreen(),
-  ProofOfIdentityScreen.routeName: (context) => const ProofOfIdentityScreen()
+  ProofOfIdentityScreen.routeName: (context) => const ProofOfIdentityScreen(),
+  POIUploadScreen.routeName: (context) => const POIUploadScreen()
 };

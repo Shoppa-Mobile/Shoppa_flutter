@@ -1,4 +1,6 @@
 // ignore_for_file: file_names
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:shoppa_app/components/defaultButton.dart';
 import 'package:shoppa_app/components/formError.dart';
@@ -17,7 +19,7 @@ class _SignUpForm2State extends State<SignUpForm2> {
   final _formkey = GlobalKey<FormState>();
   late String storeName;
   late String storeAddress;
-  late int storeNum;
+  late String storeNum;
   late String password;
   final List<String> errors = [];
 
@@ -81,7 +83,9 @@ class _SignUpForm2State extends State<SignUpForm2> {
                 //     Navigator.of(context).pushNamed(OtpScreen.routeName);
                 //   };
                 // }
-                Navigator.of(context).pushNamed(OtpScreen.routeName);
+                _formkey.currentState!.save();
+                Navigator.of(context)
+                    .pushNamed(OtpScreen.routeName, arguments: storeNum);
               },
             )
           ],
@@ -140,14 +144,14 @@ class _SignUpForm2State extends State<SignUpForm2> {
 
   TextFormField buildStoreNumberField() {
     return TextFormField(
-      onSaved: (newValue) => storeNum = newValue as int,
+      onSaved: (newValue) => storeNum = newValue!,
       onChanged: (value) {
         if (value.isNotEmpty) {
           setState(() {
             removeError(error: storeNumNullError);
           });
         }
-        storeNum = value as int;
+        storeNum = value;
       },
       validator: (value) {
         if (value!.isEmpty) {
@@ -159,7 +163,7 @@ class _SignUpForm2State extends State<SignUpForm2> {
         return null;
       },
       decoration: textFieldDecoration("Enter Store Phone Number"),
-      keyboardType: TextInputType.text,
+      keyboardType: TextInputType.number,
     );
   }
 

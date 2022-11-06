@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shoppa_app/constants/colors.dart';
 import 'package:shoppa_app/screens/login/loginContent/loginForm.dart';
 import '../../../components/socialCard.dart';
 import '../../../constants/constants.dart';
@@ -34,14 +35,31 @@ class _LoginContentState extends State<LoginContent> {
                 SizedBox(
                   height: getPropHeight(60),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Or Sign In with",
-                      style: subHeaderStyle,
-                    )
-                  ],
+                Container(
+                  width: double.infinity,
+                  child: Row(
+                    // mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Expanded(
+                          child: Container(
+                        height: 1,
+                        color: subTextColor,
+                        margin:
+                            EdgeInsets.symmetric(horizontal: getPropWidth(12)),
+                      )),
+                      Text(
+                        "Or Sign In with",
+                        style: subHeaderStyle,
+                      ),
+                      Expanded(
+                          child: Container(
+                        height: 1,
+                        color: subTextColor,
+                        margin:
+                            EdgeInsets.symmetric(horizontal: getPropWidth(12)),
+                      )),
+                    ],
+                  ),
                 ),
                 SizedBox(
                   height: getPropHeight(16),
