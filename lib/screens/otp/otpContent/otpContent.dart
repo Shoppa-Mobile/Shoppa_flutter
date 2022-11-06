@@ -1,8 +1,9 @@
+// ignore_for_file: file_names
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:shoppa_app/components/defaultButton.dart';
 import 'package:shoppa_app/constants/constants.dart';
+import 'package:shoppa_app/screens/proofOfIdentity/proofOfIdentityScreen.dart';
 import '../../../constants/colors.dart';
 import '../../../constants/size_configurations.dart';
 import 'otpForm.dart';
@@ -42,19 +43,17 @@ class _OtpContentState extends State<OtpContent> {
                 ),
                 const OTPForm(),
                 SizedBox(
-                  height: getPropHeight(21),
+                  height: getPropHeight(15),
                 ),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: Row(
-                    children: [
-                      Text(
-                        "Didn't get an OTP?",
-                        style: subHeaderStyle,
-                      ),
-                      buildTimer()
-                    ],
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      "Didn't get an OTP?",
+                      style: subHeaderStyle,
+                    ),
+                    buildTimer()
+                  ],
                 ),
                 SizedBox(
                   height: getPropHeight(95),
@@ -63,6 +62,8 @@ class _OtpContentState extends State<OtpContent> {
                   text: "Next",
                   press: () {
                     // Go to POI Screen
+                    Navigator.of(context)
+                        .pushNamed(ProofOfIdentityScreen.routeName);
                   },
                 ),
                 SizedBox(

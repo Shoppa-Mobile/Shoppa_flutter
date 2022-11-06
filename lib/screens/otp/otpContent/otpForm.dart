@@ -1,6 +1,6 @@
+// ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:shoppa_app/constants/colors.dart';
-
 import '../../../constants/size_configurations.dart';
 
 class OTPForm extends StatefulWidget {
@@ -106,15 +106,13 @@ class _OTPFormState extends State<OTPForm> {
             )
           ],
         ),
-        
       ],
     ));
   }
 }
 
 final otpInputDecoration = InputDecoration(
-    contentPadding:
-        EdgeInsets.symmetric(vertical: getPropHeight(15)),
+    contentPadding: EdgeInsets.symmetric(vertical: getPropHeight(15)),
     enabledBorder: outlineInputBorder(),
     focusedBorder: outlineInputBorder(),
     border: outlineInputBorder());

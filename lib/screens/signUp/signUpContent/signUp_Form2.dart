@@ -4,7 +4,6 @@ import 'package:shoppa_app/components/defaultButton.dart';
 import 'package:shoppa_app/components/formError.dart';
 import 'package:shoppa_app/constants/constants.dart';
 import 'package:shoppa_app/screens/otp/otpScreen.dart';
-
 import '../../../constants/size_configurations.dart';
 
 class SignUpForm2 extends StatefulWidget {
@@ -41,51 +40,52 @@ class _SignUpForm2State extends State<SignUpForm2> {
   @override
   Widget build(BuildContext context) {
     return Form(
+        key: _formkey,
         child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text("Store Name", style: regTextStyle),
-        SizedBox(height: getPropHeight(8)),
-        buildStoreNameField(),
-        SizedBox(height: getPropHeight(20)),
-        Text(
-          "Store Address",
-          style: regTextStyle,
-        ),
-        SizedBox(height: getPropHeight(8)),
-        buildStoreAddressField(),
-        SizedBox(height: getPropHeight(20)),
-        Text(
-          "Store Phone Number",
-          style: regTextStyle,
-        ),
-        SizedBox(height: getPropHeight(8)),
-        buildStoreNumberField(),
-        SizedBox(height: getPropHeight(20)),
-        Text(
-          "Password",
-          style: regTextStyle,
-        ),
-        SizedBox(height: getPropHeight(8)),
-        buildPasswordField(),
-        SizedBox(height: getPropHeight(10)),
-        FormError(errors: errors),
-        SizedBox(height: getPropHeight(35)),
-        DefaultButton(
-          text: "Create Account",
-          press: () {
-            // if (_formkey.currentState!.validate()) {
-            //   // Go to Otp Screen
-            //   () {
-            //     _formkey.currentState!.save();
-            //     Navigator.of(context).pushNamed(OtpScreen.routeName);
-            //   };
-            // }
-            Navigator.of(context).pushNamed(OtpScreen.routeName);
-          },
-        )
-      ],
-    ));
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text("Store Name", style: regTextStyle),
+            SizedBox(height: getPropHeight(8)),
+            buildStoreNameField(),
+            SizedBox(height: getPropHeight(20)),
+            Text(
+              "Store Address",
+              style: regTextStyle,
+            ),
+            SizedBox(height: getPropHeight(8)),
+            buildStoreAddressField(),
+            SizedBox(height: getPropHeight(20)),
+            Text(
+              "Store Phone Number",
+              style: regTextStyle,
+            ),
+            SizedBox(height: getPropHeight(8)),
+            buildStoreNumberField(),
+            SizedBox(height: getPropHeight(20)),
+            Text(
+              "Password",
+              style: regTextStyle,
+            ),
+            SizedBox(height: getPropHeight(8)),
+            buildPasswordField(),
+            SizedBox(height: getPropHeight(10)),
+            FormError(errors: errors),
+            SizedBox(height: getPropHeight(35)),
+            DefaultButton(
+              text: "Create Account",
+              press: () {
+                // if (_formkey.currentState!.validate()) {
+                //   // Go to Otp Screen
+                //   () {
+                //     _formkey.currentState!.save();
+                //     Navigator.of(context).pushNamed(OtpScreen.routeName);
+                //   };
+                // }
+                Navigator.of(context).pushNamed(OtpScreen.routeName);
+              },
+            )
+          ],
+        ));
   }
 
   TextFormField buildStoreNameField() {

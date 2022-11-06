@@ -1,6 +1,6 @@
+// ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:shoppa_app/screens/signUp/signUpContent/signUp_Form2.dart';
-
 import '../../../constants/colors.dart';
 import '../../../constants/constants.dart';
 import '../../../constants/size_configurations.dart';

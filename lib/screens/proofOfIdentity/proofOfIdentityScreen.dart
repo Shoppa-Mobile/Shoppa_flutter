@@ -1,11 +1,11 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:shoppa_app/constants/colors.dart';
-import 'signUpContent/signUp_content2.dart';
+import 'package:shoppa_app/screens/proofOfIdentity/proofOfIdentityContent.dart';
 
-class SignUpScreen2 extends StatelessWidget {
-  static String routeName = "/SignUp2";
-  const SignUpScreen2({super.key});
+class ProofOfIdentityScreen extends StatelessWidget {
+  static String routeName = '/Proof Of Identity Screen';
+  const ProofOfIdentityScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class SignUpScreen2 extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
       ),
-      body: const SafeArea(child: SignUpContent2()),
+      body: const ProofOfIdentityContent(),
     );
   }
 }

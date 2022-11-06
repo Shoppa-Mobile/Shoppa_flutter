@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:shoppa_app/components/defaultButton.dart';
 import 'package:shoppa_app/screens/login/login_screen.dart';
 import '../../constants/colors.dart';
 import '../../constants/constants.dart';
 import '../../constants/size_configurations.dart';
-import 'onboarding_screen.dart';
 
 List<Map<String, String>> onBoardingData = [
   {
