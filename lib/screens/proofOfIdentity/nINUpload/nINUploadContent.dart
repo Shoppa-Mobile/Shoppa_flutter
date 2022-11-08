@@ -1,17 +1,18 @@
+// ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:shoppa_app/components/defaultButton.dart';
 import 'package:shoppa_app/constants/colors.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
 import '../../../constants/constants.dart';
 
-class POIUploadContent extends StatefulWidget {
-  const POIUploadContent({super.key});
+class NINUploadContent extends StatefulWidget {
+  const NINUploadContent({super.key});
 
   @override
-  State<POIUploadContent> createState() => _POIUploadContentState();
+  State<NINUploadContent> createState() => _NINUploadContentState();
 }
 
-class _POIUploadContentState extends State<POIUploadContent> {
+class _NINUploadContentState extends State<NINUploadContent> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -27,7 +28,8 @@ class _POIUploadContentState extends State<POIUploadContent> {
               ),
               Text("NIN", style: headerStyle2),
               const SizedBox(height: 16),
-              Text('Upload a picture of your NIN', style: subHeaderStyle),
+              Text('Upload a picture of your National Identification Card',
+                  style: subHeaderStyle),
               SizedBox(
                 height: getPropHeight(45),
               ),

@@ -1,11 +1,11 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:shoppa_app/constants/colors.dart';
-import 'package:shoppa_app/screens/proofOfIdentity/p_O_IUpload/p_O_IUploadContent.dart';
+import 'package:shoppa_app/screens/proofOfIdentity/nINUpload/nINUploadContent.dart';
 
-class POIUploadScreen extends StatelessWidget {
-  static String routeName = '/POI Upload Screen';
-  const POIUploadScreen({super.key});
+class NINUploadScreen extends StatelessWidget {
+  static String routeName = '/NIN Upload Screen';
+  const NINUploadScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +14,6 @@ class POIUploadScreen extends StatelessWidget {
         appBar: AppBar(
           elevation: 0,
         ),
-        body: const SafeArea(child: POIUploadContent()));
+        body: const SafeArea(child: NINUploadContent()));
   }
 }

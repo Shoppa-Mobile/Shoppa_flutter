@@ -35,7 +35,7 @@ class _LoginContentState extends State<LoginContent> {
                 SizedBox(
                   height: getPropHeight(60),
                 ),
-                Container(
+                SizedBox(
                   width: double.infinity,
                   child: Row(
                     // mainAxisAlignment: MainAxisAlignment.center,

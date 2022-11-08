@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:shoppa_app/components/defaultButton.dart';
 import 'package:shoppa_app/constants/colors.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
-import 'package:shoppa_app/screens/proofOfIdentity/p_O_IUpload/p_O_IUploadScreen.dart';
+import 'package:shoppa_app/screens/proofOfIdentity/driLicenseUpload/driLicenseUploadScreen.dart';
+import 'package:shoppa_app/screens/proofOfIdentity/nINUpload/nINUploadScreen.dart';
+import 'package:shoppa_app/screens/proofOfIdentity/utiiBillUpload/utilBillUploadScreen.dart';
+import 'package:shoppa_app/screens/proofOfIdentity/votersCardUpload/votersCardUploadScreen.dart';
 import '../../constants/constants.dart';
 import 'enum.dart';
 
@@ -15,6 +18,10 @@ class ProofOfIdentityContent extends StatefulWidget {
 }
 
 class _ProofOfIdentityContentState extends State<ProofOfIdentityContent> {
+  bool radio1 = false;
+  bool radio2 = false;
+  bool radio3 = false;
+  bool radio4 = false;
   ProofOfItems? proofOfItems = ProofOfItems.ninSlip;
   @override
   Widget build(BuildContext context) {
@@ -47,6 +54,10 @@ class _ProofOfIdentityContentState extends State<ProofOfIdentityContent> {
                   onChanged: (value) {
                     setState(() {
                       proofOfItems = value;
+                      radio1 = true;
+                      radio4 = false;
+                      radio2 = false;
+                      radio3 = false;
                     });
                   }),
               shape: const Border(
@@ -65,6 +76,10 @@ class _ProofOfIdentityContentState extends State<ProofOfIdentityContent> {
                   onChanged: (value) {
                     setState(() {
                       proofOfItems = value;
+                      radio2 = true;
+                      radio1 = false;
+                      radio4 = false;
+                      radio3 = false;
                     });
                   }),
               shape: const Border(
@@ -83,6 +98,10 @@ class _ProofOfIdentityContentState extends State<ProofOfIdentityContent> {
                   onChanged: (value) {
                     setState(() {
                       proofOfItems = value;
+                      radio3 = true;
+                      radio1 = false;
+                      radio2 = false;
+                      radio4 = false;
                     });
                   }),
               shape: const Border(
@@ -101,6 +120,10 @@ class _ProofOfIdentityContentState extends State<ProofOfIdentityContent> {
                   onChanged: (value) {
                     setState(() {
                       proofOfItems = value;
+                      radio4 = true;
+                      radio1 = false;
+                      radio2 = false;
+                      radio3 = false;
                     });
                   }),
               shape: const Border(
@@ -113,7 +136,22 @@ class _ProofOfIdentityContentState extends State<ProofOfIdentityContent> {
             DefaultButton(
               text: "Next",
               press: () {
-                Navigator.of(context).pushNamed(POIUploadScreen.routeName);
+                if (radio1 == true) {
+                  Navigator.of(context)
+                      .pushNamed(UtilBillUploadScreen.routeName);
+                }
+                if (radio2 == true) {
+                  Navigator.of(context).pushNamed(NINUploadScreen.routeName);
+                }
+
+                if (radio3 == true) {
+                  Navigator.of(context)
+                      .pushNamed(DriLicenseUploadScreen.routeName);
+                }
+                if (radio4 == true) {
+                  Navigator.of(context)
+                      .pushNamed(VotersCardUploadScreen.routeName);
+                }
               },
             )
           ],
