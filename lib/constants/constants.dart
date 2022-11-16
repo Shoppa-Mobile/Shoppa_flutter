@@ -65,6 +65,27 @@ TextStyle secondaryButtonText = TextStyle(
   fontWeight: FontWeight.w400,
 );
 
+TextStyle ordersCardText1 = TextStyle(
+    color: bgColor,
+    fontFamily: 'Lato',
+    fontSize: getPropHeight(10),
+    fontWeight: FontWeight.w400,
+    letterSpacing: 2.0);
+
+TextStyle ordersCardText2 = TextStyle(
+    color: bgColor,
+    fontFamily: 'Lato',
+    fontSize: getPropHeight(16),
+    fontWeight: FontWeight.w400,
+    letterSpacing: 2.0);
+
+TextStyle ordersCardText3 = TextStyle(
+    color: bgColor,
+    fontFamily: 'Lato',
+    fontSize: getPropHeight(12),
+    fontWeight: FontWeight.w400,
+    letterSpacing: 2.0);
+
 const animationduration = Duration(seconds: 3);
 
 // Form Error

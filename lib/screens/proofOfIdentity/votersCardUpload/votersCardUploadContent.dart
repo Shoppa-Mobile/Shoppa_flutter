@@ -1,9 +1,12 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, avoid_print
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../../../components/defaultButton.dart';
 import '../../../constants/colors.dart';
 import '../../../constants/constants.dart';
 import '../../../constants/size_configurations.dart';
+import 'package:image_picker/image_picker.dart';
 
 class VotersCardUploadContent extends StatefulWidget {
   const VotersCardUploadContent({super.key});
@@ -14,6 +17,25 @@ class VotersCardUploadContent extends StatefulWidget {
 }
 
 class _VotersCardUploadContentState extends State<VotersCardUploadContent> {
+  XFile? image;
+  File? _image;
+
+  Future<XFile?> imagePicker(ImageSource source) async {
+    try {
+      var imageT = await ImagePicker().pickImage(source: source);
+      if (imageT == null) {
+        return null;
+      }
+      final image = File(imageT.path);
+      setState(() {
+        _image = image;
+      });
+    } on PlatformException catch (e) {
+      print('Failed to pick image: $e');
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -35,38 +57,45 @@ class _VotersCardUploadContentState extends State<VotersCardUploadContent> {
                 height: getPropHeight(45),
               ),
               InkWell(
-                  onTap: (() {}),
-                  child: Container(
-                    height: getPropHeight(226),
-                    width: getPropWidth(379),
-                    decoration: BoxDecoration(
-                        color: subTextColor,
-                        borderRadius: BorderRadius.circular(8)),
-                    child: Center(
-                        child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.image,
-                          color: subHeaderTextColor,
-                          size: getPropHeight(80),
-                        ),
-                        SizedBox(
-                          height: getPropHeight(13),
-                        ),
-                        Text(
-                          "Click to Upload a picture from your phone ",
-                          style: subHeaderStyle,
-                        )
-                      ],
-                    )),
-                  )),
+                  onTap: () {
+                    imagePicker(ImageSource.gallery);
+                  },
+                  child: _image == null
+                      ? Container(
+                          height: getPropHeight(226),
+                          width: getPropWidth(379),
+                          decoration: BoxDecoration(
+                              color: subTextColor,
+                              borderRadius: BorderRadius.circular(8)),
+                          child: Center(
+                              child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.image,
+                                color: subHeaderTextColor,
+                                size: getPropHeight(80),
+                              ),
+                              SizedBox(
+                                height: getPropHeight(13),
+                              ),
+                              Text(
+                                "Click to Upload a picture from your phone ",
+                                style: subHeaderStyle,
+                              )
+                            ],
+                          )))
+                      : Padding(
+                          padding: EdgeInsets.all(getPropWidth(10)),
+                          child: Image.file(_image!))),
               SizedBox(
                 height: getPropHeight(38),
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  imagePicker(ImageSource.camera);
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

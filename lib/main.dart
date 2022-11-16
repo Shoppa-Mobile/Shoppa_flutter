@@ -4,6 +4,7 @@ import 'package:shoppa_app/routes.dart';
 import 'package:shoppa_app/screens/splash/splash_screen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 

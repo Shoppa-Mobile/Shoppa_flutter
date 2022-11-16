@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:shoppa_app/components/defaultButton.dart';
 import 'package:shoppa_app/constants/colors.dart';
+import 'package:shoppa_app/screens/home/homeScreen.dart';
 import 'package:shoppa_app/screens/resetPassword/resetPassword_screen.dart';
 import '../../../constants/constants.dart';
 import 'package:shoppa_app/components/formError.dart';
@@ -60,12 +61,14 @@ class _LoginFormState extends State<LoginForm> {
             DefaultButton(
               text: "Login",
               press: () {
-                if (_formkey.currentState!.validate()) {
-                  // Go to Home screen
-                  () {
-                    _formkey.currentState!.save();
-                  };
-                }
+                // if (_formkey.currentState!.validate()) {
+                //   // Go to Home screen
+                //   () {
+                //     _formkey.currentState!.save();
+
+                //   };
+                // }
+                Navigator.of(context).pushNamed(HomeScreen.routeName);
               },
             )
           ],
