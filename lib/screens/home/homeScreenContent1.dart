@@ -1,5 +1,6 @@
+// ignore_for_file: file_names
 import 'package:flutter/material.dart';
-import 'package:shoppa_app/constants/constants.dart';
+import 'package:shoppa_app/screens/home/components/inventory.dart';
 import 'package:shoppa_app/screens/home/components/pendingOrders.dart';
 import '../../constants/size_configurations.dart';
 
@@ -20,21 +21,10 @@ class _HomeScreenContent1State extends State<HomeScreenContent1> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Welcome \nto Shoppa",
-                  style: headerStyle,
-                ),
-                const Icon(
-                  Icons.notifications,
-                  size: 32,
-                ),
-              ],
-            ),
+            SizedBox(height: getPropHeight(10)),
+            const PendingOrders1(),
             SizedBox(height: getPropHeight(15)),
-            const PendingOrders1()
+            const Inventory1()
           ],
         ),
       ),

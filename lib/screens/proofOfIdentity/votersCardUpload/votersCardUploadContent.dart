@@ -8,6 +8,8 @@ import '../../../constants/constants.dart';
 import '../../../constants/size_configurations.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../home/homeScreen2.dart';
+
 class VotersCardUploadContent extends StatefulWidget {
   const VotersCardUploadContent({super.key});
 
@@ -86,9 +88,17 @@ class _VotersCardUploadContentState extends State<VotersCardUploadContent> {
                               )
                             ],
                           )))
-                      : Padding(
-                          padding: EdgeInsets.all(getPropWidth(10)),
-                          child: Image.file(_image!))),
+                      : SizedBox(
+                          height: getPropHeight(226),
+                          width: getPropWidth(379),
+                          child: ClipRRect(
+                              borderRadius:
+                                  BorderRadius.circular(getPropWidth(8)),
+                              clipBehavior: Clip.hardEdge,
+                              child: Image.file(
+                                _image!,
+                                fit: BoxFit.fill,
+                              )))),
               SizedBox(
                 height: getPropHeight(38),
               ),
@@ -116,7 +126,9 @@ class _VotersCardUploadContentState extends State<VotersCardUploadContent> {
               ),
               DefaultButton(
                 text: "Submit",
-                press: () {},
+                press: () {
+                  Navigator.of(context).pushNamed(HomeScreen2.routeName);
+                },
               )
             ],
           ),

@@ -86,6 +86,13 @@ TextStyle ordersCardText3 = TextStyle(
     fontWeight: FontWeight.w400,
     letterSpacing: 2.0);
 
+TextStyle inventoryPriceText = TextStyle(
+    color: secondaryButtonTextColor,
+    fontFamily: 'Lato',
+    fontSize: getPropHeight(18),
+    fontWeight: FontWeight.w600,
+    letterSpacing: 2.0);
+
 const animationduration = Duration(seconds: 3);
 
 // Form Error

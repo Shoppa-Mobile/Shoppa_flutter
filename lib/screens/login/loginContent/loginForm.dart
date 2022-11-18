@@ -2,7 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:shoppa_app/components/defaultButton.dart';
 import 'package:shoppa_app/constants/colors.dart';
-import 'package:shoppa_app/screens/home/homeScreen.dart';
+import 'package:shoppa_app/screens/home/homeScreen1.dart';
+import 'package:shoppa_app/screens/home/homeScreen2.dart';
 import 'package:shoppa_app/screens/resetPassword/resetPassword_screen.dart';
 import '../../../constants/constants.dart';
 import 'package:shoppa_app/components/formError.dart';
@@ -68,7 +69,7 @@ class _LoginFormState extends State<LoginForm> {
 
                 //   };
                 // }
-                Navigator.of(context).pushNamed(HomeScreen.routeName);
+                Navigator.of(context).pushNamed(HomeScreen2.routeName);
               },
             )
           ],

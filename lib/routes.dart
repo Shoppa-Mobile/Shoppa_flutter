@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shoppa_app/screens/home/homeScreen.dart';
+import 'package:shoppa_app/screens/home/homeScreen1.dart';
+import 'package:shoppa_app/screens/home/homeScreen2.dart';
 import 'package:shoppa_app/screens/login/login_screen.dart';
 import 'package:shoppa_app/screens/onBoarding/onboarding_screen.dart';
 import 'package:shoppa_app/screens/otp/otpScreen.dart';
@@ -26,5 +27,6 @@ final Map<String, WidgetBuilder> routes = {
   UtilBillUploadScreen.routeName: (context) => const UtilBillUploadScreen(),
   DriLicenseUploadScreen.routeName: (context) => const DriLicenseUploadScreen(),
   VotersCardUploadScreen.routeName: (context) => const VotersCardUploadScreen(),
-  HomeScreen.routeName: (context) => const HomeScreen()
+  HomeScreen.routeName: (context) => const HomeScreen(),
+  HomeScreen2.routeName: (context) => const HomeScreen2()
 };

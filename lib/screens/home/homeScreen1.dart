@@ -1,10 +1,12 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shoppa_app/components/customNavBar.dart';
 import 'package:shoppa_app/constants/colors.dart';
+import 'package:shoppa_app/constants/size_configurations.dart';
 import 'package:shoppa_app/enums.dart';
 import 'package:shoppa_app/screens/home/homeScreenContent1.dart';
-import 'package:shoppa_app/screens/home/homeScreenContent2.dart';
+import '../../constants/constants.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -18,6 +20,21 @@ class HomeScreen extends StatelessWidget {
         automaticallyImplyLeading: false,
         backgroundColor: bgColor,
         scrolledUnderElevation: 2.0,
+        title: Text(
+          "Welcome \nto Shoppa",
+          style: headerStyle2,
+        ),
+        actions: [
+          InkWell(
+            onTap: () {},
+            child: SvgPicture.asset(
+              'assets/icons/bell.svg',
+              height: getPropHeight(32),
+              width: getPropWidth(32),
+            ),
+          ),
+          const SizedBox(width: 10)
+        ],
       ),
       backgroundColor: bgColor,
       body: const HomeScreenContent1(),

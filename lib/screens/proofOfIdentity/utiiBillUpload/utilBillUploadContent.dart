@@ -31,6 +31,7 @@ class _UtilBillUploadContentState extends State<UtilBillUploadContent> {
         _image = image;
       });
     } on PlatformException catch (e) {
+      // ignore: avoid_print
       print('Failed to pick image: $e');
     }
     return null;
