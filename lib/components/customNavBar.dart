@@ -1,21 +1,28 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, unused_import
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shoppa_app/constants/colors.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
 import 'package:shoppa_app/enums.dart';
+import 'package:shoppa_app/screens/home/homeScreen1.dart';
+import 'package:shoppa_app/screens/home/homeScreen2.dart';
+import 'package:shoppa_app/screens/orders/ordersScreen.dart';
 
-class CustomNavBar extends StatelessWidget {
+class CustomNavBar extends StatefulWidget {
   const CustomNavBar({super.key, required this.selectedMenu});
 
   final MenuState selectedMenu;
 
   @override
+  State<CustomNavBar> createState() => _CustomNavBarState();
+}
+
+class _CustomNavBarState extends State<CustomNavBar> {
+  @override
   Widget build(BuildContext context) {
-    final Color inActiveIconColor = primaryColor.withOpacity(0.8);
     return Container(
       padding: EdgeInsets.symmetric(
-          vertical: getPropWidth(18), horizontal: getPropWidth(30)),
+          vertical: getPropWidth(10), horizontal: getPropWidth(30)),
       decoration: BoxDecoration(color: bgColor, boxShadow: [
         BoxShadow(
             offset: const Offset(0, -15),
@@ -26,73 +33,113 @@ class CustomNavBar extends StatelessWidget {
           child:
               Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
         InkWell(
-            onTap: () {},
-            child: Container(
-              decoration: (MenuState.home == selectedMenu)
-                  ? null
-                  : const BoxDecoration(
+            onTap: () {
+              Navigator.pushNamed(context, HomeScreen2.routeName);
+            },
+            child: (MenuState.home == widget.selectedMenu)
+                ? Container(
+                    width: getPropWidth(56),
+                    height: getPropHeight(65),
+                    decoration: const BoxDecoration(
+                        color: primaryColor,
+                        shape: BoxShape.rectangle,
+                        borderRadius:
+                            BorderRadius.only(topRight: Radius.circular(16))),
+                    child: Center(
+                      child: SvgPicture.asset("assets/icons/home.svg",
+                          color: bgColor),
+                    ),
+                  )
+                : Container(
+                    decoration: const BoxDecoration(
+                        shape: BoxShape.rectangle,
+                        borderRadius:
+                            BorderRadius.only(topRight: Radius.circular(16))),
+                    child: SvgPicture.asset(
+                      "assets/icons/home.svg",
                       color: primaryColor,
-                      shape: BoxShape.rectangle,
-                      borderRadius:
-                          BorderRadius.only(topRight: Radius.circular(16))),
-              child: SvgPicture.asset(
-                "assets/icons/home.svg",
-                color: MenuState.home == selectedMenu
-                    ? primaryColor
-                    : inActiveIconColor,
-              ),
-            )),
+                    ),
+                  )),
         InkWell(
             onTap: () {},
-            child: Container(
-              decoration: (MenuState.home == selectedMenu)
-                  ? null
-                  : const BoxDecoration(
+            child: (MenuState.shop == widget.selectedMenu)
+                ? Container(
+                    width: getPropWidth(56),
+                    height: getPropHeight(65),
+                    decoration: const BoxDecoration(
+                        color: primaryColor,
+                        shape: BoxShape.rectangle,
+                        borderRadius:
+                            BorderRadius.only(topRight: Radius.circular(16))),
+                    child: Center(
+                      child: SvgPicture.asset("assets/icons/shop.svg",
+                          color: bgColor),
+                    ),
+                  )
+                : Container(
+                    decoration: const BoxDecoration(
+                        shape: BoxShape.rectangle,
+                        borderRadius:
+                            BorderRadius.only(topRight: Radius.circular(16))),
+                    child: SvgPicture.asset(
+                      "assets/icons/shop.svg",
                       color: primaryColor,
-                      shape: BoxShape.rectangle,
-                      borderRadius:
-                          BorderRadius.only(topRight: Radius.circular(16))),
-              child: SvgPicture.asset(
-                "assets/icons/shop.svg",
-                color: MenuState.shop == selectedMenu
-                    ? Colors.white
-                    : inActiveIconColor,
-              ),
-            )),
+                    ),
+                  )),
+        InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, OrdersScreen.routeName);
+            },
+            child: (MenuState.orders == widget.selectedMenu)
+                ? Container(
+                    width: getPropWidth(56),
+                    height: getPropHeight(65),
+                    decoration: const BoxDecoration(
+                        color: primaryColor,
+                        shape: BoxShape.rectangle,
+                        borderRadius:
+                            BorderRadius.only(topRight: Radius.circular(16))),
+                    child: Center(
+                      child: SvgPicture.asset("assets/icons/orders.svg",
+                          color: bgColor),
+                    ),
+                  )
+                : Container(
+                    decoration: const BoxDecoration(
+                        shape: BoxShape.rectangle,
+                        borderRadius:
+                            BorderRadius.only(topRight: Radius.circular(16))),
+                    child: SvgPicture.asset(
+                      "assets/icons/orders.svg",
+                      color: primaryColor,
+                    ),
+                  )),
         InkWell(
             onTap: () {},
-            child: Container(
-              decoration: (MenuState.home == selectedMenu)
-                  ? null
-                  : const BoxDecoration(
+            child: (MenuState.profile == widget.selectedMenu)
+                ? Container(
+                    width: getPropWidth(56),
+                    height: getPropHeight(65),
+                    decoration: const BoxDecoration(
+                        color: primaryColor,
+                        shape: BoxShape.rectangle,
+                        borderRadius:
+                            BorderRadius.only(topRight: Radius.circular(16))),
+                    child: Center(
+                      child: SvgPicture.asset("assets/icons/profile.svg",
+                          color: bgColor),
+                    ),
+                  )
+                : Container(
+                    decoration: const BoxDecoration(
+                        shape: BoxShape.rectangle,
+                        borderRadius:
+                            BorderRadius.only(topRight: Radius.circular(16))),
+                    child: SvgPicture.asset(
+                      "assets/icons/profile.svg",
                       color: primaryColor,
-                      shape: BoxShape.rectangle,
-                      borderRadius:
-                          BorderRadius.only(topRight: Radius.circular(16))),
-              child: SvgPicture.asset(
-                "assets/icons/orders.svg",
-                color: MenuState.orders == selectedMenu
-                    ? Colors.white
-                    : inActiveIconColor,
-              ),
-            )),
-        InkWell(
-            onTap: () {},
-            child: Container(
-              decoration: (MenuState.home == selectedMenu)
-                  ? null
-                  : const BoxDecoration(
-                      color: primaryColor,
-                      shape: BoxShape.rectangle,
-                      borderRadius:
-                          BorderRadius.only(topRight: Radius.circular(16))),
-              child: SvgPicture.asset(
-                "assets/icons/profile.svg",
-                color: MenuState.profile == selectedMenu
-                    ? Colors.white
-                    : inActiveIconColor,
-              ),
-            )),
+                    ),
+                  )),
       ])),
     );
   }

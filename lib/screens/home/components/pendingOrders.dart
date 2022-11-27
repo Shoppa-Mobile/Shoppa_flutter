@@ -214,7 +214,7 @@ class PendingOrdersCard2 extends StatelessWidget {
                         height: 30,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: primaryColor.withOpacity(0.25),
+                          color: primaryColor.withOpacity(0.10),
                         ),
                         child: Center(
                           child: Text(
@@ -280,7 +280,7 @@ class PendingOrdersCard2 extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 3),
                       decoration: BoxDecoration(
-                          color: primaryColor.withOpacity(0.25),
+                          color: primaryColor.withOpacity(0.10),
                           borderRadius:
                               BorderRadius.circular(getPropWidth(06))),
                       child: (boolo == true)
