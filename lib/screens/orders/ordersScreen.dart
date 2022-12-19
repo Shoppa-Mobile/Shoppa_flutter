@@ -1,9 +1,12 @@
 // ignore_for_file: file_names, unused_import
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:shoppa_app/components/customNavBar.dart';
 import 'package:shoppa_app/constants/colors.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
 import 'package:shoppa_app/enums.dart';
+import 'package:shoppa_app/screens/createOrder/createOrderScreen.dart';
+import 'package:shoppa_app/screens/notifications/notifications.dart';
 import 'package:shoppa_app/screens/orders/components/ordersScreenContent.dart';
 import '../../constants/constants.dart';
 
@@ -28,9 +31,30 @@ class _OrdersScreenState extends State<OrdersScreen> {
           "Orders",
           style: headerStyle2,
         ),
-        actions: const [ProgessDropDown(), SizedBox(width: 16)],
+        actions: [
+          InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, Notifications.routeName);
+            },
+            child: SvgPicture.asset(
+              'assets/icons/bell.svg',
+              height: getPropHeight(32),
+              width: getPropWidth(32),
+            ),
+          ),
+          const SizedBox(width: 16)
+        ],
       ),
       body: const OrdersScreenContent(),
+      floatingActionButton: InkWell(
+          onTap: (() {
+            Navigator.pushNamed(context, CreateOrderScreen.routeName);
+          }),
+          child: SvgPicture.asset(
+            "assets/icons/addActionButton.svg",
+            width: 66.67,
+            height: 66.67,
+          )),
       bottomNavigationBar: const CustomNavBar(selectedMenu: MenuState.orders),
     );
   }

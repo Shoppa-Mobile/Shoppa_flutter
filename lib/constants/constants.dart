@@ -125,3 +125,16 @@ InputDecoration textFieldDecoration(String fieldtext) {
           ),
           gapPadding: 10));
 }
+
+InputDecoration textCreateOrderFieldDecoration(String fieldtext) {
+  return InputDecoration(
+      contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+      hintText: fieldtext,
+      hintStyle: subTextStyle,
+      border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: const BorderSide(
+            color: textFieldBorderColor,
+          ),
+          gapPadding: 10));
+}
