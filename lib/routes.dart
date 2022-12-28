@@ -7,6 +7,7 @@ import 'package:shoppa_app/screens/notifications/notifications.dart';
 import 'package:shoppa_app/screens/onBoarding/onboarding_screen.dart';
 import 'package:shoppa_app/screens/orders/ordersScreen.dart';
 import 'package:shoppa_app/screens/otp/otpScreen.dart';
+import 'package:shoppa_app/screens/profile/ProfileScreen.dart';
 import 'package:shoppa_app/screens/proofOfIdentity/driLicenseUpload/driLicenseUploadScreen.dart';
 import 'package:shoppa_app/screens/proofOfIdentity/nINUpload/nINUploadScreen.dart';
 import 'package:shoppa_app/screens/proofOfIdentity/proofOfIdentityScreen.dart';
@@ -34,5 +35,6 @@ final Map<String, WidgetBuilder> routes = {
   HomeScreen2.routeName: (context) => const HomeScreen2(),
   Notifications.routeName: (context) => const Notifications(),
   OrdersScreen.routeName: (context) => const OrdersScreen(),
-  CreateOrderScreen.routeName: (context) => const CreateOrderScreen()
+  CreateOrderScreen.routeName: (context) => const CreateOrderScreen(),
+  ProfileScreen.routeName: (context) => const ProfileScreen()
 };

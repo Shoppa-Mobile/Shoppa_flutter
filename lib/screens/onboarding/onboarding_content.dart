@@ -58,9 +58,9 @@ class _OnboardingContentState extends State<OnboardingContent> {
             height: MediaQuery.of(context).size.height,
             decoration: const BoxDecoration(color: bgColor),
           ),
-          Image.asset(widget.image, fit: BoxFit.fitWidth),
+          Image.asset(widget.image, fit: BoxFit.fill),
           Positioned(
-            top: 550,
+            top: 480,
             child: Container(
               // height: MediaQuery.of(context).size.height * 0.4,
               width: MediaQuery.of(context).size.width,

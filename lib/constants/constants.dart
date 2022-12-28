@@ -23,6 +23,13 @@ TextStyle headerStyle3 = TextStyle(
     fontWeight: FontWeight.w600,
     letterSpacing: 2.0);
 
+TextStyle whiteHeaderStyle = TextStyle(
+    color: bgColor,
+    fontFamily: 'Manrope',
+    fontSize: getPropHeight(18),
+    fontWeight: FontWeight.w600,
+    letterSpacing: 2.0);
+
 TextStyle subHeaderStyle = TextStyle(
   color: subHeaderTextColor,
   fontFamily: 'Lato',

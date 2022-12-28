@@ -19,7 +19,7 @@ class Inventory1 extends StatelessWidget {
         SizedBox(height: getPropHeight(5)),
         GridView.builder(
             gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: getPropWidth(200),
+                maxCrossAxisExtent: getPropWidth(250),
                 childAspectRatio: 1,
                 crossAxisSpacing: getPropWidth(10),
                 mainAxisSpacing: getPropHeight(10)),
@@ -59,15 +59,15 @@ class InventoryCard extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.all(getPropWidth(8)),
         child: SizedBox(
-          width: getPropWidth(178),
-          height: getPropHeight(180),
+          width: getPropWidth(190),
+          height: getPropHeight(192),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
                 height: getPropHeight(128),
-                width: getPropWidth(178),
+                width: getPropWidth(185),
                 child: ClipRect(
                   clipBehavior: Clip.hardEdge,
                   child: Stack(

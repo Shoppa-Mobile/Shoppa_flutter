@@ -29,6 +29,14 @@ List<InventoryList> demoInventory = [
   ),
   InventoryList(
       goodsImage: 'assets/images/Image 4.png',
-      goodsName: 'Lorep Ipsum',
+      goodsName: 'Set of Ear jewellery',
+      price: '6500'),
+  InventoryList(
+      goodsImage: 'assets/images/Image 5.png',
+      goodsName: 'Big T-Shirts',
+      price: '6500'),
+  InventoryList(
+      goodsImage: 'assets/images/Image 6.png',
+      goodsName: 'Long-Sleeved Tur...',
       price: '6500')
 ];

@@ -7,6 +7,7 @@ import 'package:shoppa_app/enums.dart';
 import 'package:shoppa_app/screens/home/homeScreen1.dart';
 import 'package:shoppa_app/screens/home/homeScreen2.dart';
 import 'package:shoppa_app/screens/orders/ordersScreen.dart';
+import 'package:shoppa_app/screens/profile/ProfileScreen.dart';
 
 class CustomNavBar extends StatefulWidget {
   const CustomNavBar({super.key, required this.selectedMenu});
@@ -34,7 +35,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
               Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
         InkWell(
             onTap: () {
-              Navigator.pushNamed(context, HomeScreen2.routeName);
+              Navigator.pushNamed(context, HomeScreen.routeName);
             },
             child: (MenuState.home == widget.selectedMenu)
                 ? Container(
@@ -115,7 +116,9 @@ class _CustomNavBarState extends State<CustomNavBar> {
                     ),
                   )),
         InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, ProfileScreen.routeName);
+            },
             child: (MenuState.profile == widget.selectedMenu)
                 ? Container(
                     width: getPropWidth(56),

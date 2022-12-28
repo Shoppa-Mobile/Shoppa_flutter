@@ -4,7 +4,6 @@ import 'package:shoppa_app/constants/colors.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
 import 'package:shoppa_app/screens/createOrder/createOrderScreen.dart';
 import 'package:shoppa_app/screens/orders/components/ordersHistory.dart';
-
 import '../../../constants/constants.dart';
 
 class OrdersScreenContent extends StatefulWidget {
@@ -23,6 +22,8 @@ class _OrdersScreenContentState extends State<OrdersScreenContent> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(height: getPropHeight(25)),
+            const CreateOrderWidget(),
             SizedBox(height: getPropHeight(25)),
             const SearchField(),
             SizedBox(height: getPropHeight(25)),
@@ -165,7 +166,7 @@ class OrdersHistoryCard extends StatelessWidget {
         color: bgColor,
         elevation: 0,
         child: SizedBox(
-          height: getPropHeight(115),
+          height: getPropHeight(120),
           width: SizeConfig.screenWidth - 30,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 3),
@@ -322,7 +323,7 @@ class OrdersHistoryCard extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 10),
                 Container(
                   height: 2,
                   width: SizeConfig.screenWidth - 40,

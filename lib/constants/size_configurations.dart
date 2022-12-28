@@ -20,8 +20,8 @@ double getPropHeight(double inputHeight) {
   return (inputHeight / 1020.0) * screenHeight;
 }
 
-double getPropWidth(double inputHeight) {
+double getPropWidth(double inputWidth) {
   double screenWidth = SizeConfig.screenWidth;
   // 414 is the designer's specified layout width
-  return (inputHeight / 414.0) * screenWidth;
+  return (inputWidth / 535.0) * screenWidth;
 }
