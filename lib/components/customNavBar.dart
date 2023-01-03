@@ -35,7 +35,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
               Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
         InkWell(
             onTap: () {
-              Navigator.pushNamed(context, HomeScreen.routeName);
+              Navigator.pushNamed(context, HomeScreen2.routeName);
             },
             child: (MenuState.home == widget.selectedMenu)
                 ? Container(

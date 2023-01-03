@@ -28,7 +28,7 @@ class _OrdersScreenContentState extends State<OrdersScreenContent> {
             const SearchField(),
             SizedBox(height: getPropHeight(25)),
             Text('History', style: headerStyle3),
-            SizedBox(height: getPropHeight(1)),
+            SizedBox(height: getPropHeight(10)),
             Expanded(
               child: ListView.builder(
                   physics: const ScrollPhysics(),
@@ -162,52 +162,45 @@ class OrdersHistoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: press,
-      child: Card(
-        color: bgColor,
-        elevation: 0,
-        child: SizedBox(
-          height: getPropHeight(100),
-          width: SizeConfig.screenWidth - 30,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 1),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
+      child: Column(
+        children: [
+          Card(
+            color: bgColor,
+            elevation: 0,
+            child: SizedBox(
+              height: getPropHeight(80),
+              width: SizeConfig.screenWidth - 30,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 1),
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Container(
-                                width: 30,
-                                height: 30,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: primaryColor.withOpacity(0.10),
+                        Container(
+                            width: 30,
+                            height: 30,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: primaryColor.withOpacity(0.10),
+                            ),
+                            child: Center(
+                              child: Text(
+                                "${buyerFirstName.characters.characterAt(0)}${buyerLastName.characters.characterAt(0).toUpperCase()}",
+                                style: TextStyle(
+                                  color: primaryColor,
+                                  fontFamily: 'Lato',
+                                  fontSize: getPropHeight(16),
+                                  fontWeight: FontWeight.w700,
                                 ),
-                                child: Center(
-                                  child: Text(
-                                    "${buyerFirstName.characters.characterAt(0)}${buyerLastName.characters.characterAt(0).toUpperCase()}",
-                                    style: TextStyle(
-                                      color: primaryColor,
-                                      fontFamily: 'Lato',
-                                      fontSize: getPropHeight(16),
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ),
-                                )),
-                          ],
-                        ),
+                              ),
+                            )),
                         const SizedBox(
                           width: 3,
                         ),
                         Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
@@ -219,7 +212,7 @@ class OrdersHistoryCard extends StatelessWidget {
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
-                            const SizedBox(height: 10),
+                            const SizedBox(height: 12),
                             Text(
                               '"Ordered for',
                               style: TextStyle(
@@ -243,21 +236,28 @@ class OrdersHistoryCard extends StatelessWidget {
                       ],
                     ),
                     Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Row(
                           children: [
-                            Text("NGN $price", style: regTextStyle),
-                            SizedBox(width: getPropHeight(1)),
-                            IconButton(
-                              onPressed: () {},
-                              icon: Icon(Icons.more_vert,
-                                  size: getPropHeight(10),
-                                  color: regularTextColor),
-                            )
+                            Text(
+                              "NGN $price",
+                              style: TextStyle(
+                                color: headerTextColor,
+                                fontFamily: 'Manrope',
+                                fontSize: getPropHeight(16),
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            const SizedBox(width: 3),
+                            InkWell(
+                              onTap: () {},
+                              child: const Icon(Icons.more_vert,
+                                  size: 16, color: regularTextColor),
+                            ),
                           ],
                         ),
-                        const SizedBox(width: 1),
                         if (inTransit == true)
                           Container(
                               padding:
@@ -311,21 +311,20 @@ class OrdersHistoryCard extends StatelessWidget {
                                     fontWeight: FontWeight.w400,
                                     letterSpacing: 1.2),
                               )),
-                        const SizedBox(height: 5),
                       ],
                     ),
                   ],
                 ),
-                const SizedBox(height: 5),
-                Container(
-                  height: 2,
-                  width: SizeConfig.screenWidth - 40,
-                  color: regularTextColor.withOpacity(0.1),
-                )
-              ],
+              ),
             ),
           ),
-        ),
+          const SizedBox(height: 5),
+          Container(
+            height: 2,
+            width: SizeConfig.screenWidth - 40,
+            color: regularTextColor.withOpacity(0.1),
+          )
+        ],
       ),
     );
   }
