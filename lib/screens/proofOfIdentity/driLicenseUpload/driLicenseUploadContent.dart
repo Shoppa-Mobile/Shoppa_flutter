@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shoppa_app/screens/home/homeScreen2.dart';
 import '../../../components/defaultButton.dart';
 import '../../../constants/colors.dart';
 import '../../../constants/constants.dart';
@@ -62,10 +63,10 @@ class _DriLicenseUploadContentState extends State<DriLicenseUploadContent> {
                   onTap: () {
                     imagePicker(ImageSource.gallery);
                   },
-                  child: image == null
+                  child: _image == null
                       ? Container(
                           height: getPropHeight(226),
-                          width: getPropWidth(379),
+                          width: SizeConfig.screenWidth - 20,
                           decoration: BoxDecoration(
                               color: subTextColor,
                               borderRadius: BorderRadius.circular(8)),
@@ -89,9 +90,17 @@ class _DriLicenseUploadContentState extends State<DriLicenseUploadContent> {
                             ],
                           )),
                         )
-                      : Padding(
-                          padding: EdgeInsets.all(getPropWidth(10)),
-                          child: Image.file(_image!))),
+                      : SizedBox(
+                          height: getPropHeight(226),
+                          width: SizeConfig.screenWidth - 20,
+                          child: ClipRRect(
+                              borderRadius:
+                                  BorderRadius.circular(getPropWidth(8)),
+                              clipBehavior: Clip.hardEdge,
+                              child: Image.file(
+                                _image!,
+                                fit: BoxFit.fill,
+                              )))),
               SizedBox(
                 height: getPropHeight(38),
               ),
@@ -119,7 +128,9 @@ class _DriLicenseUploadContentState extends State<DriLicenseUploadContent> {
               ),
               DefaultButton(
                 text: "Submit",
-                press: () {},
+                press: () {
+                  Navigator.of(context).pushNamed(HomeScreen2.routeName);
+                },
               )
             ],
           ),

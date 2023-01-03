@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:shoppa_app/components/defaultButton.dart';
 import 'package:shoppa_app/constants/colors.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
+import 'package:shoppa_app/screens/home/homeScreen2.dart';
 import '../../../constants/constants.dart';
 
 class NINUploadContent extends StatefulWidget {
@@ -60,10 +61,10 @@ class _NINUploadContentState extends State<NINUploadContent> {
                   onTap: () {
                     imagePicker(ImageSource.gallery);
                   },
-                  child: image == null
+                  child: _image == null
                       ? Container(
                           height: getPropHeight(226),
-                          width: getPropWidth(379),
+                          width: SizeConfig.screenWidth - 20,
                           decoration: BoxDecoration(
                               color: subTextColor,
                               borderRadius: BorderRadius.circular(8)),
@@ -87,9 +88,17 @@ class _NINUploadContentState extends State<NINUploadContent> {
                             ],
                           )),
                         )
-                      : Padding(
-                          padding: EdgeInsets.all(getPropWidth(10)),
-                          child: Image.file(_image!))),
+                      : SizedBox(
+                          height: getPropHeight(226),
+                          width: SizeConfig.screenWidth - 20,
+                          child: ClipRRect(
+                              borderRadius:
+                                  BorderRadius.circular(getPropWidth(8)),
+                              clipBehavior: Clip.hardEdge,
+                              child: Image.file(
+                                _image!,
+                                fit: BoxFit.fill,
+                              )))),
               SizedBox(
                 height: getPropHeight(38),
               ),
@@ -117,7 +126,9 @@ class _NINUploadContentState extends State<NINUploadContent> {
               ),
               DefaultButton(
                 text: "Submit",
-                press: () {},
+                press: () {
+                  Navigator.of(context).pushNamed(HomeScreen2.routeName);
+                },
               )
             ],
           ),

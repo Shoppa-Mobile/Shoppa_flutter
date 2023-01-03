@@ -15,7 +15,9 @@ class SplashScreen extends StatelessWidget {
         () => Navigator.pushReplacementNamed(
             context, OnBoardingScreen.routeName));
     SizeConfig().init(context);
+    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
     return Scaffold(
+      key: _scaffoldKey,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

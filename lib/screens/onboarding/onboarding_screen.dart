@@ -46,12 +46,16 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
     timer.cancel();
   }
 
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       body: SafeArea(
           child: SizedBox(
         width: double.infinity,
+        height: MediaQuery.of(context).size.height,
         child: Column(
           children: [
             Expanded(

@@ -59,7 +59,7 @@ class PendingOrdersCard1 extends StatelessWidget {
       color: primaryColor,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       child: SizedBox(
-        width: getPropWidth(310),
+        width: SizeConfig.screenWidth - 80,
         child: Padding(
           padding: EdgeInsets.symmetric(
               vertical: getPropHeight(25), horizontal: getPropWidth(15)),
@@ -164,6 +164,7 @@ class PendingOrder2 extends StatelessWidget {
             scrollDirection: Axis.vertical,
             itemCount: demoOrders.length,
             shrinkWrap: true,
+            physics: const ScrollPhysics(),
             itemBuilder: (context, index) {
               return PendingOrdersCard2(
                 boolo: demoOrders[index].inTransit,
@@ -198,7 +199,7 @@ class PendingOrdersCard2 extends StatelessWidget {
         color: bgColor,
         elevation: 0,
         child: SizedBox(
-          height: getPropHeight(75),
+          height: getPropHeight(85),
           width: SizeConfig.screenWidth - 30,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 6),

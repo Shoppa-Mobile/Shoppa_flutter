@@ -9,32 +9,33 @@ class Inventory1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Inventory',
-          style: headerStyle3,
-        ),
-        SizedBox(height: getPropHeight(5)),
-        GridView.builder(
-            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: getPropWidth(250),
-                childAspectRatio: 1,
-                crossAxisSpacing: getPropWidth(10),
-                mainAxisSpacing: getPropHeight(10)),
-            shrinkWrap: true,
-            itemCount: demoInventory.length,
-            scrollDirection: Axis.vertical,
-            itemBuilder: (context, index) {
-              return InventoryCard(
-                  goodsImage: demoInventory[index].goodsImage,
-                  goodsName: demoInventory[index].goodsName,
-                  price: demoInventory[index].price,
-                  outOfStock: demoInventory[index].outOfStock,
-                  press: () {});
-            })
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          
+          GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  mainAxisExtent: getPropHeight(200),
+                  childAspectRatio: 1,
+                  crossAxisSpacing: getPropWidth(6),
+                  mainAxisSpacing: getPropHeight(15)),
+              shrinkWrap: true,
+              controller: ScrollController(),
+              itemCount: demoInventory.length,
+              scrollDirection: Axis.vertical,
+              physics: const ScrollPhysics(),
+              itemBuilder: (context, index) {
+                return InventoryCard(
+                    goodsImage: demoInventory[index].goodsImage,
+                    goodsName: demoInventory[index].goodsName,
+                    price: demoInventory[index].price,
+                    outOfStock: demoInventory[index].outOfStock,
+                    press: () {});
+              })
+        ],
+      ),
     );
   }
 }
@@ -56,17 +57,16 @@ class InventoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: press,
-      child: Padding(
-        padding: EdgeInsets.all(getPropWidth(8)),
-        child: SizedBox(
-          width: getPropWidth(190),
-          height: getPropHeight(192),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: getPropHeight(128),
+      child: SizedBox(
+        width: getPropWidth(185),
+        height: getPropHeight(200),
+        child: Column(
+          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Center(
+              child: SizedBox(
+                height: getPropHeight(145),
                 width: getPropWidth(185),
                 child: ClipRect(
                   clipBehavior: Clip.hardEdge,
@@ -75,12 +75,12 @@ class InventoryCard extends StatelessWidget {
                       Image.asset(
                         goodsImage,
                         fit: BoxFit.fill,
-                        height: getPropHeight(128),
-                        width: getPropWidth(178),
+                        height: getPropHeight(135),
+                        width: getPropWidth(185),
                       ),
                       Positioned(
-                          top: getPropHeight(88),
-                          left: getPropWidth(75),
+                          top: getPropHeight(92),
+                          left: getPropWidth(70),
                           right: getPropWidth(5),
                           child: Container(
                             padding: EdgeInsets.symmetric(
@@ -106,21 +106,22 @@ class InventoryCard extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: getPropHeight(2)),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(goodsName, style: regTextStyle),
-                  const Icon(Icons.more_vert, size: 16, color: regularTextColor)
-                ],
-              ),
-              SizedBox(height: getPropHeight(2)),
-              Text(
-                "$price NGN",
-                style: inventoryPriceText,
-              )
-            ],
-          ),
+            ),
+            SizedBox(height: getPropHeight(2)),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(goodsName, style: regTextStyle2),
+                const Icon(Icons.more_vert, size: 12, color: regularTextColor)
+              ],
+            ),
+            SizedBox(height: getPropHeight(6)),
+            Text(
+              "$price NGN",
+              style: inventoryPriceText,
+            )
+          ],
         ),
       ),
     );
@@ -148,12 +149,15 @@ class Inventory2 extends StatelessWidget {
               itemCount: demoInventory.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                return InventoryCard(
-                    goodsImage: demoInventory[index].goodsImage,
-                    goodsName: demoInventory[index].goodsName,
-                    price: demoInventory[index].price,
-                    outOfStock: demoInventory[index].outOfStock,
-                    press: () {});
+                return Padding(
+                  padding: EdgeInsets.only(right: getPropWidth(10)),
+                  child: InventoryCard(
+                      goodsImage: demoInventory[index].goodsImage,
+                      goodsName: demoInventory[index].goodsName,
+                      price: demoInventory[index].price,
+                      outOfStock: demoInventory[index].outOfStock,
+                      press: () {}),
+                );
               }),
         )
       ],

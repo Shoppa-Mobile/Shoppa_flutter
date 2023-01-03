@@ -69,7 +69,7 @@ class _LoginFormState extends State<LoginForm> {
 
                 //   };
                 // }
-                Navigator.of(context).pushNamed(HomeScreen.routeName);
+                Navigator.of(context).pushNamed(HomeScreen2.routeName);
               },
             )
           ],

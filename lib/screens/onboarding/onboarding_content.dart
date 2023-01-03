@@ -60,7 +60,7 @@ class _OnboardingContentState extends State<OnboardingContent> {
           ),
           Image.asset(widget.image, fit: BoxFit.fill),
           Positioned(
-            top: 480,
+            top: MediaQuery.of(context).size.height * 0.6,
             child: Container(
               // height: MediaQuery.of(context).size.height * 0.4,
               width: MediaQuery.of(context).size.width,
@@ -96,7 +96,7 @@ class _OnboardingContentState extends State<OnboardingContent> {
                   ),
                   DefaultButton(text: widget.buttonText, press: widget.press),
                   SizedBox(
-                    height: getPropWidth(10),
+                    height: getPropWidth(20),
                   ),
                   const LoginWidget(),
                 ],

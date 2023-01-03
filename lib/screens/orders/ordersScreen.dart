@@ -31,30 +31,15 @@ class _OrdersScreenState extends State<OrdersScreen> {
           "Orders",
           style: headerStyle2,
         ),
-        actions: [
-          InkWell(
-            onTap: () {
-              Navigator.pushNamed(context, Notifications.routeName);
-            },
-            child: SvgPicture.asset(
-              'assets/icons/bell.svg',
-              height: getPropHeight(32),
-              width: getPropWidth(32),
-            ),
+        actions: const [
+          Padding(
+            padding: EdgeInsets.all(14.0),
+            child: ProgessDropDown(),
           ),
-          const SizedBox(width: 16)
+          SizedBox(width: 16),
         ],
       ),
       body: const OrdersScreenContent(),
-      floatingActionButton: InkWell(
-          onTap: (() {
-            Navigator.pushNamed(context, CreateOrderScreen.routeName);
-          }),
-          child: SvgPicture.asset(
-            "assets/icons/addActionButton.svg",
-            width: 66.67,
-            height: 66.67,
-          )),
       bottomNavigationBar: const CustomNavBar(selectedMenu: MenuState.orders),
     );
   }
@@ -70,9 +55,9 @@ class ProgessDropDown extends StatefulWidget {
 class _ProgessDropDownState extends State<ProgessDropDown> {
   @override
   Widget build(BuildContext context) {
-    String? initialValue = "In-Progress";
+    String? selectedValue;
 
-    var items = ['In-Progress', 'Completed', 'Cancelled'];
+    List<String> items = ['In-Progress', 'Completed', 'Cancelled'];
 
     return Container(
       padding: const EdgeInsets.symmetric(
@@ -80,19 +65,28 @@ class _ProgessDropDownState extends State<ProgessDropDown> {
       ),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.0),
-          color: ordersProgressCardColor),
+          color: ordersProgressCardColor.withOpacity(0.3)),
       child: DropdownButtonHideUnderline(
         child: DropdownButton(
-          hint: Text(initialValue),
+          value: selectedValue,
           elevation: 0,
           icon: const Icon(Icons.arrow_drop_down_outlined),
           items: items.map((items) {
-            return DropdownMenuItem(value: items, child: Text(items));
+            return DropdownMenuItem(
+                value: items,
+                child: Text(
+                  items,
+                  style: TextStyle(
+                    color: ordersProgressCardColor,
+                    fontFamily: 'Lato',
+                    fontSize: getPropHeight(14),
+                    fontWeight: FontWeight.w400,
+                  ),
+                ));
           }).toList(),
           onChanged: (changedValue) => setState(() {
-            initialValue = changedValue as String?;
+            changedValue;
           }),
-          value: initialValue,
         ),
       ),
     );

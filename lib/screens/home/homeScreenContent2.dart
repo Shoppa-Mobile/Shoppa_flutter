@@ -22,7 +22,7 @@ class _HomeScreenContent2State extends State<HomeScreenContent2> {
           children: [
             SizedBox(height: getPropHeight(10)),
             const Inventory2(),
-            SizedBox(height: getPropHeight(10)),
+            SizedBox(height: getPropHeight(5)),
             const PendingOrder2()
           ],
         ),

@@ -28,7 +28,7 @@ class _OrdersScreenContentState extends State<OrdersScreenContent> {
             const SearchField(),
             SizedBox(height: getPropHeight(25)),
             Text('History', style: headerStyle3),
-            SizedBox(height: getPropHeight(5)),
+            SizedBox(height: getPropHeight(1)),
             Expanded(
               child: ListView.builder(
                   physics: const ScrollPhysics(),
@@ -88,7 +88,7 @@ class CreateOrderWidget extends StatelessWidget {
                         letterSpacing: 2)))),
         Positioned(
             top: getPropHeight(20),
-            left: getPropWidth(230),
+            left: getPropWidth(250),
             child: Image.asset('assets/images/orderCardImage.png'))
       ],
     );
@@ -166,11 +166,13 @@ class OrdersHistoryCard extends StatelessWidget {
         color: bgColor,
         elevation: 0,
         child: SizedBox(
-          height: getPropHeight(120),
+          height: getPropHeight(100),
           width: SizeConfig.screenWidth - 30,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 3),
+            padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 1),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -179,20 +181,20 @@ class OrdersHistoryCard extends StatelessWidget {
                     Row(
                       children: [
                         Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            const SizedBox(height: 15),
                             Container(
                                 width: 30,
                                 height: 30,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: headerTextColor.withOpacity(0.10),
+                                  color: primaryColor.withOpacity(0.10),
                                 ),
                                 child: Center(
                                   child: Text(
                                     "${buyerFirstName.characters.characterAt(0)}${buyerLastName.characters.characterAt(0).toUpperCase()}",
                                     style: TextStyle(
-                                      color: headerTextColor,
+                                      color: primaryColor,
                                       fontFamily: 'Lato',
                                       fontSize: getPropHeight(16),
                                       fontWeight: FontWeight.w700,
@@ -205,62 +207,9 @@ class OrdersHistoryCard extends StatelessWidget {
                           width: 3,
                         ),
                         Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            if (inTransit == true)
-                              Container(
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 3),
-                                  decoration: BoxDecoration(
-                                      color: primaryColor.withOpacity(0.10),
-                                      borderRadius: BorderRadius.circular(
-                                          getPropWidth(06))),
-                                  child: Text(
-                                    'In-Transit',
-                                    style: TextStyle(
-                                        color: primaryColor,
-                                        fontFamily: 'Lato',
-                                        fontSize: getPropHeight(10),
-                                        fontWeight: FontWeight.w400,
-                                        letterSpacing: 1.2),
-                                  )),
-                            if (processing == true)
-                              Container(
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 3),
-                                  decoration: BoxDecoration(
-                                      color: const Color(0xFFFFC107)
-                                          .withOpacity(0.10),
-                                      borderRadius: BorderRadius.circular(
-                                          getPropWidth(06))),
-                                  child: Text(
-                                    'Processing',
-                                    style: TextStyle(
-                                        color: regularTextColor,
-                                        fontFamily: 'Lato',
-                                        fontSize: getPropHeight(10),
-                                        fontWeight: FontWeight.w400,
-                                        letterSpacing: 1.2),
-                                  )),
-                            if (notProcessed == true)
-                              Container(
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 3),
-                                  decoration: BoxDecoration(
-                                      color: const Color(0xFFFFCCCC)
-                                          .withOpacity(0.15),
-                                      borderRadius: BorderRadius.circular(
-                                          getPropWidth(06))),
-                                  child: Text(
-                                    'Not Processed',
-                                    style: TextStyle(
-                                        color: const Color(0xFFDC3C3C),
-                                        fontFamily: 'Lato',
-                                        fontSize: getPropHeight(10),
-                                        fontWeight: FontWeight.w400,
-                                        letterSpacing: 1.2),
-                                  )),
-                            const SizedBox(height: 10),
                             Text(
                               "$buyerFirstName $buyerLastName",
                               style: TextStyle(
@@ -270,7 +219,7 @@ class OrdersHistoryCard extends StatelessWidget {
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
-                            const SizedBox(height: 8),
+                            const SizedBox(height: 10),
                             Text(
                               '"Ordered for',
                               style: TextStyle(
@@ -283,47 +232,91 @@ class OrdersHistoryCard extends StatelessWidget {
                             Text(
                               goodsName,
                               style: TextStyle(
-                                color: regularTextColor,
-                                fontFamily: 'Lato',
-                                fontSize: getPropHeight(14),
-                                fontWeight: FontWeight.w500,
-                              ),
+                                  color: regularTextColor,
+                                  fontFamily: 'Lato',
+                                  fontSize: getPropHeight(14),
+                                  fontWeight: FontWeight.w400,
+                                  letterSpacing: 2.0),
                             ),
                           ],
                         ),
                       ],
                     ),
                     Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text(
-                          date,
-                          style: TextStyle(
-                            color: regularTextColor.withOpacity(0.4),
-                            fontFamily: 'Lato',
-                            fontSize: getPropHeight(10),
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 13,
-                        ),
                         Row(
                           children: [
                             Text("NGN $price", style: regTextStyle),
-                            const SizedBox(width: 3),
+                            SizedBox(width: getPropHeight(1)),
                             IconButton(
                               onPressed: () {},
-                              icon: const Icon(Icons.more_vert,
-                                  size: 16, color: regularTextColor),
+                              icon: Icon(Icons.more_vert,
+                                  size: getPropHeight(10),
+                                  color: regularTextColor),
                             )
                           ],
                         ),
+                        const SizedBox(width: 1),
+                        if (inTransit == true)
+                          Container(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 3),
+                              decoration: BoxDecoration(
+                                  color: primaryColor.withOpacity(0.10),
+                                  borderRadius:
+                                      BorderRadius.circular(getPropWidth(06))),
+                              child: Text(
+                                'In-Transit',
+                                style: TextStyle(
+                                    color: primaryColor,
+                                    fontFamily: 'Lato',
+                                    fontSize: getPropHeight(10),
+                                    fontWeight: FontWeight.w400,
+                                    letterSpacing: 1.2),
+                              )),
+                        if (processing == true)
+                          Container(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 3),
+                              decoration: BoxDecoration(
+                                  color:
+                                      const Color(0xFFFFC107).withOpacity(0.10),
+                                  borderRadius:
+                                      BorderRadius.circular(getPropWidth(06))),
+                              child: Text(
+                                'Processing',
+                                style: TextStyle(
+                                    color: regularTextColor,
+                                    fontFamily: 'Lato',
+                                    fontSize: getPropHeight(10),
+                                    fontWeight: FontWeight.w400,
+                                    letterSpacing: 1.2),
+                              )),
+                        if (notProcessed == true)
+                          Container(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 3),
+                              decoration: BoxDecoration(
+                                  color:
+                                      const Color(0xFFFFCCCC).withOpacity(0.15),
+                                  borderRadius:
+                                      BorderRadius.circular(getPropWidth(06))),
+                              child: Text(
+                                'Not Processed',
+                                style: TextStyle(
+                                    color: const Color(0xFFDC3C3C),
+                                    fontFamily: 'Lato',
+                                    fontSize: getPropHeight(10),
+                                    fontWeight: FontWeight.w400,
+                                    letterSpacing: 1.2),
+                              )),
+                        const SizedBox(height: 5),
                       ],
                     ),
                   ],
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 5),
                 Container(
                   height: 2,
                   width: SizeConfig.screenWidth - 40,

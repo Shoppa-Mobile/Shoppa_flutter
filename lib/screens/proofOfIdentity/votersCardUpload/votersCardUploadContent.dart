@@ -65,7 +65,7 @@ class _VotersCardUploadContentState extends State<VotersCardUploadContent> {
                   child: _image == null
                       ? Container(
                           height: getPropHeight(226),
-                          width: getPropWidth(379),
+                          width: SizeConfig.screenWidth - 20,
                           decoration: BoxDecoration(
                               color: subTextColor,
                               borderRadius: BorderRadius.circular(8)),
@@ -90,7 +90,7 @@ class _VotersCardUploadContentState extends State<VotersCardUploadContent> {
                           )))
                       : SizedBox(
                           height: getPropHeight(226),
-                          width: getPropWidth(379),
+                          width: SizeConfig.screenWidth - 20,
                           child: ClipRRect(
                               borderRadius:
                                   BorderRadius.circular(getPropWidth(8)),

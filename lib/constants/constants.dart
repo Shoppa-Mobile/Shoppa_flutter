@@ -51,6 +51,13 @@ TextStyle regTextStyle = TextStyle(
   fontWeight: FontWeight.w400,
 );
 
+TextStyle regTextStyle2 = TextStyle(
+  color: regularTextColor,
+  fontFamily: 'Lato',
+  fontSize: getPropHeight(12),
+  fontWeight: FontWeight.w400,
+);
+
 TextStyle subTextStyle = TextStyle(
   color: subTextColor,
   fontFamily: 'Lato',
@@ -96,7 +103,7 @@ TextStyle ordersCardText3 = TextStyle(
 TextStyle inventoryPriceText = TextStyle(
     color: secondaryButtonTextColor,
     fontFamily: 'Lato',
-    fontSize: getPropHeight(18),
+    fontSize: getPropHeight(16),
     fontWeight: FontWeight.w600,
     letterSpacing: 2.0);
 

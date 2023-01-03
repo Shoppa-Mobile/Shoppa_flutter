@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:shoppa_app/screens/home/components/inventory.dart';
 import 'package:shoppa_app/screens/home/components/pendingOrders.dart';
+import '../../constants/constants.dart';
 import '../../constants/size_configurations.dart';
 
 class HomeScreenContent1 extends StatefulWidget {
@@ -14,19 +15,22 @@ class HomeScreenContent1 extends StatefulWidget {
 class _HomeScreenContent1State extends State<HomeScreenContent1> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-            horizontal: getPropWidth(20), vertical: getPropHeight(20)),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: getPropHeight(10)),
-            const PendingOrders1(),
-            SizedBox(height: getPropHeight(15)),
-            const Inventory1()
-          ],
-        ),
+    return Padding(
+      padding: EdgeInsets.symmetric(
+          horizontal: getPropWidth(20), vertical: getPropHeight(20)),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: getPropHeight(10)),
+          const PendingOrders1(),
+          SizedBox(height: getPropHeight(15)),
+          Text(
+            'Inventory',
+            style: headerStyle3,
+          ),
+          SizedBox(height: getPropHeight(10)),
+          const Expanded(child: Inventory1())
+        ],
       ),
     );
   }

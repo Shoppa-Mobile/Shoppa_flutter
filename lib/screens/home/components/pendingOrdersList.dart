@@ -21,7 +21,7 @@ List<PendingOrders> demoOrders = [
       buyerName: "Oluwagbemiloke Busayomi",
       price: "1000",
       goodsName: "10X Garri, 1X Versace Bag",
-      inTransit: false),
+      inTransit: true),
   PendingOrders(
       buyerName: "Oluwagbemiloke Busayomi",
       price: "1000",
@@ -30,9 +30,17 @@ List<PendingOrders> demoOrders = [
       buyerName: "Oluwagbemiloke Busayomi",
       price: "1000",
       goodsName: "10X Garri, 1X Versace Bag",
-      inTransit: false),
+      inTransit: true),
   PendingOrders(
       buyerName: "Oluwagbemiloke Busayomi",
       price: "1000",
-      goodsName: "10X Garri, 1X Versace Bag")
+      goodsName: "10X Garri, 1X Versace Bag"),
+  PendingOrders(
+      buyerName: "Oluwagbemiloke Busayomi",
+      price: "1000",
+      goodsName: "10X Garri, 1X Versace Bag"),
+  PendingOrders(
+      buyerName: "Oluwagbemiloke Busayomi",
+      price: "1000",
+      goodsName: "10X Garri, 1X Versace Bag"),
 ];
