@@ -1,12 +1,12 @@
 // ignore_for_file: file_names, unused_import
 import 'package:flutter/material.dart';
-import 'package:shoppa_app/components/defaultButton.dart';
+import 'package:shoppa_app/widgets/defaultButton.dart';
 import 'package:shoppa_app/constants/colors.dart';
 import 'package:shoppa_app/screens/home/homeScreen1.dart';
 import 'package:shoppa_app/screens/home/homeScreen2.dart';
 import 'package:shoppa_app/screens/resetPassword/resetPassword_screen.dart';
 import '../../../constants/constants.dart';
-import 'package:shoppa_app/components/formError.dart';
+import 'package:shoppa_app/widgets/formError.dart';
 import '../../../constants/size_configurations.dart';
 
 class LoginForm extends StatefulWidget {

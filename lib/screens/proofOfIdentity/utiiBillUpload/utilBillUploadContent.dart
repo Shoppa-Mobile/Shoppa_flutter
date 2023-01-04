@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shoppa_app/screens/home/homeScreen2.dart';
-import '../../../components/defaultButton.dart';
+import '../../../widgets/defaultButton.dart';
 import '../../../constants/colors.dart';
 import '../../../constants/constants.dart';
 import '../../../constants/size_configurations.dart';

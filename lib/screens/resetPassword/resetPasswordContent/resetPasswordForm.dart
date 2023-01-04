@@ -1,7 +1,7 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
-import 'package:shoppa_app/components/defaultButton.dart';
-import 'package:shoppa_app/components/formError.dart';
+import 'package:shoppa_app/widgets/defaultButton.dart';
+import 'package:shoppa_app/widgets/formError.dart';
 import '../../../constants/size_configurations.dart';
 import '../../../constants/constants.dart';
 

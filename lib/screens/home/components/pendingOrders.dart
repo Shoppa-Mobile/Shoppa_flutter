@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shoppa_app/constants/constants.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
 import 'package:shoppa_app/constants/colors.dart';
-import 'pendingOrdersList.dart';
+import '../../../dummyData/all_dummy_data.dart';
 
 class PendingOrders1 extends StatelessWidget {
   const PendingOrders1({super.key});

@@ -1,52 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:shoppa_app/components/defaultButton.dart';
 import 'package:shoppa_app/screens/login/login_screen.dart';
+import 'package:shoppa_app/screens/onboarding/onboarding_screen.dart';
 import '../../constants/colors.dart';
 import '../../constants/constants.dart';
 import '../../constants/size_configurations.dart';
-
-List<Map<String, String>> onBoardingData = [
-  {
-    'text1': "Manage your customers, in one app.",
-    'text2':
-        "No more juggling between multiple social media, Shoppa gives you access to manage your inventory and customers.",
-    'buttontext': "Get Started",
-    'image': 'assets/images/Onboarding_img_1.png'
-  },
-  {
-    'text1': "Your personal store, a link just for you.",
-    'text2':
-        "Have all your products in one page, share your product page and have your customers enjoy shopping better.",
-    'buttontext': "Get Started",
-    'image': 'assets/images/Onboarding_img_2.png'
-  },
-  {
-    'text1': "Get Started",
-    'text2': '',
-    'buttontext': "Sign Up",
-    'image': 'assets/images/Onboarding_img_3.png'
-  }
-];
+import '../../widgets/defaultButton.dart';
+import 'package:dots_indicator/dots_indicator.dart';
 
 class OnboardingContent extends StatefulWidget {
-  const OnboardingContent({
-    super.key,
-    required this.text1,
-    required this.text2,
-    required this.buttonText,
-    required this.image,
-    required this.press,
-  });
+  const OnboardingContent(
+      {super.key,
+      required this.text1,
+      required this.text2,
+      required this.buttonText,
+      required this.image,
+      required this.press,
+      required this.currentIndex});
 
   final String text1, text2, buttonText, image;
   final GestureTapCallback press;
+  final double currentIndex;
 
   @override
   State<OnboardingContent> createState() => _OnboardingContentState();
 }
 
 class _OnboardingContentState extends State<OnboardingContent> {
-  int currentPage = 0;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -62,7 +41,6 @@ class _OnboardingContentState extends State<OnboardingContent> {
           Positioned(
             top: MediaQuery.of(context).size.height * 0.6,
             child: Container(
-              // height: MediaQuery.of(context).size.height * 0.4,
               width: MediaQuery.of(context).size.width,
               padding: EdgeInsets.symmetric(horizontal: getPropWidth(20)),
               decoration: const BoxDecoration(
@@ -73,15 +51,11 @@ class _OnboardingContentState extends State<OnboardingContent> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: getPropWidth(24),
+                    height: getPropWidth(20),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: List.generate(onBoardingData.length,
-                        (index) => buildDot(index: index)),
-                  ),
+                  buildDotIndicator(widget.currentIndex),
                   SizedBox(
-                    height: getPropWidth(24),
+                    height: getPropWidth(20),
                   ),
                   Text(
                     widget.text1,
@@ -107,19 +81,24 @@ class _OnboardingContentState extends State<OnboardingContent> {
       ),
     );
   }
+}
 
-  AnimatedContainer buildDot({required int index}) {
-    int currentPage = 0;
-    return AnimatedContainer(
-      duration: animationduration,
-      margin: const EdgeInsets.only(right: 5),
-      height: 6,
-      width: currentPage == index ? 10 : 6,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(3),
-          color: currentPage == index ? primaryColor : lightPrimaryColor),
-    );
-  }
+buildDotIndicator(double currentIndex) {
+  return DotsIndicator(
+    dotsCount: onBoardingData.length,
+    axis: Axis.horizontal,
+    reversed: false,
+    key: UniqueKey(),
+    position: currentIndex,
+    decorator: DotsDecorator(
+      color: lightPrimaryColor,
+      activeColor: primaryColor,
+      size: const Size.square(6),
+      activeSize: const Size(12, 6),
+      activeShape:
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(3.0)),
+    ),
+  );
 }
 
 class LoginWidget extends StatelessWidget {

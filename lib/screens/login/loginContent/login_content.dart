@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shoppa_app/constants/colors.dart';
 import 'package:shoppa_app/screens/login/loginContent/loginForm.dart';
-import '../../../components/socialCard.dart';
+import '../../../widgets/socialCard.dart';
 import '../../../constants/constants.dart';
 import '../../../constants/size_configurations.dart';
 

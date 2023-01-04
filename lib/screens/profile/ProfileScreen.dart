@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shoppa_app/constants/colors.dart';
 import 'package:shoppa_app/screens/profile/Components/profileScreenContent.dart';
 
-import '../../components/customNavBar.dart';
+import '../../widgets/customNavBar.dart';
 import '../../constants/constants.dart';
 import '../../enums.dart';
 

@@ -1,11 +1,34 @@
 // ignore_for_file: unused_local_variable
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:shoppa_app/screens/onBoarding/onboarding_content.dart';
+import 'package:shoppa_app/screens/onboarding/onboarding_content.dart';
 import 'package:shoppa_app/screens/signUp/signUp_screen1.dart';
-
 import '../../constants/colors.dart';
 import '../../constants/constants.dart';
+import 'package:shoppa_app/dummyData/all_dummy_data.dart';
+
+List<Map<String, String>> onBoardingData = [
+  {
+    'text1': "Manage your customers, in one app.",
+    'text2':
+        "No more juggling between multiple social media, Shoppa gives you access to manage your inventory and customers.",
+    'buttontext': "Get Started",
+    'image': 'assets/images/Onboarding_img_1.png'
+  },
+  {
+    'text1': "Your personal store, a link just for you.",
+    'text2':
+        "Have all your products in one page, share your product page and have your customers enjoy shopping better.",
+    'buttontext': "Get Started",
+    'image': 'assets/images/Onboarding_img_2.png'
+  },
+  {
+    'text1': "Get Started",
+    'text2': '',
+    'buttontext': "Sign Up",
+    'image': 'assets/images/Onboarding_img_3.png'
+  }
+];
 
 class OnBoardingScreen extends StatefulWidget {
   static String routeName = "/Onboarding";
@@ -69,6 +92,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
                 itemCount: onBoardingData.length,
                 itemBuilder: (context, index) {
                   return OnboardingContent(
+                    currentIndex: currentPage.toDouble(),
                     image: onBoardingData[index]['image'].toString(),
                     text1: onBoardingData[index]['text1'].toString(),
                     text2: onBoardingData[index]['text2'].toString(),
@@ -82,6 +106,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
                             .pushNamed(SignUpScreen1.routeName);
                       }
                     },
+                    
                   );
                 },
               ),
@@ -89,19 +114,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
           ],
         ),
       )),
-    );
-  }
-
-  buildDot({required int index}) {
-    int currentPage = 0;
-    return AnimatedContainer(
-      duration: animationduration,
-      margin: const EdgeInsets.only(right: 5),
-      height: 6,
-      width: currentPage == index ? 10 : 6,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(3),
-          color: currentPage == index ? primaryColor : lightPrimaryColor),
     );
   }
 }

@@ -1,7 +1,7 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:shoppa_app/constants/colors.dart';
-import 'package:shoppa_app/screens/notifications/notificationsContent.dart/notificationLists.dart';
+import 'package:shoppa_app/dummyData/all_dummy_data.dart';
 import '../../../constants/size_configurations.dart';
 
 class NotificationsContent extends StatefulWidget {

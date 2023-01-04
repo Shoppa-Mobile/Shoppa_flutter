@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shoppa_app/constants/constants.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
 import 'package:shoppa_app/constants/colors.dart';
-import 'inventoryList.dart';
+import '../../../dummyData/all_dummy_data.dart';
 
 class Inventory1 extends StatelessWidget {
   const Inventory1({super.key});

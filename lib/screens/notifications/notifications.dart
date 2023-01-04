@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:shoppa_app/components/customNavBar.dart';
+import 'package:shoppa_app/widgets/customNavBar.dart';
 import 'package:shoppa_app/enums.dart';
 import 'package:shoppa_app/screens/notifications/notificationsContent.dart/notificationsContent.dart';
 import '../../constants/colors.dart';
