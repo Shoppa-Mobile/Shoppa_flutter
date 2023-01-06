@@ -5,11 +5,11 @@ import 'package:shoppa_app/screens/splash/splash_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
+  runApp(const Shoppa());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class Shoppa extends StatelessWidget {
+  const Shoppa({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override

@@ -33,7 +33,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
         ),
         actions: const [
           Padding(
-            padding: EdgeInsets.all(14.0),
+            padding: EdgeInsets.all(16.0),
             child: ProgessDropDown(),
           ),
           SizedBox(width: 16),
@@ -55,38 +55,45 @@ class ProgessDropDown extends StatefulWidget {
 class _ProgessDropDownState extends State<ProgessDropDown> {
   @override
   Widget build(BuildContext context) {
-    String? selectedValue;
+    String? selectedValue = '';
 
     List<String> items = ['In-Progress', 'Completed', 'Cancelled'];
 
-    return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 10,
-      ),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8.0),
-          color: ordersProgressCardColor.withOpacity(0.3)),
-      child: DropdownButtonHideUnderline(
-        child: DropdownButton(
-          value: selectedValue,
-          elevation: 0,
-          icon: const Icon(Icons.arrow_drop_down_outlined),
-          items: items.map((items) {
-            return DropdownMenuItem(
-                value: items,
-                child: Text(
-                  items,
-                  style: TextStyle(
-                    color: ordersProgressCardColor,
-                    fontFamily: 'Lato',
-                    fontSize: getPropHeight(14),
-                    fontWeight: FontWeight.w400,
-                  ),
-                ));
-          }).toList(),
-          onChanged: (changedValue) => setState(() {
-            changedValue;
-          }),
+    return SizedBox(
+      width: getPropWidth(150),
+      height: getPropHeight(55),
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5),
+            color: ordersProgressCardColor.withOpacity(0.5),
+            shape: BoxShape.rectangle),
+        child: Center(
+          child: DropdownButtonFormField(
+              decoration: orderStatusFieldDecoration(),
+              elevation: 15,
+              style: TextStyle(
+                color: ordersProgressCardColor,
+                fontFamily: 'Lato',
+                fontSize: getPropHeight(14),
+                fontWeight: FontWeight.w400,
+              ),
+              icon: const Icon(Icons.arrow_drop_down_sharp),
+              items: items.map((items) {
+                return DropdownMenuItem(
+                    value: items,
+                    child: Text(
+                      items,
+                      style: TextStyle(
+                        color: ordersProgressCardColor,
+                        fontFamily: 'Lato',
+                        fontSize: getPropHeight(18),
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ));
+              }).toList(),
+              onSaved: (newValue) {},
+              onChanged: (String? value) =>
+                  setState(() => selectedValue = value)),
         ),
       ),
     );

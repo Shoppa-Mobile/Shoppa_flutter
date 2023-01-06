@@ -1,9 +1,10 @@
 // ignore_for_file: file_names
 class OrdersHistory {
-  final String buyerFirstName, buyerLastName, goodsName, price, date;
+  final String buyerFirstName, buyerLastName, goodsName, price, date, address;
   final bool inTransit, processing, notProcessed;
 
   OrdersHistory({
+    required this.address,
     required this.date,
     required this.buyerFirstName,
     required this.buyerLastName,

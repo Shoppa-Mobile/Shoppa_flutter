@@ -152,3 +152,32 @@ InputDecoration textCreateOrderFieldDecoration(String fieldtext) {
           ),
           gapPadding: 10));
 }
+
+InputDecoration orderStatusFieldDecoration() {
+  return InputDecoration(
+    disabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(5),
+      borderSide: BorderSide(
+        color: ordersProgressCardColor.withOpacity(0.5),
+      ),
+    ),
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(5),
+      borderSide: BorderSide(
+        color: ordersProgressCardColor.withOpacity(0.5),
+      ),
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(5),
+      borderSide: BorderSide(
+        color: ordersProgressCardColor.withOpacity(0.5),
+      ),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(5),
+      borderSide: BorderSide(
+        color: ordersProgressCardColor.withOpacity(0.5),
+      ),
+    ),
+  );
+}

@@ -2,7 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:shoppa_app/constants/colors.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
+import 'package:shoppa_app/models/screenArguments.dart';
 import 'package:shoppa_app/screens/createOrder/createOrderScreen.dart';
+import 'package:shoppa_app/screens/orderDetails/orderDetailsScreen.dart';
 import '../../../constants/constants.dart';
 import '../../../dummyData/all_dummy_data.dart';
 
@@ -11,7 +13,7 @@ class OrdersScreenContent extends StatefulWidget {
 
   @override
   State<OrdersScreenContent> createState() => _OrdersScreenContentState();
-}  
+}
 
 class _OrdersScreenContentState extends State<OrdersScreenContent> {
   @override
@@ -45,7 +47,23 @@ class _OrdersScreenContentState extends State<OrdersScreenContent> {
                         inTransit: demoHistory[index].inTransit,
                         processing: demoHistory[index].processing,
                         notProcessed: demoHistory[index].notProcessed,
-                        press: () {});
+                        press: () {
+                          Navigator.pushNamed(
+                            context,
+                            OrderDetailsScreen.routeName,
+                            arguments: OrderDetailsArguments(
+                                buyerFirstName:
+                                    demoHistory[index].buyerFirstName,
+                                buyerLastName: demoHistory[index].buyerLastName,
+                                goodsName: demoHistory[index].goodsName,
+                                price: demoHistory[index].price,
+                                date: demoHistory[index].date,
+                                inTransit: demoHistory[index].inTransit,
+                                processing: demoHistory[index].processing,
+                                notProcessed: demoHistory[index].notProcessed,
+                                address: demoHistory[index].address),
+                          );
+                        });
                   }),
             )
           ],

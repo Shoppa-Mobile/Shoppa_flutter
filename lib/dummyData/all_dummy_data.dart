@@ -1,6 +1,5 @@
 // ignore_for_file: file_names
-import 'package:shoppa_app/models/notificationModel';
-
+import 'package:shoppa_app/models/notificationModel.dart';
 import '../models/inventoryModel.dart';
 import '../models/ordersHistoryModel.dart';
 import '../models/pendingOrdersModel.dart';
@@ -72,8 +71,6 @@ List<NotificationModel> demoNotifications = [
       message: "Oluwagbemiloke Busayomi's order has been delivered"),
 ];
 
-
-
 List<OrdersHistory> demoHistory = [
   OrdersHistory(
       date: "10th September 2022",
@@ -81,6 +78,7 @@ List<OrdersHistory> demoHistory = [
       buyerLastName: 'Busayomi',
       price: "20,000",
       goodsName: "10X Garri, 1X Versace Bag",
+      address: "12 Sanwo-Ola Close, Agbara, Lagos, Nigeria",
       inTransit: true),
   OrdersHistory(
       buyerFirstName: "Eugene",
@@ -88,6 +86,7 @@ List<OrdersHistory> demoHistory = [
       date: "10th September 2022",
       price: "10,000",
       goodsName: "10X Garri, 1X Versace Bag",
+      address: "12 Sanwo-Ola Close, Agbara, Lagos, Nigeria",
       processing: true),
   OrdersHistory(
       buyerFirstName: "Blessing",
@@ -95,6 +94,7 @@ List<OrdersHistory> demoHistory = [
       date: "10th September 2022",
       price: "15,000",
       goodsName: "10X Garri, 1X Versace Bag",
+      address: "12 Sanwo-Ola Close, Agbara, Lagos, Nigeria",
       inTransit: true),
   OrdersHistory(
       buyerFirstName: "Daniel",
@@ -102,6 +102,7 @@ List<OrdersHistory> demoHistory = [
       price: "1,000",
       date: "10th September 2022",
       goodsName: "10X Garri, 1X Versace Bag",
+      address: "12 Sanwo-Ola Close, Agbara, Lagos, Nigeria",
       notProcessed: true),
   OrdersHistory(
       buyerFirstName: "Haminat",
@@ -109,6 +110,7 @@ List<OrdersHistory> demoHistory = [
       date: "10th September 2022",
       price: "150,000",
       goodsName: "10X Garri, 1X Versace Bag",
+      address: "12 Sanwo-Ola Close, Agbara, Lagos, Nigeria",
       inTransit: true),
   OrdersHistory(
       date: "10th September 2022",
@@ -116,6 +118,7 @@ List<OrdersHistory> demoHistory = [
       buyerLastName: 'Busayomi',
       price: "20,000",
       goodsName: "10X Garri, 1X Versace Bag",
+      address: "12 Sanwo-Ola Close, Agbara, Lagos, Nigeria",
       inTransit: true),
   OrdersHistory(
       buyerFirstName: "Blessing",
@@ -123,6 +126,7 @@ List<OrdersHistory> demoHistory = [
       date: "10th September 2022",
       price: "15,000",
       goodsName: "10X Garri, 1X Versace Bag",
+      address: "12 Sanwo-Ola Close, Agbara, Lagos, Nigeria",
       inTransit: true),
   OrdersHistory(
       buyerFirstName: "Haminat",
@@ -130,6 +134,7 @@ List<OrdersHistory> demoHistory = [
       date: "10th September 2022",
       price: "150,000",
       goodsName: "10X Garri, 1X Versace Bag",
+      address: "12 Sanwo-Ola Close, Agbara, Lagos, Nigeria",
       inTransit: true),
   OrdersHistory(
       buyerFirstName: "Eugene",
@@ -137,6 +142,7 @@ List<OrdersHistory> demoHistory = [
       date: "10th September 2022",
       price: "10,000",
       goodsName: "10X Garri, 1X Versace Bag",
+      address: "12 Sanwo-Ola Close, Agbara, Lagos, Nigeria",
       processing: true),
   OrdersHistory(
       buyerFirstName: "Daniel",
@@ -144,10 +150,9 @@ List<OrdersHistory> demoHistory = [
       price: "1,000",
       date: "10th September 2022",
       goodsName: "10X Garri, 1X Versace Bag",
+      address: "12 Sanwo-Ola Close, Agbara, Lagos, Nigeria",
       notProcessed: true)
 ];
-
-
 
 List<InventoryList> demoInventory = [
   InventoryList(
@@ -205,7 +210,6 @@ List<InventoryList> demoInventory = [
       goodsName: 'Lorep Ipsum',
       price: '6500'),
 ];
-
 
 List<PendingOrders> demoOrders = [
   PendingOrders(
