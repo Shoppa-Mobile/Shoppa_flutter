@@ -187,7 +187,7 @@ class PendingOrdersCard2 extends StatelessWidget {
             color: bgColor,
             elevation: 0,
             child: SizedBox(
-              height: getPropHeight(80),
+              height: getPropHeight(90),
               width: SizeConfig.screenWidth - 30,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 1),
@@ -208,10 +208,10 @@ class PendingOrdersCard2 extends StatelessWidget {
                             child: Center(
                               child: Text(
                                 "${buyerFirstName.characters.characterAt(0)}${buyerLastName.characters.characterAt(0).toUpperCase()}",
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: primaryColor,
                                   fontFamily: 'Lato',
-                                  fontSize: getPropHeight(16),
+                                  fontSize: 16,
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
@@ -224,10 +224,10 @@ class PendingOrdersCard2 extends StatelessWidget {
                           children: [
                             Text(
                               "$buyerFirstName $buyerLastName",
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: headerTextColor,
                                 fontFamily: 'Manrope',
-                                fontSize: getPropHeight(16),
+                                fontSize: 16,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
@@ -237,16 +237,16 @@ class PendingOrdersCard2 extends StatelessWidget {
                               style: TextStyle(
                                 color: regularTextColor.withOpacity(0.3),
                                 fontFamily: 'Lato',
-                                fontSize: getPropHeight(10),
+                                fontSize: 10,
                                 fontWeight: FontWeight.w400,
                               ),
                             ),
                             Text(
                               goodsName,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: regularTextColor,
                                 fontFamily: 'Lato',
-                                fontSize: getPropHeight(14),
+                                fontSize: 14,
                                 fontWeight: FontWeight.w300,
                               ),
                             ),
@@ -276,21 +276,21 @@ class PendingOrdersCard2 extends StatelessWidget {
                               borderRadius:
                                   BorderRadius.circular(getPropWidth(06))),
                           child: (boolo == true)
-                              ? Text(
+                              ? const Text(
                                   'In-Transit',
                                   style: TextStyle(
                                       color: primaryColor,
                                       fontFamily: 'Lato',
-                                      fontSize: getPropHeight(10),
+                                      fontSize: 10,
                                       fontWeight: FontWeight.w400,
                                       letterSpacing: 1.2),
                                 )
-                              : Text(
+                              : const Text(
                                   'Pending-Transit',
                                   style: TextStyle(
                                       color: primaryColor,
                                       fontFamily: 'Lato',
-                                      fontSize: getPropHeight(10),
+                                      fontSize: 10,
                                       fontWeight: FontWeight.w400,
                                       letterSpacing: 1.2),
                                 ),

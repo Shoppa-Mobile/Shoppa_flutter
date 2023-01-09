@@ -31,12 +31,12 @@ class _OrdersScreenState extends State<OrdersScreen> {
           "Orders",
           style: headerStyle2,
         ),
-        actions: const [
+        actions: [
           Padding(
-            padding: EdgeInsets.all(16.0),
-            child: ProgessDropDown(),
+            padding: EdgeInsets.all(getPropHeight(16)),
+            child: const ProgessDropDown(),
           ),
-          SizedBox(width: 16),
+          const SizedBox(width: 16),
         ],
       ),
       body: const OrdersScreenContent(),
@@ -53,10 +53,9 @@ class ProgessDropDown extends StatefulWidget {
 }
 
 class _ProgessDropDownState extends State<ProgessDropDown> {
+  String? selectedValue = '';
   @override
   Widget build(BuildContext context) {
-    String? selectedValue = '';
-
     List<String> items = ['In-Progress', 'Completed', 'Cancelled'];
 
     return SizedBox(
@@ -71,10 +70,10 @@ class _ProgessDropDownState extends State<ProgessDropDown> {
           child: DropdownButtonFormField(
               decoration: orderStatusFieldDecoration(),
               elevation: 15,
-              style: TextStyle(
+              style: const TextStyle(
                 color: ordersProgressCardColor,
                 fontFamily: 'Lato',
-                fontSize: getPropHeight(14),
+                fontSize: 14,
                 fontWeight: FontWeight.w400,
               ),
               icon: const Icon(Icons.arrow_drop_down_sharp),
@@ -83,10 +82,10 @@ class _ProgessDropDownState extends State<ProgessDropDown> {
                     value: items,
                     child: Text(
                       items,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: ordersProgressCardColor,
                         fontFamily: 'Lato',
-                        fontSize: getPropHeight(18),
+                        fontSize: 18,
                         fontWeight: FontWeight.w600,
                       ),
                     ));

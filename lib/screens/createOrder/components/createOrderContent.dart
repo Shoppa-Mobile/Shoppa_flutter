@@ -1,4 +1,4 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, unnecessary_null_comparison
 import 'package:flutter/material.dart';
 import 'package:shoppa_app/widgets/defaultButton.dart';
 import 'package:shoppa_app/constants/colors.dart';
@@ -14,11 +14,11 @@ class CreateOrderContent extends StatefulWidget {
 
 class _CreateOrderContentState extends State<CreateOrderContent> {
   final _formkey = GlobalKey<FormState>();
-  late String customerName, deliveryAddress, itemName;
-  late int phoneNum, itemQty;
+  late String customerName, deliveryAddress, itemName, newDate;
+  late int phoneNum;
+  late int itemQty = 0;
+  DateTime? deliveryDate;
   final List<String> errors = [];
-
-  static var index;
 
   void removeError({required String error}) {
     if (errors.contains(error)) {
@@ -36,6 +36,24 @@ class _CreateOrderContentState extends State<CreateOrderContent> {
     }
   }
 
+  void increment() {
+    if (itemQty >= 0) {
+      setState(() {
+        itemQty++;
+      });
+    }
+  }
+
+  void decrement() {
+    if (itemQty >= 1) {
+      setState(() {
+        itemQty--;
+      });
+    } else {
+      return;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -43,43 +61,69 @@ class _CreateOrderContentState extends State<CreateOrderContent> {
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         physics: const ScrollPhysics(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Create Order', style: headerStyle2),
-            SizedBox(height: getPropHeight(25)),
-            Text("Customer Name", style: regTextStyle),
-            SizedBox(height: getPropHeight(8)),
-            buildCustomerNameField(),
-            SizedBox(height: getPropHeight(16)),
-            Text("Phone Number", style: regTextStyle),
-            SizedBox(height: getPropHeight(8)),
-            buildPhoneNumField(),
-            SizedBox(height: getPropHeight(16)),
-            Text("Store Item", style: regTextStyle),
-            SizedBox(height: getPropHeight(8)),
-            buildSelectItemField(),
-            SizedBox(height: getPropHeight(16)),
-            TextButton(
-                onPressed: () {},
-                child: Text(
-                  '+ Add another item',
-                  style: TextStyle(
-                    color: regularTextColor,
-                    fontFamily: 'Lato',
-                    fontSize: getPropHeight(16),
-                    fontWeight: FontWeight.w500,
+        child: Form(
+          key: _formkey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Create Order', style: headerStyle2),
+              SizedBox(height: getPropHeight(25)),
+              Text("Customer Name", style: regTextStyle),
+              SizedBox(height: getPropHeight(8)),
+              buildCustomerNameField(),
+              SizedBox(height: getPropHeight(16)),
+              Text("Phone Number", style: regTextStyle),
+              SizedBox(height: getPropHeight(8)),
+              buildPhoneNumField(),
+              SizedBox(height: getPropHeight(16)),
+              Text("Store Item", style: regTextStyle),
+              SizedBox(height: getPropHeight(8)),
+              buildSelectItemField(),
+              SizedBox(height: getPropHeight(16)),
+              TextButton(
+                  onPressed: () {},
+                  child: const Text(
+                    '+ Add another item',
+                    style: TextStyle(
+                      color: regularTextColor,
+                      fontFamily: 'Lato',
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  )),
+              SizedBox(height: getPropHeight(16)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Quantity", style: regTextStyle),
+                      SizedBox(height: getPropHeight(8)),
+                      buildItemCountField(),
+                    ],
                   ),
-                )),
-            Text("Delivery Address", style: regTextStyle),
-            SizedBox(height: getPropHeight(8)),
-            buildDeliveryAddressField(),
-            SizedBox(height: getPropHeight(80)),
-            DefaultButton(
-              text: "Create Order",
-              press: () {},
-            )
-          ],
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Delivery Date", style: regTextStyle),
+                      SizedBox(height: getPropHeight(8)),
+                      buildDateTextField()
+                    ],
+                  )
+                ],
+              ),
+              SizedBox(height: getPropHeight(16)),
+              Text("Delivery Address", style: regTextStyle),
+              SizedBox(height: getPropHeight(8)),
+              buildDeliveryAddressField(),
+              SizedBox(height: getPropHeight(40)),
+              DefaultButton(
+                text: "Create Order",
+                press: () {},
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -107,6 +151,85 @@ class _CreateOrderContentState extends State<CreateOrderContent> {
       },
       decoration: textCreateOrderFieldDecoration("Customer Name"),
       keyboardType: TextInputType.text,
+    );
+  }
+
+  buildItemCountField() {
+    return Container(
+      height: getPropHeight(64),
+      width: getPropWidth(179),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: textFieldBorderColor)),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          IconButton(
+              onPressed: () => decrement(),
+              icon: const Icon(
+                Icons.remove,
+                color: primaryColor,
+                size: 16,
+              )),
+          Text(
+            itemQty.toString(),
+            style: const TextStyle(
+              color: primaryColor,
+              fontFamily: 'Lato',
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+          IconButton(
+              onPressed: () => increment(),
+              icon: const Icon(
+                Icons.add,
+                color: primaryColor,
+                size: 16,
+              ))
+        ],
+      ),
+    );
+  }
+
+  buildDateTextField() {
+    return Container(
+      height: getPropHeight(64),
+      width: getPropWidth(179),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: textFieldBorderColor)),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            deliveryDate == null ? 'dd/mm/yyyy' : newDate,
+            style: deliveryDate == null ? subTextStyle : regTextStyle,
+          ),
+          IconButton(
+              onPressed: () {
+                showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(2001),
+                        lastDate: DateTime(2222))
+                    .then((date) {
+                  setState(() {
+                    deliveryDate = date;
+                    newDate =
+                        '${deliveryDate!.day}/${deliveryDate!.month}/${deliveryDate!.year}';
+                  });
+                });
+              },
+              icon: const Icon(
+                Icons.calendar_today,
+                size: 16,
+                color: regularTextColor,
+              ))
+        ],
+      ),
     );
   }
 
@@ -185,10 +308,10 @@ class _CreateOrderContentState extends State<CreateOrderContent> {
     );
   }
 
-  DropdownButtonFormField buildDropdownFormField(index) {
-    return DropdownButtonFormField(
-        decoration: textFieldDecoration('Select Store Item'),
-        items: [],
-        onChanged: (value) {});
-  }
+  // DropdownButtonFormField buildDropdownFormField(index) {
+  //   return DropdownButtonFormField(
+  //       decoration: textFieldDecoration('Select Store Item'),
+  //       items: [],
+  //       onChanged: (value) {});
+  // }
 }

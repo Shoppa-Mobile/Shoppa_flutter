@@ -20,7 +20,7 @@ class _OrdersScreenContentState extends State<OrdersScreenContent> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: getPropWidth(15)),
+        padding: EdgeInsets.symmetric(horizontal: getPropWidth(5)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -84,7 +84,7 @@ class CreateOrderWidget extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       children: [
         Container(
-          width: SizeConfig.screenWidth - 32,
+          width: SizeConfig.screenWidth - 10,
           height: getPropHeight(90),
           decoration: BoxDecoration(
               color: ordersCardColor, borderRadius: BorderRadius.circular(8)),
@@ -97,13 +97,13 @@ class CreateOrderWidget extends StatelessWidget {
                   Navigator.of(context).pushNamed(CreateOrderScreen.routeName);
                 },
                 icon: const Icon(Icons.add, color: regularTextColor),
-                label: Text("Create a new order",
+                label: const Text("Create a new order",
                     style: TextStyle(
-                        color: regularTextColor,
-                        fontFamily: 'Lato',
-                        fontSize: getPropHeight(16),
-                        fontWeight: FontWeight.w400,
-                        letterSpacing: 2)))),
+                      color: regularTextColor,
+                      fontFamily: 'Lato',
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                    )))),
         Positioned(
             top: getPropHeight(20),
             left: getPropWidth(250),
@@ -121,7 +121,7 @@ class SearchField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: SizeConfig.screenWidth - 32,
+      width: SizeConfig.screenWidth - 10,
       height: getPropHeight(56),
       decoration: BoxDecoration(
           border: Border.all(
@@ -139,11 +139,11 @@ class SearchField extends StatelessWidget {
             focusedBorder: InputBorder.none,
             hintText: "Search Order",
             hintStyle: TextStyle(
-                color: subHeaderTextColor.withOpacity(0.5),
-                fontFamily: 'Lato',
-                fontSize: getPropHeight(12),
-                fontWeight: FontWeight.w400,
-                letterSpacing: 2),
+              color: subHeaderTextColor.withOpacity(0.5),
+              fontFamily: 'Lato',
+              fontSize: 12,
+              fontWeight: FontWeight.w400,
+            ),
             prefixIcon: Icon(
               Icons.search_outlined,
               color: subHeaderTextColor.withOpacity(0.5),
@@ -186,8 +186,8 @@ class OrdersHistoryCard extends StatelessWidget {
             color: bgColor,
             elevation: 0,
             child: SizedBox(
-              height: getPropHeight(80),
-              width: SizeConfig.screenWidth - 30,
+              height: getPropHeight(90),
+              width: SizeConfig.screenWidth - 5,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 1),
                 child: Row(
@@ -207,10 +207,10 @@ class OrdersHistoryCard extends StatelessWidget {
                             child: Center(
                               child: Text(
                                 "${buyerFirstName.characters.characterAt(0)}${buyerLastName.characters.characterAt(0).toUpperCase()}",
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: primaryColor,
                                   fontFamily: 'Lato',
-                                  fontSize: getPropHeight(16),
+                                  fontSize: 16,
                                   fontWeight: FontWeight.w700,
                                 ),
                               ),
@@ -223,31 +223,31 @@ class OrdersHistoryCard extends StatelessWidget {
                           children: [
                             Text(
                               "$buyerFirstName $buyerLastName",
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: headerTextColor,
                                 fontFamily: 'Manrope',
-                                fontSize: getPropHeight(16),
+                                fontSize: 16,
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
                             const SizedBox(height: 12),
                             Text(
-                              '"Ordered for',
+                              'Ordered for',
                               style: TextStyle(
                                 color: regularTextColor.withOpacity(0.4),
                                 fontFamily: 'Lato',
-                                fontSize: getPropHeight(10),
+                                fontSize: 10,
                                 fontWeight: FontWeight.w400,
                               ),
                             ),
                             Text(
                               goodsName,
-                              style: TextStyle(
-                                  color: regularTextColor,
-                                  fontFamily: 'Lato',
-                                  fontSize: getPropHeight(14),
-                                  fontWeight: FontWeight.w400,
-                                  letterSpacing: 2.0),
+                              style: const TextStyle(
+                                color: regularTextColor,
+                                fontFamily: 'Lato',
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                              ),
                             ),
                           ],
                         ),
@@ -261,18 +261,21 @@ class OrdersHistoryCard extends StatelessWidget {
                           children: [
                             Text(
                               "NGN $price",
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: headerTextColor,
                                 fontFamily: 'Manrope',
-                                fontSize: getPropHeight(16),
+                                fontSize: 16,
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
-                            const SizedBox(width: 3),
-                            InkWell(
-                              onTap: () {},
-                              child: const Icon(Icons.more_vert,
-                                  size: 16, color: regularTextColor),
+                            IconButton(
+                              padding: const EdgeInsets.all(0),
+                              onPressed: press,
+                              icon: const Icon(
+                                Icons.more_vert,
+                              ),
+                              color: regularTextColor,
+                              iconSize: 16,
                             ),
                           ],
                         ),
@@ -284,14 +287,14 @@ class OrdersHistoryCard extends StatelessWidget {
                                   color: primaryColor.withOpacity(0.10),
                                   borderRadius:
                                       BorderRadius.circular(getPropWidth(06))),
-                              child: Text(
+                              child: const Text(
                                 'In-Transit',
                                 style: TextStyle(
                                     color: primaryColor,
                                     fontFamily: 'Lato',
-                                    fontSize: getPropHeight(10),
+                                    fontSize: 10,
                                     fontWeight: FontWeight.w400,
-                                    letterSpacing: 1.2),
+                                    letterSpacing: 1.0),
                               )),
                         if (processing == true)
                           Container(
@@ -302,14 +305,14 @@ class OrdersHistoryCard extends StatelessWidget {
                                       const Color(0xFFFFC107).withOpacity(0.10),
                                   borderRadius:
                                       BorderRadius.circular(getPropWidth(06))),
-                              child: Text(
+                              child: const Text(
                                 'Processing',
                                 style: TextStyle(
                                     color: regularTextColor,
                                     fontFamily: 'Lato',
-                                    fontSize: getPropHeight(10),
+                                    fontSize: 10,
                                     fontWeight: FontWeight.w400,
-                                    letterSpacing: 1.2),
+                                    letterSpacing: 1.0),
                               )),
                         if (notProcessed == true)
                           Container(
@@ -320,14 +323,14 @@ class OrdersHistoryCard extends StatelessWidget {
                                       const Color(0xFFFFCCCC).withOpacity(0.15),
                                   borderRadius:
                                       BorderRadius.circular(getPropWidth(06))),
-                              child: Text(
+                              child: const Text(
                                 'Not Processed',
                                 style: TextStyle(
-                                    color: const Color(0xFFDC3C3C),
+                                    color: Color(0xFFDC3C3C),
                                     fontFamily: 'Lato',
-                                    fontSize: getPropHeight(10),
+                                    fontSize: 10,
                                     fontWeight: FontWeight.w400,
-                                    letterSpacing: 1.2),
+                                    letterSpacing: 1.0),
                               )),
                       ],
                     ),
@@ -339,7 +342,7 @@ class OrdersHistoryCard extends StatelessWidget {
           const SizedBox(height: 5),
           Container(
             height: 2,
-            width: SizeConfig.screenWidth - 40,
+            width: SizeConfig.screenWidth - 20,
             color: regularTextColor.withOpacity(0.1),
           )
         ],

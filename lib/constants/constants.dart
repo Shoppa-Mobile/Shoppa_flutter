@@ -1,111 +1,110 @@
 import 'package:flutter/material.dart';
 import 'package:shoppa_app/constants/colors.dart';
-import 'package:shoppa_app/constants/size_configurations.dart';
 
-TextStyle headerStyle = TextStyle(
-    color: headerTextColor,
-    fontFamily: 'Manrope',
-    fontSize: getPropHeight(32),
-    fontWeight: FontWeight.w600,
-    letterSpacing: 2.0);
+TextStyle headerStyle = const TextStyle(
+  color: headerTextColor,
+  fontFamily: 'Manrope',
+  fontSize: 32,
+  fontWeight: FontWeight.w600,
+);
 
-TextStyle headerStyle2 = TextStyle(
-    color: headerTextColor,
-    fontFamily: 'Manrope',
-    fontSize: getPropHeight(24),
-    fontWeight: FontWeight.w700,
-    letterSpacing: 2.0);
+TextStyle headerStyle2 = const TextStyle(
+  color: headerTextColor,
+  fontFamily: 'Manrope',
+  fontSize: 24,
+  fontWeight: FontWeight.w700,
+);
 
-TextStyle headerStyle3 = TextStyle(
-    color: headerTextColor,
-    fontFamily: 'Manrope',
-    fontSize: getPropHeight(18),
-    fontWeight: FontWeight.w600,
-    letterSpacing: 2.0);
+TextStyle headerStyle3 = const TextStyle(
+  color: headerTextColor,
+  fontFamily: 'Manrope',
+  fontSize: 18,
+  fontWeight: FontWeight.w600,
+);
 
-TextStyle whiteHeaderStyle = TextStyle(
-    color: bgColor,
-    fontFamily: 'Manrope',
-    fontSize: getPropHeight(18),
-    fontWeight: FontWeight.w600,
-    letterSpacing: 2.0);
+TextStyle whiteHeaderStyle = const TextStyle(
+  color: bgColor,
+  fontFamily: 'Manrope',
+  fontSize: 18,
+  fontWeight: FontWeight.w600,
+);
 
-TextStyle subHeaderStyle = TextStyle(
+TextStyle subHeaderStyle = const TextStyle(
   color: subHeaderTextColor,
   fontFamily: 'Lato',
-  fontSize: getPropHeight(16),
+  fontSize: 16,
   fontWeight: FontWeight.w400,
 );
 
-TextStyle subHeaderStyle2 = TextStyle(
+TextStyle subHeaderStyle2 = const TextStyle(
   color: subHeaderTextColor,
   fontFamily: 'Lato',
-  fontSize: getPropHeight(14),
+  fontSize: 14,
   fontWeight: FontWeight.w400,
 );
 
-TextStyle regTextStyle = TextStyle(
+TextStyle regTextStyle = const TextStyle(
   color: regularTextColor,
   fontFamily: 'Lato',
-  fontSize: getPropHeight(16),
+  fontSize: 16,
   fontWeight: FontWeight.w400,
 );
 
-TextStyle regTextStyle2 = TextStyle(
+TextStyle regTextStyle2 = const TextStyle(
   color: regularTextColor,
   fontFamily: 'Lato',
-  fontSize: getPropHeight(12),
+  fontSize: 12,
   fontWeight: FontWeight.w400,
 );
 
-TextStyle subTextStyle = TextStyle(
+TextStyle subTextStyle = const TextStyle(
   color: subTextColor,
   fontFamily: 'Lato',
-  fontSize: getPropHeight(12),
+  fontSize: 12,
   fontWeight: FontWeight.w400,
 );
 
-TextStyle primaryButtonText = TextStyle(
+TextStyle primaryButtonText = const TextStyle(
   color: primaryButtonTextColor,
   fontFamily: 'Lato',
-  fontSize: getPropHeight(16),
+  fontSize: 16,
   fontWeight: FontWeight.w400,
 );
 
-TextStyle secondaryButtonText = TextStyle(
+TextStyle secondaryButtonText = const TextStyle(
   color: secondaryButtonTextColor,
   fontFamily: 'Lato',
-  fontSize: getPropHeight(16),
+  fontSize: 16,
   fontWeight: FontWeight.w400,
 );
 
-TextStyle ordersCardText1 = TextStyle(
-    color: bgColor,
-    fontFamily: 'Lato',
-    fontSize: getPropHeight(10),
-    fontWeight: FontWeight.w400,
-    letterSpacing: 2.0);
+TextStyle ordersCardText1 = const TextStyle(
+  color: bgColor,
+  fontFamily: 'Lato',
+  fontSize: 10,
+  fontWeight: FontWeight.w400,
+);
 
-TextStyle ordersCardText2 = TextStyle(
-    color: bgColor,
-    fontFamily: 'Lato',
-    fontSize: getPropHeight(16),
-    fontWeight: FontWeight.w400,
-    letterSpacing: 2.0);
+TextStyle ordersCardText2 = const TextStyle(
+  color: bgColor,
+  fontFamily: 'Lato',
+  fontSize: 16,
+  fontWeight: FontWeight.w400,
+);
 
-TextStyle ordersCardText3 = TextStyle(
-    color: bgColor,
-    fontFamily: 'Lato',
-    fontSize: getPropHeight(12),
-    fontWeight: FontWeight.w400,
-    letterSpacing: 2.0);
+TextStyle ordersCardText3 = const TextStyle(
+  color: bgColor,
+  fontFamily: 'Lato',
+  fontSize: 12,
+  fontWeight: FontWeight.w400,
+);
 
-TextStyle inventoryPriceText = TextStyle(
-    color: secondaryButtonTextColor,
-    fontFamily: 'Lato',
-    fontSize: getPropHeight(16),
-    fontWeight: FontWeight.w600,
-    letterSpacing: 2.0);
+TextStyle inventoryPriceText = const TextStyle(
+  color: secondaryButtonTextColor,
+  fontFamily: 'Lato',
+  fontSize: 16,
+  fontWeight: FontWeight.w600,
+);
 
 const animationduration = Duration(seconds: 3);
 
@@ -129,7 +128,7 @@ const String storeNumNullError = "Please enter your Store's Phone Number";
 
 InputDecoration textFieldDecoration(String fieldtext) {
   return InputDecoration(
-      contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       hintText: fieldtext,
       hintStyle: subTextStyle,
       border: OutlineInputBorder(
@@ -142,7 +141,7 @@ InputDecoration textFieldDecoration(String fieldtext) {
 
 InputDecoration textCreateOrderFieldDecoration(String fieldtext) {
   return InputDecoration(
-      contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       hintText: fieldtext,
       hintStyle: subTextStyle,
       border: OutlineInputBorder(

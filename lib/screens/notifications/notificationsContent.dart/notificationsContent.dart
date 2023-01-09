@@ -78,7 +78,7 @@ class NotificationsCard extends StatelessWidget {
                       style: TextStyle(
                         color: primaryColor.withOpacity(0.5),
                         fontFamily: 'Lato',
-                        fontSize: getPropHeight(10),
+                        fontSize: 10,
                         fontWeight: FontWeight.w400,
                       ),
                     ),
@@ -87,7 +87,7 @@ class NotificationsCard extends StatelessWidget {
                       style: TextStyle(
                         color: primaryColor.withOpacity(0.5),
                         fontFamily: 'Lato',
-                        fontSize: getPropHeight(10),
+                        fontSize: 10,
                         fontWeight: FontWeight.w400,
                       ),
                     ),
@@ -97,12 +97,12 @@ class NotificationsCard extends StatelessWidget {
                 Text(
                   messages,
                   maxLines: 2,
-                  style: TextStyle(
-                      color: regularTextColor,
-                      fontFamily: 'Lato',
-                      fontSize: getPropHeight(16),
-                      fontWeight: FontWeight.w400,
-                      letterSpacing: 2.0),
+                  style: const TextStyle(
+                    color: regularTextColor,
+                    fontFamily: 'Lato',
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                  ),
                 )
               ],
             ),

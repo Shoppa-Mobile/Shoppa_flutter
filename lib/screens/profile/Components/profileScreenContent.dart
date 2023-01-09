@@ -168,10 +168,10 @@ class ProfileDetailsCard extends StatelessWidget {
                       const SizedBox(height: 3),
                       Text(
                         bottomText,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: regularTextColor,
                           fontFamily: 'Lato',
-                          fontSize: getPropHeight(12),
+                          fontSize: 12,
                           fontWeight: FontWeight.w400,
                         ),
                       )
@@ -234,10 +234,10 @@ class ProfileDetailsCard2 extends StatelessWidget {
                       const SizedBox(height: 3),
                       Text(
                         bottomText,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: regularTextColor,
                           fontFamily: 'Lato',
-                          fontSize: getPropHeight(12),
+                          fontSize: 12,
                           fontWeight: FontWeight.w400,
                         ),
                       )

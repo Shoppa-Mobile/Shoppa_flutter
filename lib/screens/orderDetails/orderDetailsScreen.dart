@@ -58,7 +58,7 @@ class OrderDetailsScreen extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    "${args.buyerFirstName.characters.characterAt(0)} ${args.buyerLastName.characters.characterAt(0).toUpperCase()}",
+                    "${args.buyerFirstName.characters.characterAt(0)}${args.buyerLastName.characters.characterAt(0).toUpperCase()}",
                     style: const TextStyle(
                       color: primaryColor,
                       fontFamily: 'Lato',
@@ -84,7 +84,7 @@ class OrderDetailsScreen extends StatelessWidget {
                       style: TextStyle(
                         color: regularTextColor.withOpacity(0.4),
                         fontFamily: 'Lato',
-                        fontSize: getPropHeight(10),
+                        fontSize: 10,
                         fontWeight: FontWeight.w400,
                       ),
                     ),
@@ -101,7 +101,7 @@ class OrderDetailsScreen extends StatelessWidget {
                       style: TextStyle(
                         color: regularTextColor.withOpacity(0.4),
                         fontFamily: 'Lato',
-                        fontSize: getPropHeight(10),
+                        fontSize: 10,
                         fontWeight: FontWeight.w400,
                       ),
                     ),
@@ -120,7 +120,7 @@ class OrderDetailsScreen extends StatelessWidget {
                   style: TextStyle(
                     color: regularTextColor.withOpacity(0.4),
                     fontFamily: 'Lato',
-                    fontSize: getPropHeight(10),
+                    fontSize: 10,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
@@ -140,7 +140,7 @@ class OrderDetailsScreen extends StatelessWidget {
                       style: TextStyle(
                         color: regularTextColor.withOpacity(0.4),
                         fontFamily: 'Lato',
-                        fontSize: getPropHeight(10),
+                        fontSize: 10,
                         fontWeight: FontWeight.w400,
                       ),
                     ),
@@ -157,16 +157,16 @@ class OrderDetailsScreen extends StatelessWidget {
                       style: TextStyle(
                         color: regularTextColor.withOpacity(0.4),
                         fontFamily: 'Lato',
-                        fontSize: getPropHeight(10),
+                        fontSize: 10,
                         fontWeight: FontWeight.w400,
                       ),
                     ),
-                    Text("123466789",
+                    const Text("123466789",
                         style: TextStyle(
                           decoration: TextDecoration.underline,
                           color: regularTextColor,
                           fontFamily: 'Lato',
-                          fontSize: getPropHeight(16),
+                          fontSize: 16,
                           fontWeight: FontWeight.w400,
                         )),
                   ],
@@ -181,15 +181,15 @@ class OrderDetailsScreen extends StatelessWidget {
                       style: TextStyle(
                         color: regularTextColor.withOpacity(0.4),
                         fontFamily: 'Lato',
-                        fontSize: getPropHeight(10),
+                        fontSize: 10,
                         fontWeight: FontWeight.w400,
                       ),
                     ),
-                    Text("Delivered",
+                    const Text("Delivered",
                         style: TextStyle(
-                          color: regularTextColor,
+                          color: primaryColor,
                           fontFamily: 'Lato',
-                          fontSize: getPropHeight(16),
+                          fontSize: 12,
                           fontWeight: FontWeight.w400,
                         )),
                   ],

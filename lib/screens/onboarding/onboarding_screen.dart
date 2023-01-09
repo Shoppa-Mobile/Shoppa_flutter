@@ -3,9 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:shoppa_app/screens/onboarding/onboarding_content.dart';
 import 'package:shoppa_app/screens/signUp/signUp_screen1.dart';
-import '../../constants/colors.dart';
-import '../../constants/constants.dart';
-import 'package:shoppa_app/dummyData/all_dummy_data.dart';
 
 List<Map<String, String>> onBoardingData = [
   {
@@ -106,7 +103,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
                             .pushNamed(SignUpScreen1.routeName);
                       }
                     },
-                    
                   );
                 },
               ),

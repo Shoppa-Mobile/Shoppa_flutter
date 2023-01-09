@@ -37,9 +37,13 @@ class _OnboardingContentState extends State<OnboardingContent> {
             height: MediaQuery.of(context).size.height,
             decoration: const BoxDecoration(color: bgColor),
           ),
-          Image.asset(widget.image, fit: BoxFit.fill),
+          Image.asset(
+            widget.image,
+            fit: BoxFit.fill,
+            width: double.infinity,
+          ),
           Positioned(
-            top: MediaQuery.of(context).size.height * 0.6,
+            top: MediaQuery.of(context).size.height * 0.56,
             child: Container(
               width: MediaQuery.of(context).size.width,
               padding: EdgeInsets.symmetric(horizontal: getPropWidth(20)),
@@ -72,7 +76,7 @@ class _OnboardingContentState extends State<OnboardingContent> {
                   SizedBox(
                     height: getPropWidth(20),
                   ),
-                  const LoginWidget(),
+                  if (widget.currentIndex == 2) const LoginWidget(),
                 ],
               ),
             ),
@@ -111,12 +115,12 @@ class LoginWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(
+        const Text(
           "Already have an account?",
           style: TextStyle(
             color: headerTextColor,
             fontFamily: 'Lato',
-            fontSize: getPropHeight(16),
+            fontSize: 16,
             fontWeight: FontWeight.w700,
           ),
         ),
@@ -127,11 +131,11 @@ class LoginWidget extends StatelessWidget {
             onPressed: () {
               Navigator.pushNamed(context, LoginScreen.routeName);
             },
-            child: Text('Login',
+            child: const Text('Login',
                 style: TextStyle(
                     color: secondaryButtonTextColor,
                     fontFamily: 'Lato',
-                    fontSize: getPropHeight(16),
+                    fontSize: 16,
                     fontWeight: FontWeight.w400)))
       ],
     );

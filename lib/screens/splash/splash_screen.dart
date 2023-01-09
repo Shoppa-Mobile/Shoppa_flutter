@@ -3,10 +3,30 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
 import 'package:shoppa_app/screens/onBoarding/onboarding_screen.dart';
+import 'dart:math' as math;
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   static String routeName = "/Splash";
-  const SplashScreen({super.key});
+  const SplashScreen({
+    super.key,
+  });
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController controller = AnimationController(
+    duration: const Duration(seconds: 1),
+    vsync: this,
+  )..repeat();
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,19 +35,23 @@ class SplashScreen extends StatelessWidget {
         () => Navigator.pushReplacementNamed(
             context, OnBoardingScreen.routeName));
     SizeConfig().init(context);
-    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+    final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
     return Scaffold(
-      key: _scaffoldKey,
+      key: scaffoldKey,
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SvgPicture.asset(
-              'assets/logos/shoppa logo2.svg',
-              height: getPropHeight(98),
-              width: getPropWidth(98),
-            )
-          ],
+        child: AnimatedBuilder(
+          animation: controller,
+          builder: (_, child) {
+            return Transform.rotate(
+              angle: controller.value * 2 * math.pi,
+              child: child,
+            );
+          },
+          child: SvgPicture.asset(
+            'assets/logos/shoppa logo2.svg',
+            height: getPropHeight(100),
+            width: getPropWidth(100),
+          ),
         ),
       ),
     );

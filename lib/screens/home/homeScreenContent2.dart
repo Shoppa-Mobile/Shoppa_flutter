@@ -38,7 +38,7 @@ class _HomeScreenContent2State extends State<HomeScreenContent2> {
                     style: TextStyle(
                         color: primaryColor.withOpacity(0.7),
                         fontFamily: 'Lato',
-                        fontSize: getPropHeight(14),
+                        fontSize: 14,
                         fontWeight: FontWeight.w300,
                         decoration: TextDecoration.underline),
                   ))

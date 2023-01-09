@@ -86,12 +86,12 @@ class _OtpContentState extends State<OtpContent> {
   TextButton buildEmailInstead() {
     return TextButton(
         onPressed: () {},
-        child: Text(
+        child: const Text(
           "Use email address instead",
           style: TextStyle(
               decoration: TextDecoration.underline,
               color: secondaryButtonTextColor,
-              fontSize: getPropHeight(16),
+              fontSize: 16,
               fontWeight: FontWeight.w400),
         ));
   }
@@ -110,7 +110,7 @@ class _OtpContentState extends State<OtpContent> {
           toResendAgain ? "Resend Code" : "Retry in $start",
           style: TextStyle(
               color: toResendAgain ? primaryColor : headerTextColor,
-              fontSize: getPropHeight(16)),
+              fontSize: 16),
         ));
   }
 
