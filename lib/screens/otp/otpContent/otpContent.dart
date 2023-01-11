@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:shoppa_app/screens/resetPassword/resetPassword_screen.dart';
 import 'package:shoppa_app/widgets/defaultButton.dart';
 import 'package:shoppa_app/constants/constants.dart';
 import 'package:shoppa_app/screens/proofOfIdentity/proofOfIdentityScreen.dart';
@@ -67,7 +68,7 @@ class _OtpContentState extends State<OtpContent> {
                   press: () {
                     // Go to POI Screen
                     Navigator.of(context)
-                        .pushNamed(ProofOfIdentityScreen.routeName);
+                        .pushNamed(ResetPasswordScreen.routeName);
                   },
                 ),
                 SizedBox(

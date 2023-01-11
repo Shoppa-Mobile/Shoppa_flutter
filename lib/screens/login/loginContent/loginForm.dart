@@ -1,5 +1,6 @@
 // ignore_for_file: file_names, unused_import
 import 'package:flutter/material.dart';
+import 'package:shoppa_app/screens/inputNumResetPassword/inputNum_screen.dart';
 import 'package:shoppa_app/widgets/defaultButton.dart';
 import 'package:shoppa_app/constants/colors.dart';
 import 'package:shoppa_app/screens/home/homeScreen1.dart';
@@ -156,7 +157,7 @@ class ForgotPassword extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
         onPressed: () {
-          Navigator.of(context).pushNamed(ResetPasswordScreen.routeName);
+          Navigator.of(context).pushNamed(InputNumberScreen.routeName);
         },
         child: const Text(
           "Forgot Password?",

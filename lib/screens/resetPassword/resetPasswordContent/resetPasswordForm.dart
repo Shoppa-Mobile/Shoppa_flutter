@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
+import 'package:shoppa_app/screens/home/homeScreen2.dart';
 import 'package:shoppa_app/widgets/defaultButton.dart';
 import 'package:shoppa_app/widgets/formError.dart';
 import '../../../constants/size_configurations.dart';
@@ -54,10 +55,11 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
             DefaultButton(
               text: "Reset Password",
               press: () {
-                if (_formkey.currentState!.validate()) {
-                  // Go to Home screen
-                  _formkey.currentState!.save();
-                }
+                // if (_formkey.currentState!.validate()) {
+                //   // Go to Home screen
+                //   _formkey.currentState!.save();
+                // }
+                Navigator.of(context).pushNamed(HomeScreen2.routeName);
               },
             )
           ],

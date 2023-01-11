@@ -70,6 +70,7 @@ class _ProgessDropDownState extends State<ProgessDropDown> {
           child: DropdownButtonFormField(
               decoration: orderStatusFieldDecoration(),
               elevation: 15,
+              hint: Text(selectedValue!),
               style: const TextStyle(
                 color: ordersProgressCardColor,
                 fontFamily: 'Lato',
@@ -77,11 +78,11 @@ class _ProgessDropDownState extends State<ProgessDropDown> {
                 fontWeight: FontWeight.w400,
               ),
               icon: const Icon(Icons.arrow_drop_down_sharp),
-              items: items.map((items) {
+              items: items.map((item) {
                 return DropdownMenuItem(
-                    value: items,
+                    value: item,
                     child: Text(
-                      items,
+                      item,
                       style: const TextStyle(
                         color: ordersProgressCardColor,
                         fontFamily: 'Lato',
