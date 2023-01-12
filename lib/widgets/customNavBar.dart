@@ -6,8 +6,8 @@ import 'package:shoppa_app/constants/size_configurations.dart';
 import 'package:shoppa_app/enums.dart';
 import 'package:shoppa_app/screens/home/homeScreen1.dart';
 import 'package:shoppa_app/screens/home/homeScreen2.dart';
-import 'package:shoppa_app/screens/orders/ordersScreen.dart';
 import 'package:shoppa_app/screens/profile/ProfileScreen.dart';
+import '../screens/order/orders/ordersScreen.dart';
 
 class CustomNavBar extends StatefulWidget {
   const CustomNavBar({super.key, required this.selectedMenu});

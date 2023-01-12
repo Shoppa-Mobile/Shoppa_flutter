@@ -2,7 +2,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:shoppa_app/screens/onboarding/onboarding_content.dart';
-import 'package:shoppa_app/screens/signUp/signUp_screen1.dart';
+import 'package:shoppa_app/screens/auth/signUp/signUp_screen1.dart';
 
 List<Map<String, String>> onBoardingData = [
   {

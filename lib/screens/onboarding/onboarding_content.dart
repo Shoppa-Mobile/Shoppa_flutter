@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shoppa_app/screens/login/login_screen.dart';
+import 'package:shoppa_app/screens/auth/login/login_screen.dart';
 import 'package:shoppa_app/screens/onboarding/onboarding_screen.dart';
 import '../../constants/colors.dart';
 import '../../constants/constants.dart';
@@ -28,7 +28,9 @@ class OnboardingContent extends StatefulWidget {
 class _OnboardingContentState extends State<OnboardingContent> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return SizedBox(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
       child: Stack(
         fit: StackFit.loose,
         children: [
@@ -55,26 +57,26 @@ class _OnboardingContentState extends State<OnboardingContent> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: getPropWidth(20),
+                    height: getPropWidth(10),
                   ),
                   buildDotIndicator(widget.currentIndex),
                   SizedBox(
-                    height: getPropWidth(20),
+                    height: getPropWidth(10),
                   ),
                   Text(
                     widget.text1,
                     style: headerStyle,
                   ),
                   SizedBox(
-                    height: getPropWidth(8),
+                    height: getPropWidth(5),
                   ),
                   Text(widget.text2, style: subHeaderStyle),
                   SizedBox(
-                    height: getPropWidth(14),
+                    height: getPropWidth(10),
                   ),
                   DefaultButton(text: widget.buttonText, press: widget.press),
                   SizedBox(
-                    height: getPropWidth(20),
+                    height: getPropWidth(15),
                   ),
                   const LoginWidget(),
                 ],
@@ -98,7 +100,7 @@ buildDotIndicator(double currentIndex) {
       color: lightPrimaryColor,
       activeColor: primaryColor,
       size: const Size.square(6),
-      activeSize: const Size(12, 6),
+      activeSize: const Size(8, 6),
       activeShape:
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(3.0)),
     ),

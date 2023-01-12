@@ -1,3 +1,4 @@
+// ignore_for_file: file_names
 class InventoryList {
   final String goodsImage, goodsName, price;
   final bool outOfStock;

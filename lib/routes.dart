@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:shoppa_app/screens/createOrder/createOrderScreen.dart';
+import 'package:shoppa_app/screens/order/createOrder/createOrderScreen.dart';
 import 'package:shoppa_app/screens/home/homeScreen1.dart';
 import 'package:shoppa_app/screens/home/homeScreen2.dart';
-import 'package:shoppa_app/screens/inputNumResetPassword/inputNum_screen.dart';
-import 'package:shoppa_app/screens/login/login_screen.dart';
+import 'package:shoppa_app/screens/auth/inputNumResetPassword/inputNum_screen.dart';
+import 'package:shoppa_app/screens/auth/login/login_screen.dart';
 import 'package:shoppa_app/screens/notifications/notifications.dart';
 import 'package:shoppa_app/screens/onBoarding/onboarding_screen.dart';
-import 'package:shoppa_app/screens/orderDetails/orderDetailsScreen.dart';
-import 'package:shoppa_app/screens/orders/ordersScreen.dart';
-import 'package:shoppa_app/screens/otp/otpScreen.dart';
+import 'package:shoppa_app/screens/order/orderDetails/orderDetailsScreen.dart';
+import 'package:shoppa_app/screens/order/orders/ordersScreen.dart';
+import 'package:shoppa_app/screens/auth/otp/otpScreen.dart';
 import 'package:shoppa_app/screens/profile/ProfileScreen.dart';
-import 'package:shoppa_app/screens/proofOfIdentity/driLicenseUpload/driLicenseUploadScreen.dart';
-import 'package:shoppa_app/screens/proofOfIdentity/nINUpload/nINUploadScreen.dart';
-import 'package:shoppa_app/screens/proofOfIdentity/proofOfIdentityScreen.dart';
-import 'package:shoppa_app/screens/proofOfIdentity/utiiBillUpload/utilBillUploadScreen.dart';
-import 'package:shoppa_app/screens/proofOfIdentity/votersCardUpload/votersCardUploadScreen.dart';
-import 'package:shoppa_app/screens/resetPassword/resetPassword_screen.dart';
-import 'package:shoppa_app/screens/signUp/signUp_Screen2.dart';
-import 'package:shoppa_app/screens/signUp/signUp_screen1.dart';
+import 'package:shoppa_app/screens/auth/proofOfIdentity/driLicenseUpload/driLicenseUploadScreen.dart';
+import 'package:shoppa_app/screens/auth/proofOfIdentity/nINUpload/nINUploadScreen.dart';
+import 'package:shoppa_app/screens/auth/proofOfIdentity/proofOfIdentityScreen.dart';
+import 'package:shoppa_app/screens/auth/proofOfIdentity/utiiBillUpload/utilBillUploadScreen.dart';
+import 'package:shoppa_app/screens/auth/proofOfIdentity/votersCardUpload/votersCardUploadScreen.dart';
+import 'package:shoppa_app/screens/auth/resetPassword/resetPassword_screen.dart';
+import 'package:shoppa_app/screens/auth/signUp/signUp_Screen2.dart';
+import 'package:shoppa_app/screens/auth/signUp/signUp_screen1.dart';
 import 'package:shoppa_app/screens/splash/splash_screen.dart';
 
 final Map<String, WidgetBuilder> routes = {
