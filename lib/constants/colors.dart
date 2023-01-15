@@ -12,3 +12,4 @@ const secondaryButtonTextColor = Color(0xFFF1632A);
 const textFieldBorderColor = Color(0xFFDFDFDF);
 const ordersCardColor = Color(0xFFFFD9CA);
 const ordersProgressCardColor = Color(0xFF868686);
+const deleteIconColor = Color(0xFFF44336);

@@ -16,12 +16,6 @@ class OrdersScreenContent extends StatefulWidget {
 }
 
 class _OrdersScreenContentState extends State<OrdersScreenContent> {
-  final List<String> dropdownitem = [
-    'Change Order Status',
-    'Track Order',
-    'Share Order',
-    'Cancel Order'
-  ];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -79,7 +73,6 @@ class _OrdersScreenContentState extends State<OrdersScreenContent> {
     );
   }
 }
-
 
 class CreateOrderWidget extends StatelessWidget {
   const CreateOrderWidget({
@@ -187,6 +180,13 @@ class OrdersHistoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<String> dropdownitem = [
+      'Change Order Status',
+      'Track Order',
+      'Share Order',
+      'Cancel Order'
+    ];
+
     return GestureDetector(
       onTap: press,
       child: Column(
@@ -277,14 +277,43 @@ class OrdersHistoryCard extends StatelessWidget {
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
-                            IconButton(
-                              padding: const EdgeInsets.all(0),
-                              onPressed: press1,
-                              icon: const Icon(
+                            PopupMenuButton(
+                              color: bgColor,
+                              padding: EdgeInsets.only(
+                                  left: getPropWidth(30),
+                                  right: getPropWidth(10),
+                                  top: getPropHeight(23)),
+                              position: PopupMenuPosition.under,
+                              itemBuilder: (context) {
+                                return [
+                                  PopupMenuItem(
+                                    value: dropdownitem[0],
+                                    textStyle: regTextStyle,
+                                    child: Text(dropdownitem[0]),
+                                  ),
+                                  PopupMenuItem(
+                                    value: dropdownitem[1],
+                                    textStyle: regTextStyle,
+                                    child: Text(dropdownitem[1]),
+                                  ),
+                                  PopupMenuItem(
+                                    value: dropdownitem[2],
+                                    textStyle: regTextStyle,
+                                    child: Text(dropdownitem[2]),
+                                  ),
+                                  PopupMenuItem(
+                                    value: dropdownitem[3],
+                                    textStyle: regTextStyle.copyWith(
+                                        color: deleteIconColor),
+                                    child: Text(dropdownitem[3]),
+                                  )
+                                ];
+                              },
+                              child: const Icon(
                                 Icons.more_vert,
+                                color: regularTextColor,
+                                size: 16,
                               ),
-                              color: regularTextColor,
-                              iconSize: 16,
                             ),
                           ],
                         ),
@@ -328,14 +357,13 @@ class OrdersHistoryCard extends StatelessWidget {
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 3),
                               decoration: BoxDecoration(
-                                  color:
-                                      const Color(0xFFFFCCCC).withOpacity(0.15),
+                                  color: deleteIconColor.withOpacity(0.15),
                                   borderRadius:
                                       BorderRadius.circular(getPropWidth(06))),
                               child: const Text(
                                 'Not Processed',
                                 style: TextStyle(
-                                    color: Color(0xFFDC3C3C),
+                                    color: deleteIconColor,
                                     fontFamily: 'Lato',
                                     fontSize: 10,
                                     fontWeight: FontWeight.w400,
