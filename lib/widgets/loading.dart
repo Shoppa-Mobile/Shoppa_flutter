@@ -35,7 +35,7 @@ class _LoadingState extends State<Loading> {
               color: primaryColor,
               strokeWidth: 7.0,
             ),
-            const SizedBox(height: 15),
+            const SizedBox(height: 10),
             Text(
               widget.text!,
               style: headerStyle3,
