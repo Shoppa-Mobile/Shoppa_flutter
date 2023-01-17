@@ -1,7 +1,7 @@
 // ignore_for_file: file_names
 class OrderDetailsArguments {
   final String buyerFirstName, buyerLastName, goodsName, price, date, address;
-  final bool inTransit, processing, notProcessed;
+  final bool inTransit, completed, cancelled;
 
   OrderDetailsArguments(
       {required this.address,
@@ -11,6 +11,6 @@ class OrderDetailsArguments {
       required this.price,
       required this.date,
       required this.inTransit,
-      required this.processing,
-      required this.notProcessed});
+      required this.completed,
+      required this.cancelled});
 }

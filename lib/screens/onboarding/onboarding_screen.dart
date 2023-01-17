@@ -1,31 +1,9 @@
 // ignore_for_file: unused_local_variable
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:shoppa_app/dummyData/all_dummy_data.dart';
 import 'package:shoppa_app/screens/auth/signUp/signUpOptionsScreen.dart';
-import 'package:shoppa_app/screens/onboarding/onboarding_content.dart';
-
-List<Map<String, String>> onBoardingData = [
-  {
-    'text1': "Manage all your shoppa’s, in one app.",
-    'text2':
-        "Reduce the stress of running your business across multiple social media platforms. With Shoppa, you get to easily manage business from one spot.",
-    'buttontext': "Create Account",
-    'image': 'assets/images/Onboarding_img_1.png'
-  },
-  {
-    'text1': "Get a personal shop for your business.",
-    'text2':
-        "Have all your products displayed in your shop and improve customer satisfaction with  page, share your product page and have your customers enjoy shopping better.",
-    'buttontext': "Create Account",
-    'image': 'assets/images/Onboarding_img_2.png'
-  },
-  {
-    'text1': "Get Started",
-    'text2': '',
-    'buttontext': "Create Account",
-    'image': 'assets/images/Onboarding_img_3.png'
-  }
-];
+import 'package:shoppa_app/screens/onboarding/widgets/onboarding_content.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   static String routeName = "/Onboarding";

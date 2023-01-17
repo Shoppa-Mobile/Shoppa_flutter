@@ -6,7 +6,7 @@ import 'package:shoppa_app/screens/notifications/notifications.dart';
 import 'package:shoppa_app/widgets/customNavBar.dart';
 import 'package:shoppa_app/constants/colors.dart';
 import 'package:shoppa_app/enums.dart';
-import 'package:shoppa_app/screens/order/createOrder/components/createOrderContent.dart';
+import 'package:shoppa_app/screens/order/createOrder/widgets/createOrderContent.dart';
 
 class CreateOrderScreen extends StatelessWidget {
   const CreateOrderScreen({super.key});

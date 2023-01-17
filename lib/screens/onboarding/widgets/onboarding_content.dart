@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:shoppa_app/constants/colors.dart';
+import 'package:shoppa_app/constants/constants.dart';
+import 'package:shoppa_app/constants/size_configurations.dart';
+import 'package:shoppa_app/dummyData/all_dummy_data.dart';
 import 'package:shoppa_app/screens/auth/login/login_screen.dart';
-import 'package:shoppa_app/screens/onboarding/onboarding_screen.dart';
-import '../../constants/colors.dart';
-import '../../constants/constants.dart';
-import '../../constants/size_configurations.dart';
-import '../../widgets/defaultButton.dart';
 import 'package:dots_indicator/dots_indicator.dart';
+import 'package:shoppa_app/widgets/defaultButton.dart';
 
 class OnboardingContent extends StatefulWidget {
   const OnboardingContent(
@@ -101,8 +101,9 @@ buildDotIndicator(double currentIndex) {
       activeColor: primaryColor,
       size: const Size.square(6),
       activeSize: const Size(8, 6),
-      activeShape:
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(3.0)),
+      activeShape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(3.0),
+      ),
     ),
   );
 }
@@ -130,16 +131,19 @@ class LoginWidget extends StatelessWidget {
           width: 2,
         ),
         TextButton(
-            onPressed: () {
-              Navigator.pushNamed(context, LoginScreen.routeName);
-            },
-            child: const Text('Login',
-                style: TextStyle(
-                    color: secondaryButtonTextColor,
-                    fontFamily: 'Lato',
-                    fontSize: 16,
-                    decoration: TextDecoration.underline,
-                    fontWeight: FontWeight.w400)))
+          onPressed: () {
+            Navigator.pushNamed(context, LoginScreen.routeName);
+          },
+          child: const Text(
+            'Login',
+            style: TextStyle(
+                color: secondaryButtonTextColor,
+                fontFamily: 'Lato',
+                fontSize: 16,
+                decoration: TextDecoration.underline,
+                fontWeight: FontWeight.w400),
+          ),
+        ),
       ],
     );
   }

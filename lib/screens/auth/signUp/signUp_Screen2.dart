@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:shoppa_app/constants/colors.dart';
 import 'package:shoppa_app/constants/constants.dart';
-import 'signUpContent/signUp_content2.dart';
+import 'widgets/signUp_content2.dart';
 
 class SignUpScreen2 extends StatelessWidget {
   static String routeName = "/SignUp2";
