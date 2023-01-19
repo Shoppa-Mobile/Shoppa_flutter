@@ -31,13 +31,13 @@ class _OrdersScreenState extends State<OrdersScreen> {
           "Orders",
           style: headerStyle2,
         ),
-        // actions: [
-        //   Padding(
-        //     padding: EdgeInsets.all(getPropHeight(16)),
-        //     child: const ProgessDropDown(),
-        //   ),
-        //   const SizedBox(width: 16),
-        // ],
+        actions: [
+          Padding(
+            padding: EdgeInsets.all(getPropHeight(16)),
+            child: const ProgessDropDown(),
+          ),
+          const SizedBox(width: 16),
+        ],
       ),
       body: const OrdersScreenContent(),
       bottomNavigationBar: const CustomNavBar(selectedMenu: MenuState.orders),
