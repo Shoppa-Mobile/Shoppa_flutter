@@ -3,49 +3,49 @@ import 'package:shoppa_app/constants/colors.dart';
 
 TextStyle headerStyle = const TextStyle(
   color: headerTextColor,
-  fontFamily: 'Manrope',
+  fontFamily: 'Raleway',
   fontSize: 32,
   fontWeight: FontWeight.w600,
 );
 
 TextStyle headerStyle2 = const TextStyle(
   color: headerTextColor,
-  fontFamily: 'Manrope',
+  fontFamily: 'Raleway',
   fontSize: 24,
   fontWeight: FontWeight.w700,
 );
 
 TextStyle headerStyle3 = const TextStyle(
   color: headerTextColor,
-  fontFamily: 'Manrope',
+  fontFamily: 'Raleway',
   fontSize: 18,
   fontWeight: FontWeight.w600,
 );
 
 TextStyle whiteHeaderStyle = const TextStyle(
   color: bgColor,
-  fontFamily: 'Manrope',
+  fontFamily: 'Raleway',
   fontSize: 18,
   fontWeight: FontWeight.w600,
 );
 
 TextStyle subHeaderStyle = const TextStyle(
   color: subHeaderTextColor,
-  fontFamily: 'Lato',
+  fontFamily: 'Raleway',
   fontSize: 16,
   fontWeight: FontWeight.w400,
 );
 
 TextStyle subHeaderStyle2 = const TextStyle(
   color: subHeaderTextColor,
-  fontFamily: 'Lato',
+  fontFamily: 'Raleway',
   fontSize: 14,
   fontWeight: FontWeight.w400,
 );
 
 TextStyle regTextStyle = const TextStyle(
   color: regularTextColor,
-  fontFamily: 'Lato',
+  fontFamily: 'Raleway',
   fontSize: 16,
   fontWeight: FontWeight.w400,
 );
@@ -59,49 +59,49 @@ TextStyle regTextStyle2 = const TextStyle(
 
 TextStyle subTextStyle = const TextStyle(
   color: subTextColor,
-  fontFamily: 'Lato',
+  fontFamily: 'Raleway',
   fontSize: 12,
   fontWeight: FontWeight.w400,
 );
 
 TextStyle primaryButtonText = const TextStyle(
   color: primaryButtonTextColor,
-  fontFamily: 'Lato',
+  fontFamily: 'Raleway',
   fontSize: 16,
   fontWeight: FontWeight.w400,
 );
 
 TextStyle secondaryButtonText = const TextStyle(
   color: secondaryButtonTextColor,
-  fontFamily: 'Lato',
+  fontFamily: 'Raleway',
   fontSize: 16,
   fontWeight: FontWeight.w400,
 );
 
 TextStyle ordersCardText1 = const TextStyle(
   color: bgColor,
-  fontFamily: 'Lato',
+  fontFamily: 'Raleway',
   fontSize: 10,
   fontWeight: FontWeight.w400,
 );
 
 TextStyle ordersCardText2 = const TextStyle(
   color: bgColor,
-  fontFamily: 'Lato',
+  fontFamily: 'Raleway',
   fontSize: 16,
   fontWeight: FontWeight.w400,
 );
 
 TextStyle ordersCardText3 = const TextStyle(
   color: bgColor,
-  fontFamily: 'Lato',
+  fontFamily: 'Raleway',
   fontSize: 12,
   fontWeight: FontWeight.w400,
 );
 
 TextStyle inventoryPriceText = const TextStyle(
   color: secondaryButtonTextColor,
-  fontFamily: 'Lato',
+  fontFamily: 'Raleway',
   fontSize: 16,
   fontWeight: FontWeight.w600,
 );

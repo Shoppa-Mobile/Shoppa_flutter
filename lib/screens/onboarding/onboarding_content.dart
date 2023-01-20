@@ -138,6 +138,7 @@ class LoginWidget extends StatelessWidget {
                     color: secondaryButtonTextColor,
                     fontFamily: 'Lato',
                     fontSize: 16,
+                    decoration: TextDecoration.underline,
                     fontWeight: FontWeight.w400)))
       ],
     );

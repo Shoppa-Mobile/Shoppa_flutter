@@ -22,7 +22,7 @@ class Shoppa extends StatelessWidget {
           iconTheme: IconThemeData(color: regularTextColor),
           backgroundColor: bgColor,
         ),
-        fontFamily: "Lato",
+        fontFamily: "Raleway",
         backgroundColor: bgColor,
       ),
       initialRoute: SplashScreen.routeName,

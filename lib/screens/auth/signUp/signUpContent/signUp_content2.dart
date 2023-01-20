@@ -23,11 +23,7 @@ class _SignUpContent2State extends State<SignUpContent2> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                height: getPropHeight(15),
-              ),
-              Text("Create Your Account", style: headerStyle2),
-              SizedBox(height: getPropHeight(5)),
+              SizedBox(height: getPropHeight(25)),
               Row(
                 children: [
                   Container(
@@ -49,14 +45,18 @@ class _SignUpContent2State extends State<SignUpContent2> {
                 ],
               ),
               SizedBox(height: getPropHeight(5)),
-              Text(
-                "Step 2/2",
-                style: subHeaderStyle,
-              ),
-              SizedBox(height: getPropHeight(5)),
-              Text(
-                "Store Details",
-                style: headerStyle3,
+              Row(
+                children: [
+                  Text(
+                    "Step 2/2",
+                    style: subHeaderStyle,
+                  ),
+                  SizedBox(width: getPropWidth(30)),
+                  Text(
+                    "Store Details",
+                    style: headerStyle3,
+                  ),
+                ],
               ),
               SizedBox(height: getPropHeight(45)),
               const SignUpForm2()

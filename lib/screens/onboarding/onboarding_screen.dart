@@ -1,28 +1,28 @@
 // ignore_for_file: unused_local_variable
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:shoppa_app/screens/auth/signUp/signUpOptionsScreen.dart';
 import 'package:shoppa_app/screens/onboarding/onboarding_content.dart';
-import 'package:shoppa_app/screens/auth/signUp/signUp_screen1.dart';
 
 List<Map<String, String>> onBoardingData = [
   {
-    'text1': "Manage your customers, in one app.",
+    'text1': "Manage all your shoppa’s, in one app.",
     'text2':
-        "No more juggling between multiple social media, Shoppa gives you access to manage your inventory and customers.",
-    'buttontext': "Get Started",
+        "Reduce the stress of running your business across multiple social media platforms. With Shoppa, you get to easily manage business from one spot.",
+    'buttontext': "Create Account",
     'image': 'assets/images/Onboarding_img_1.png'
   },
   {
-    'text1': "Your personal store, a link just for you.",
+    'text1': "Get a personal shop for your business.",
     'text2':
-        "Have all your products in one page, share your product page and have your customers enjoy shopping better.",
-    'buttontext': "Get Started",
+        "Have all your products displayed in your shop and improve customer satisfaction with  page, share your product page and have your customers enjoy shopping better.",
+    'buttontext': "Create Account",
     'image': 'assets/images/Onboarding_img_2.png'
   },
   {
     'text1': "Get Started",
     'text2': '',
-    'buttontext': "Sign Up",
+    'buttontext': "Create Account",
     'image': 'assets/images/Onboarding_img_3.png'
   }
 ];
@@ -100,7 +100,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
                           curve: Curves.easeInOutCirc);
                       if (currentPage == 2) {
                         Navigator.of(context)
-                            .pushNamed(SignUpScreen1.routeName);
+                            .pushNamed(SignUpOptionsScreen.routeName);
                       }
                     },
                   );

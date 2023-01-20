@@ -23,11 +23,7 @@ class _SignUpContentState extends State<SignUpContent> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                height: getPropHeight(15),
-              ),
-              Text("Create Your Account", style: headerStyle2),
-              SizedBox(height: getPropHeight(5)),
+              SizedBox(height: getPropHeight(25)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -50,14 +46,18 @@ class _SignUpContentState extends State<SignUpContent> {
                 ],
               ),
               SizedBox(height: getPropHeight(5)),
-              Text(
-                "Step 1/2",
-                style: subHeaderStyle,
-              ),
-              SizedBox(height: getPropHeight(5)),
-              Text(
-                "Personal Details",
-                style: headerStyle3,
+              Row(
+                children: [
+                  Text(
+                    "Step 1/2",
+                    style: subHeaderStyle,
+                  ),
+                  SizedBox(width: getPropWidth(30)),
+                  Text(
+                    "Personal Details",
+                    style: headerStyle3,
+                  ),
+                ],
               ),
               SizedBox(height: getPropHeight(45)),
               const SignUpForm1()

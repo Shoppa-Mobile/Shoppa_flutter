@@ -15,7 +15,7 @@ class InputNumberForm extends StatefulWidget {
 
 class _InputNumberFormState extends State<InputNumberForm> {
   final _formkey = GlobalKey<FormState>();
-  late String phoneNumber;
+  String? phoneNumber;
   final List<String> errors = [];
 
   void removeError({required String error}) {
