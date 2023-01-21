@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shoppa_app/constants/colors.dart';
+import 'package:shoppa_app/constants/size_configurations.dart';
+import 'package:shoppa_app/widgets/defaultButton.dart';
 
 TextStyle headerStyle = const TextStyle(
   color: headerTextColor,
@@ -179,4 +181,90 @@ InputDecoration orderStatusFieldDecoration() {
       ),
     ),
   );
+}
+
+showSuccessDialog(BuildContext context, String text, Function press) {
+  return showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) => Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Dialog(
+              backgroundColor: bgColor,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16)),
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: getPropWidth(27), vertical: getPropHeight(35)),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      'Success',
+                      style: headerStyle2,
+                    ),
+                    SizedBox(height: getPropHeight(16)),
+                    Image.asset(
+                      'assets/images/success.png',
+                      height: getPropHeight(150),
+                      width: getPropWidth(130),
+                    ),
+                    SizedBox(height: getPropHeight(16)),
+                    Text(text, style: subHeaderStyle),
+                    SizedBox(height: getPropHeight(30)),
+                    DefaultButton(
+                      text: 'Done',
+                      press: press,
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ));
+}
+
+showFailureDialog(BuildContext context, String text, Function press) {
+  return showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) => Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Dialog(
+              backgroundColor: bgColor,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16)),
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: getPropWidth(27), vertical: getPropHeight(35)),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      'Sorry, try again',
+                      style: headerStyle2,
+                    ),
+                    SizedBox(
+                      height: getPropHeight(16),
+                    ),
+                    Image.asset(
+                      'assets/images/failed.png',
+                      height: getPropHeight(150),
+                      width: getPropWidth(130),
+                    ),
+                    SizedBox(
+                      height: getPropHeight(16),
+                    ),
+                    Text(text, style: subHeaderStyle),
+                    SizedBox(height: getPropHeight(30)),
+                    DefaultButton(
+                      text: 'Retry',
+                      press: press,
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ));
 }

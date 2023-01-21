@@ -4,8 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shoppa_app/constants/colors.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
 import 'package:shoppa_app/enums.dart';
-import 'package:shoppa_app/screens/home/homeScreen1.dart';
-import 'package:shoppa_app/screens/home/homeScreen2.dart';
+import 'package:shoppa_app/screens/home/homeScreen.dart';
 import 'package:shoppa_app/screens/profile/ProfileScreen.dart';
 import '../screens/order/orders/ordersScreen.dart';
 
@@ -35,7 +34,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
               Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
         InkWell(
             onTap: () {
-              Navigator.pushNamed(context, HomeScreen2.routeName);
+              Navigator.pushNamed(context, HomeScreen.routeName);
             },
             child: (MenuState.home == widget.selectedMenu)
                 ? Container(

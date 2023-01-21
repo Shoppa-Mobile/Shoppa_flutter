@@ -5,12 +5,12 @@ import 'package:shoppa_app/widgets/customNavBar.dart';
 import 'package:shoppa_app/constants/colors.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
 import 'package:shoppa_app/enums.dart';
-import 'package:shoppa_app/screens/home/homeScreenContent2.dart';
+import 'package:shoppa_app/screens/home/homeScreenContent.dart';
 import 'package:shoppa_app/screens/notifications/notifications.dart';
 import '../../constants/constants.dart';
 
-class HomeScreen2 extends StatelessWidget {
-  const HomeScreen2({super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
   static String routeName = "/home2";
 
   @override

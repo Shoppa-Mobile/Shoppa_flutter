@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:shoppa_app/constants/colors.dart';
 import 'package:shoppa_app/constants/constants.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
-import 'package:shoppa_app/screens/home/homeScreen2.dart';
+import 'package:shoppa_app/screens/home/homeScreen.dart';
 import 'package:shoppa_app/widgets/defaultButton.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -127,7 +127,7 @@ class _UtilBillUploadContentState extends State<UtilBillUploadContent> {
               DefaultButton(
                 text: "Submit",
                 press: () {
-                  Navigator.of(context).pushNamed(HomeScreen2.routeName);
+                  Navigator.of(context).pushNamed(HomeScreen.routeName);
                 },
               )
             ],

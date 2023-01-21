@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:shoppa_app/constants/constants.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
-import 'package:shoppa_app/screens/home/homeScreen2.dart';
+import 'package:shoppa_app/screens/home/homeScreen.dart';
 import 'package:shoppa_app/widgets/defaultButton.dart';
 import 'package:shoppa_app/widgets/formError.dart';
 
@@ -15,8 +15,8 @@ class ResetPasswordForm extends StatefulWidget {
 
 class _ResetPasswordFormState extends State<ResetPasswordForm> {
   final _formkey = GlobalKey<FormState>();
-  late String password;
-  late String confirmpassword;
+  String? password;
+  String? confirmpassword;
   final List<String> errors = [];
 
   void removeError({required String error}) {
@@ -55,11 +55,23 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
             DefaultButton(
               text: "Reset Password",
               press: () {
-                // if (_formkey.currentState!.validate()) {
-                //   // Go to Home screen
-                //   _formkey.currentState!.save();
-                // }
-                Navigator.of(context).pushNamed(HomeScreen2.routeName);
+                if (_formkey.currentState!.validate()) {
+                  if (password == confirmpassword) {
+                    showSuccessDialog(
+                        context,
+                        "Your password has been reset successfully",
+                        () => Navigator.of(context)
+                            .pushNamed(HomeScreen.routeName));
+                  }
+                  _formkey.currentState!.save();
+                } else {
+                  if (password != confirmpassword) {
+                    showFailureDialog(
+                        context,
+                        "Place a message here, not sure what yet",
+                        () => Navigator.of(context).pop());
+                  }
+                }
               },
             )
           ],
