@@ -13,7 +13,6 @@ class Inventory1 extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          
           GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,
@@ -61,48 +60,52 @@ class InventoryCard extends StatelessWidget {
         width: getPropWidth(185),
         height: getPropHeight(200),
         child: Column(
-          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Center(
-              child: SizedBox(
+              child: Container(
+                decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(8),
+                  topRight: Radius.circular(8),
+                )),
                 height: getPropHeight(145),
                 width: getPropWidth(185),
-                child: ClipRect(
-                  clipBehavior: Clip.hardEdge,
-                  child: Stack(
-                    children: [
-                      Image.asset(
-                        goodsImage,
-                        fit: BoxFit.fill,
-                        height: getPropHeight(135),
-                        width: getPropWidth(185),
-                      ),
-                      Positioned(
-                          top: getPropHeight(92),
-                          left: getPropWidth(70),
-                          right: getPropWidth(5),
-                          child: Container(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: getPropWidth(5),
-                                vertical: getPropHeight(7)),
-                            decoration: BoxDecoration(
-                                color: secondaryButtonTextColor,
-                                borderRadius:
-                                    BorderRadius.circular(getPropWidth(16))),
-                            child: (outOfStock == true)
-                                ? Text(
-                                    'Out of Stock',
-                                    style: ordersCardText1,
-                                  )
-                                : Center(
-                                    child: Text(
-                                      'In Stock',
-                                      style: ordersCardText1,
-                                    ),
-                                  ),
-                          )),
-                    ],
+                child: SizedBox(
+                  height: getPropHeight(140),
+                  width: getPropWidth(180),
+                  child: ClipRect(
+                    clipBehavior: Clip.hardEdge,
+                    child: Stack(
+                      children: [
+                        Image.asset(
+                          goodsImage,
+                          fit: BoxFit.fill,
+                          height: getPropHeight(135),
+                          width: getPropWidth(185),
+                        ),
+                        (outOfStock == true)
+                            ? Positioned(
+                                top: getPropHeight(92),
+                                left: getPropWidth(70),
+                                right: getPropWidth(5),
+                                child: Container(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: getPropWidth(5),
+                                        vertical: getPropHeight(7)),
+                                    decoration: BoxDecoration(
+                                        color: secondaryButtonTextColor,
+                                        borderRadius: BorderRadius.circular(
+                                            getPropWidth(16))),
+                                    child: Center(
+                                      child: Text(
+                                        'Out  of  Stock',
+                                        style: ordersCardText1,
+                                      ),
+                                    )))
+                            : const SizedBox()
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -136,11 +139,6 @@ class Inventory2 extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Inventory',
-          style: headerStyle3,
-        ),
-        SizedBox(height: getPropHeight(5)),
         SizedBox(
           height: getPropHeight(230),
           width: double.infinity,

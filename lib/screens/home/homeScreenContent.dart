@@ -6,21 +6,27 @@ import '../../constants/colors.dart';
 import '../../constants/constants.dart';
 import '../../constants/size_configurations.dart';
 
-class HomeScreenContent2 extends StatefulWidget {
-  const HomeScreenContent2({super.key});
+class HomeScreenContent extends StatefulWidget {
+  const HomeScreenContent({super.key});
 
   @override
-  State<HomeScreenContent2> createState() => _HomeScreenContent2State();
+  State<HomeScreenContent> createState() => _HomeScreenContentState();
 }
 
-class _HomeScreenContent2State extends State<HomeScreenContent2> {
+class _HomeScreenContentState extends State<HomeScreenContent> {
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(
           horizontal: getPropWidth(20), vertical: getPropHeight(20)),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          SizedBox(height: getPropHeight(10)),
+          Text(
+            'Inventory',
+            style: headerStyle3,
+          ),
           SizedBox(height: getPropHeight(10)),
           const Inventory2(),
           SizedBox(height: getPropHeight(5)),

@@ -88,7 +88,7 @@ TextStyle ordersCardText1 = const TextStyle(
 );
 
 TextStyle ordersCardText2 = const TextStyle(
-  color: bgColor,
+  color: primaryColor,
   fontFamily: 'Raleway',
   fontSize: 16,
   fontWeight: FontWeight.w400,
@@ -102,9 +102,9 @@ TextStyle ordersCardText3 = const TextStyle(
 );
 
 TextStyle inventoryPriceText = const TextStyle(
-  color: secondaryButtonTextColor,
+  color: primaryColor,
   fontFamily: 'Raleway',
-  fontSize: 16,
+  fontSize: 18,
   fontWeight: FontWeight.w600,
 );
 

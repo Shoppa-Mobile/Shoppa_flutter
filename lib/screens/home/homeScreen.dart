@@ -21,27 +21,11 @@ class HomeScreen extends StatelessWidget {
           automaticallyImplyLeading: false,
           backgroundColor: bgColor,
           scrolledUnderElevation: 2.0,
-          title: Row(
-            children: [
-              Container(
-                height: 36,
-                width: 36,
-                clipBehavior: Clip.hardEdge,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                ),
-                child:
-                    Image.asset("assets/images/profile.png", fit: BoxFit.fill),
-              ),
-              SizedBox(
-                width: getPropWidth(5),
-              ),
-              Text(
-                "Hello, Oghenefejiro",
-                style: headerStyle3,
-              ),
-            ],
+          title: Text(
+            "Hello, Oghenefejiro",
+            style: headerStyle.copyWith(fontSize: 28),
           ),
+          centerTitle: false,
           actions: [
             InkWell(
               onTap: () {
@@ -57,7 +41,7 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
         backgroundColor: bgColor,
-        body: const HomeScreenContent2(),
+        body: const HomeScreenContent(),
         bottomNavigationBar: const CustomNavBar(selectedMenu: MenuState.home));
   }
 }

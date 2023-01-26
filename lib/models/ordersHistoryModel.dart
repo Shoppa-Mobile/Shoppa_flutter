@@ -1,7 +1,7 @@
 // ignore_for_file: file_names
 class OrdersHistory {
   final String buyerFirstName, buyerLastName, goodsName, price, date, address;
-  final bool inTransit, processing, notProcessed;
+  final bool inProgress, cancelled, completed;
 
   OrdersHistory({
     required this.address,
@@ -10,8 +10,8 @@ class OrdersHistory {
     required this.buyerLastName,
     required this.goodsName,
     required this.price,
-    this.inTransit = false,
-    this.processing = false,
-    this.notProcessed = false,
+    this.inProgress = false,
+    this.cancelled = false,
+    this.completed = false,
   });
 }

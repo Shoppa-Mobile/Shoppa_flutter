@@ -76,10 +76,10 @@ List<OrdersHistory> demoHistory = [
       date: "10th September 2022",
       buyerFirstName: "Oluwagbemiloke",
       buyerLastName: 'Busayomi',
-      price: "100",
+      price: "1000",
       goodsName: "10X Garri, 1X Versace Bag",
       address: "12 Sanwo-Ola Close, Agbara, Lagos, Nigeria",
-      inTransit: true),
+      inProgress: true),
   OrdersHistory(
       buyerFirstName: "Eugene",
       buyerLastName: 'Adavore',
@@ -87,7 +87,7 @@ List<OrdersHistory> demoHistory = [
       price: "10,000",
       goodsName: "10X Garri, 1X Versace Bag",
       address: "12 Sanwo-Ola Close, Agbara, Lagos, Nigeria",
-      processing: true),
+      cancelled: true),
   OrdersHistory(
       buyerFirstName: "Blessing",
       buyerLastName: "Abiodun Igwe",
@@ -95,7 +95,7 @@ List<OrdersHistory> demoHistory = [
       price: "15,000",
       goodsName: "10X Garri, 1X Versace Bag",
       address: "12 Sanwo-Ola Close, Agbara, Lagos, Nigeria",
-      inTransit: true),
+      inProgress: true),
   OrdersHistory(
       buyerFirstName: "Daniel",
       buyerLastName: "Patanni",
@@ -103,7 +103,7 @@ List<OrdersHistory> demoHistory = [
       date: "10th September 2022",
       goodsName: "10X Garri, 1X Versace Bag",
       address: "12 Sanwo-Ola Close, Agbara, Lagos, Nigeria",
-      notProcessed: true),
+      completed: true),
   OrdersHistory(
       buyerFirstName: "Haminat",
       buyerLastName: "Abdulazeez",
@@ -111,7 +111,7 @@ List<OrdersHistory> demoHistory = [
       price: "150,000",
       goodsName: "10X Garri, 1X Versace Bag",
       address: "12 Sanwo-Ola Close, Agbara, Lagos, Nigeria",
-      inTransit: true),
+      inProgress: true),
   OrdersHistory(
       date: "10th September 2022",
       buyerFirstName: "Oluwagbemiloke",
@@ -119,7 +119,7 @@ List<OrdersHistory> demoHistory = [
       price: "100",
       goodsName: "10X Garri, 1X Versace Bag",
       address: "12 Sanwo-Ola Close, Agbara, Lagos, Nigeria",
-      inTransit: true),
+      inProgress: true),
   OrdersHistory(
       buyerFirstName: "Blessing",
       buyerLastName: "Abiodun Igwe",
@@ -127,7 +127,7 @@ List<OrdersHistory> demoHistory = [
       price: "15,000",
       goodsName: "10X Garri, 1X Versace Bag",
       address: "12 Sanwo-Ola Close, Agbara, Lagos, Nigeria",
-      inTransit: true),
+      cancelled: true),
   OrdersHistory(
       buyerFirstName: "Haminat",
       buyerLastName: "Abdulazeez",
@@ -135,7 +135,7 @@ List<OrdersHistory> demoHistory = [
       price: "150,000",
       goodsName: "10X Garri, 1X Versace Bag",
       address: "12 Sanwo-Ola Close, Agbara, Lagos, Nigeria",
-      inTransit: true),
+      inProgress: true),
   OrdersHistory(
       buyerFirstName: "Eugene",
       buyerLastName: 'Adavore',
@@ -143,7 +143,7 @@ List<OrdersHistory> demoHistory = [
       price: "10,000",
       goodsName: "10X Garri, 1X Versace Bag",
       address: "12 Sanwo-Ola Close, Agbara, Lagos, Nigeria",
-      processing: true),
+      completed: true),
   OrdersHistory(
       buyerFirstName: "Daniel",
       buyerLastName: "Patanni",
@@ -151,7 +151,7 @@ List<OrdersHistory> demoHistory = [
       date: "10th September 2022",
       goodsName: "10X Garri, 1X Versace Bag",
       address: "12 Sanwo-Ola Close, Agbara, Lagos, Nigeria",
-      notProcessed: true)
+      completed: true)
 ];
 
 List<InventoryList> demoInventory = [
@@ -159,7 +159,7 @@ List<InventoryList> demoInventory = [
     goodsImage: 'assets/images/Image 1.png',
     goodsName: 'Gorgeous Dior Bag',
     price: '6500',
-    outOfStock: false,
+    outOfStock: true,
   ),
   InventoryList(
       goodsImage: 'assets/images/Image 2.png',
@@ -169,7 +169,7 @@ List<InventoryList> demoInventory = [
     goodsImage: 'assets/images/Image 3.png',
     goodsName: 'Sets of Hand Jewellrey',
     price: '6500',
-    outOfStock: false,
+    outOfStock: true,
   ),
   InventoryList(
       goodsImage: 'assets/images/Image 4.png',
@@ -187,19 +187,19 @@ List<InventoryList> demoInventory = [
     goodsImage: 'assets/images/Image 2.png',
     goodsName: 'Lorep Ipsum',
     price: '6500',
-    outOfStock: false,
+    outOfStock: true,
   ),
   InventoryList(
     goodsImage: 'assets/images/Image 4.png',
     goodsName: 'Lorep Ipsum',
     price: '6500',
-    outOfStock: false,
+    outOfStock: true,
   ),
   InventoryList(
     goodsImage: 'assets/images/Image 5.png',
     goodsName: 'Lorep Ipsum',
     price: '6500',
-    outOfStock: false,
+    outOfStock: true,
   ),
   InventoryList(
       goodsImage: 'assets/images/Image 1.png',

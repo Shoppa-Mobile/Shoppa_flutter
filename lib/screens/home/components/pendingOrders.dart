@@ -24,16 +24,16 @@ class PendingOrders1 extends StatelessWidget {
           child: ListView.builder(
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
-              itemCount: demoOrders.length,
+              itemCount: demoHistory.length,
               itemBuilder: (context, index) {
                 return GestureDetector(
                     onTap: () {},
                     child: PendingOrdersCard1(
-                      boolo: demoOrders[index].inTransit,
-                      buyerLastName: demoOrders[index].buyerLastName,
-                      buyerFirstName: demoOrders[index].buyerFirstName,
-                      price: demoOrders[index].price,
-                      goodsName: demoOrders[index].goodsName,
+                      boolo: demoHistory[index].inProgress,
+                      buyerLastName: demoHistory[index].buyerLastName,
+                      buyerFirstName: demoHistory[index].buyerFirstName,
+                      price: demoHistory[index].price,
+                      goodsName: demoHistory[index].goodsName,
                     ));
               }),
         ),
@@ -144,17 +144,17 @@ class PendingOrder2 extends StatelessWidget {
         children: [
           ListView.builder(
               scrollDirection: Axis.vertical,
-              itemCount: demoOrders.length,
+              itemCount: demoHistory.length,
               shrinkWrap: true,
               physics: const ScrollPhysics(),
               controller: ScrollController(),
               itemBuilder: (context, index) {
                 return PendingOrdersCard2(
-                  boolo: demoOrders[index].inTransit,
-                  buyerLastName: demoOrders[index].buyerLastName,
-                  buyerFirstName: demoOrders[index].buyerFirstName,
-                  price: demoOrders[index].price,
-                  goodsName: demoOrders[index].goodsName,
+                  boolo: demoHistory[index].inProgress,
+                  buyerLastName: demoHistory[index].buyerLastName,
+                  buyerFirstName: demoHistory[index].buyerFirstName,
+                  price: demoHistory[index].price,
+                  goodsName: demoHistory[index].goodsName,
                   press: () {},
                 );
               })
@@ -179,137 +179,106 @@ class PendingOrdersCard2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: press,
-      child: Column(
-        children: [
-          Card(
-            color: bgColor,
-            elevation: 0,
-            child: SizedBox(
-              height: getPropHeight(90),
-              width: SizeConfig.screenWidth - 30,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 1),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                            width: 30,
-                            height: 30,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: primaryColor.withOpacity(0.10),
-                            ),
-                            child: Center(
-                              child: Text(
-                                "${buyerFirstName.characters.characterAt(0)}${buyerLastName.characters.characterAt(0).toUpperCase()}",
-                                style: const TextStyle(
-                                  color: primaryColor,
-                                  fontFamily: 'Lato',
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w400,
-                                ),
+    return (boolo == true)
+        ? GestureDetector(
+            onTap: press,
+            child: Column(
+              children: [
+                Card(
+                    color: bgColor,
+                    elevation: 0,
+                    child: SizedBox(
+                        height: getPropHeight(90),
+                        width: SizeConfig.screenWidth - 30,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 2, vertical: 1),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Container(
+                                          width: 30,
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color:
+                                                primaryColor.withOpacity(0.10),
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              "${buyerFirstName.characters.characterAt(0)}${buyerLastName.characters.characterAt(0).toUpperCase()}",
+                                              style: const TextStyle(
+                                                color: primaryColor,
+                                                fontFamily: 'Lato',
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                          )),
+                                      const SizedBox(
+                                        width: 3,
+                                      ),
+                                      Text(
+                                        "$buyerFirstName $buyerLastName",
+                                        style: const TextStyle(
+                                          color: headerTextColor,
+                                          fontFamily: 'Raleway',
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Text("NGN $price",
+                                      style: regTextStyle.copyWith(
+                                          fontWeight: FontWeight.w600)),
+                                ],
                               ),
-                            )),
-                        const SizedBox(
-                          width: 3,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "$buyerFirstName $buyerLastName",
-                              style: const TextStyle(
-                                color: headerTextColor,
-                                fontFamily: 'Manrope',
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: getPropWidth(6),
+                                          vertical: getPropHeight(5)),
+                                      decoration: BoxDecoration(
+                                          color: primaryColor.withOpacity(0.1),
+                                          borderRadius: BorderRadius.circular(
+                                              getPropWidth(04))),
+                                      child: const Text(
+                                        'In Progress',
+                                        style: TextStyle(
+                                            color: primaryColor,
+                                            fontFamily: 'Lato',
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w400,
+                                            letterSpacing: 1.0),
+                                      )),
+                                  Text(
+                                    goodsName,
+                                    style: const TextStyle(
+                                        color: headerTextColor,
+                                        fontFamily: 'Raleway',
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w300,
+                                        letterSpacing: 1.0),
+                                  )
+                                ],
                               ),
-                            ),
-                            const SizedBox(height: 12),
-                            Text(
-                              '"Ordered for',
-                              style: TextStyle(
-                                color: regularTextColor.withOpacity(0.3),
-                                fontFamily: 'Lato',
-                                fontSize: 10,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                            Text(
-                              goodsName,
-                              style: const TextStyle(
-                                color: regularTextColor,
-                                fontFamily: 'Lato',
-                                fontSize: 14,
-                                fontWeight: FontWeight.w300,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Text("NGN $price", style: regTextStyle),
-                            const SizedBox(width: 3),
-                            InkWell(
-                              onTap: () {},
-                              child: const Icon(Icons.more_vert,
-                                  size: 16, color: regularTextColor),
-                            )
-                          ],
-                        ),
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 3),
-                          decoration: BoxDecoration(
-                              color: primaryColor.withOpacity(0.10),
-                              borderRadius:
-                                  BorderRadius.circular(getPropWidth(06))),
-                          child: (boolo == true)
-                              ? const Text(
-                                  'In-Transit',
-                                  style: TextStyle(
-                                      color: primaryColor,
-                                      fontFamily: 'Lato',
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.w400,
-                                      letterSpacing: 1.2),
-                                )
-                              : const Text(
-                                  'Pending-Transit',
-                                  style: TextStyle(
-                                      color: primaryColor,
-                                      fontFamily: 'Lato',
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.w400,
-                                      letterSpacing: 1.2),
-                                ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
+                            ],
+                          ),
+                        )))
+              ],
             ),
-          ),
-          const SizedBox(height: 5),
-          Container(
-            height: 2,
-            width: SizeConfig.screenWidth - 40,
-            color: regularTextColor.withOpacity(0.1),
           )
-        ],
-      ),
-    );
+        : const SizedBox();
   }
 }

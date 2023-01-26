@@ -44,9 +44,9 @@ class _OrdersScreenContentState extends State<OrdersScreenContent> {
                       buyerLastName: demoHistory[index].buyerLastName,
                       goodsName: demoHistory[index].goodsName,
                       price: demoHistory[index].price,
-                      inTransit: demoHistory[index].inTransit,
-                      processing: demoHistory[index].processing,
-                      notProcessed: demoHistory[index].notProcessed,
+                      inTransit: demoHistory[index].inProgress,
+                      processing: demoHistory[index].cancelled,
+                      notProcessed: demoHistory[index].completed,
                       press: () {
                         Navigator.pushNamed(
                           context,
@@ -57,9 +57,9 @@ class _OrdersScreenContentState extends State<OrdersScreenContent> {
                               goodsName: demoHistory[index].goodsName,
                               price: demoHistory[index].price,
                               date: demoHistory[index].date,
-                              inTransit: demoHistory[index].inTransit,
-                              processing: demoHistory[index].processing,
-                              notProcessed: demoHistory[index].notProcessed,
+                              inTransit: demoHistory[index].inProgress,
+                              processing: demoHistory[index].cancelled,
+                              notProcessed: demoHistory[index].completed,
                               address: demoHistory[index].address),
                         );
                       },
