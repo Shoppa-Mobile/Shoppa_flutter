@@ -182,102 +182,105 @@ class PendingOrdersCard2 extends StatelessWidget {
     return (boolo == true)
         ? GestureDetector(
             onTap: press,
-            child: Column(
-              children: [
-                Card(
-                    color: bgColor,
-                    elevation: 0,
-                    child: SizedBox(
-                        height: getPropHeight(90),
-                        width: SizeConfig.screenWidth - 30,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 2, vertical: 1),
-                          child: Column(
+            child: Card(
+                color: bgColor,
+                elevation: 0,
+                child: SizedBox(
+                    height: getPropHeight(102),
+                    width: SizeConfig.screenWidth - 30,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 2, vertical: 1),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Container(
-                                          width: 30,
-                                          height: 30,
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color:
-                                                primaryColor.withOpacity(0.10),
-                                          ),
-                                          child: Center(
-                                            child: Text(
-                                              "${buyerFirstName.characters.characterAt(0)}${buyerLastName.characters.characterAt(0).toUpperCase()}",
-                                              style: const TextStyle(
-                                                color: primaryColor,
-                                                fontFamily: 'Lato',
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                            ),
-                                          )),
-                                      const SizedBox(
-                                        width: 3,
-                                      ),
-                                      Text(
-                                        "$buyerFirstName $buyerLastName",
-                                        style: const TextStyle(
-                                          color: headerTextColor,
-                                          fontFamily: 'Raleway',
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Text("NGN $price",
-                                      style: regTextStyle.copyWith(
-                                          fontWeight: FontWeight.w600)),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Container(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: getPropWidth(6),
-                                          vertical: getPropHeight(5)),
+                                      width: 30,
+                                      height: 30,
                                       decoration: BoxDecoration(
-                                          color: primaryColor.withOpacity(0.1),
-                                          borderRadius: BorderRadius.circular(
-                                              getPropWidth(04))),
-                                      child: const Text(
-                                        'In Progress',
-                                        style: TextStyle(
+                                        shape: BoxShape.circle,
+                                        color: primaryColor.withOpacity(0.10),
+                                      ),
+                                      child: Center(
+                                        child: Text(
+                                          "${buyerFirstName.characters.characterAt(0)}${buyerLastName.characters.characterAt(0).toUpperCase()}",
+                                          style: const TextStyle(
                                             color: primaryColor,
                                             fontFamily: 'Lato',
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.w400,
-                                            letterSpacing: 1.0),
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
                                       )),
+                                  const SizedBox(
+                                    width: 3,
+                                  ),
                                   Text(
-                                    goodsName,
+                                    "$buyerFirstName $buyerLastName",
                                     style: const TextStyle(
-                                        color: headerTextColor,
-                                        fontFamily: 'Raleway',
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w300,
-                                        letterSpacing: 1.0),
-                                  )
+                                      color: headerTextColor,
+                                      fontFamily: 'Raleway',
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
                                 ],
                               ),
+                              Text("NGN $price",
+                                  style: regTextStyle.copyWith(
+                                      fontWeight: FontWeight.w600)),
                             ],
                           ),
-                        )))
-              ],
-            ),
+                          SizedBox(
+                            height: getPropHeight(16),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: getPropWidth(6),
+                                      vertical: getPropHeight(5)),
+                                  decoration: BoxDecoration(
+                                      color: primaryColor.withOpacity(0.1),
+                                      borderRadius: BorderRadius.circular(
+                                          getPropWidth(04))),
+                                  child: const Text(
+                                    'In Progress',
+                                    style: TextStyle(
+                                        color: primaryColor,
+                                        fontFamily: 'Lato',
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.w400,
+                                        letterSpacing: 1.0),
+                                  )),
+                              Text(
+                                goodsName,
+                                style: const TextStyle(
+                                    color: headerTextColor,
+                                    fontFamily: 'Raleway',
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w300,
+                                    letterSpacing: 1.0),
+                              )
+                            ],
+                          ),
+                          SizedBox(
+                            height: getPropHeight(1),
+                          ),
+                          const Divider(
+                            thickness: 1.0,
+                            color: textFieldBorderColor,
+                          )
+                        ],
+                      ),
+                    ))),
           )
         : const SizedBox();
   }

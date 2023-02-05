@@ -64,10 +64,11 @@ class NotificationsCard extends StatelessWidget {
         elevation: 0,
         child: SizedBox(
           width: SizeConfig.screenWidth - 32,
-          height: getPropHeight(80),
+          height: getPropHeight(100),
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: getPropHeight(6)),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
@@ -103,6 +104,13 @@ class NotificationsCard extends StatelessWidget {
                     fontSize: 16,
                     fontWeight: FontWeight.w400,
                   ),
+                ),
+                SizedBox(
+                  height: getPropHeight(1),
+                ),
+                const Divider(
+                  thickness: 1.0,
+                  color: textFieldBorderColor,
                 )
               ],
             ),
