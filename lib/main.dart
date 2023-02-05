@@ -23,7 +23,9 @@ class Shoppa extends StatelessWidget {
           backgroundColor: bgColor,
         ),
         fontFamily: "Raleway",
-        backgroundColor: bgColor,
+        colorScheme: ColorScheme.fromSwatch(
+          backgroundColor: bgColor,
+        ),
       ),
       initialRoute: SplashScreen.routeName,
       routes: routes,
