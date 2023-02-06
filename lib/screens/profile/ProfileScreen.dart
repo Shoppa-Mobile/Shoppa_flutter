@@ -27,7 +27,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
         automaticallyImplyLeading: false,
         title: Text(
           "Profile",
-          style: headerStyle2,
+          style: headerStyle.copyWith(
+            fontWeight: FontWeight.w700,
+            letterSpacing: 1.2,
+          ),
         ),
       ),
       body: const ProileScreenContent(),
