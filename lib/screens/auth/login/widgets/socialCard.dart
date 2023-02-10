@@ -2,9 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-import '../constants/colors.dart';
-import '../constants/size_configurations.dart';
+import '../../../../constants/colors.dart';
+import '../../../../constants/size_configurations.dart';
 
 class SocialCard extends StatelessWidget {
   const SocialCard({

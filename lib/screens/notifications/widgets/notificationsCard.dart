@@ -1,48 +1,7 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:shoppa_app/constants/colors.dart';
-import 'package:shoppa_app/dummyData/all_dummy_data.dart';
-import '../../../constants/size_configurations.dart';
-
-class NotificationsContent extends StatefulWidget {
-  const NotificationsContent({super.key});
-
-  @override
-  State<NotificationsContent> createState() => _NotificationsContentState();
-}
-
-class _NotificationsContentState extends State<NotificationsContent> {
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      physics: const ScrollPhysics(),
-      scrollDirection: Axis.vertical,
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-            horizontal: getPropWidth(16), vertical: getPropHeight(16)),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 3),
-            ListView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                itemCount: demoNotifications.length,
-                itemBuilder: (context, index) {
-                  return NotificationsCard(
-                      date: demoNotifications[index].date,
-                      time: demoNotifications[index].time,
-                      messages: demoNotifications[index].message,
-                      press: () {});
-                }),
-            const SizedBox(height: 2)
-          ],
-        ),
-      ),
-    );
-  }
-}
+import 'package:shoppa_app/constants/size_configurations.dart';
 
 class NotificationsCard extends StatelessWidget {
   const NotificationsCard(

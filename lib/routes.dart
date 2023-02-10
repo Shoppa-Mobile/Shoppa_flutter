@@ -9,6 +9,7 @@ import 'package:shoppa_app/screens/onBoarding/onboarding_screen.dart';
 import 'package:shoppa_app/screens/order/orderDetails/orderDetailsScreen.dart';
 import 'package:shoppa_app/screens/order/orders/ordersScreen.dart';
 import 'package:shoppa_app/screens/auth/otp/otpScreen.dart';
+import 'package:shoppa_app/screens/profile/PersonalInformationScreen.dart';
 import 'package:shoppa_app/screens/profile/ProfileScreen.dart';
 import 'package:shoppa_app/screens/auth/proofOfIdentity/driLicenseUpload/driLicenseUploadScreen.dart';
 import 'package:shoppa_app/screens/auth/proofOfIdentity/nINUpload/nINUploadScreen.dart';
@@ -18,6 +19,7 @@ import 'package:shoppa_app/screens/auth/proofOfIdentity/votersCardUpload/votersC
 import 'package:shoppa_app/screens/auth/resetPassword/resetPassword_screen.dart';
 import 'package:shoppa_app/screens/auth/signUp/signUp_Screen2.dart';
 import 'package:shoppa_app/screens/auth/signUp/signUp_screen1.dart';
+import 'package:shoppa_app/screens/profile/storeInformationScreen.dart';
 import 'package:shoppa_app/screens/splash/splash_screen.dart';
 
 final Map<String, WidgetBuilder> routes = {
@@ -40,5 +42,8 @@ final Map<String, WidgetBuilder> routes = {
   OrdersScreen.routeName: (context) => const OrdersScreen(),
   CreateOrderScreen.routeName: (context) => const CreateOrderScreen(),
   ProfileScreen.routeName: (context) => const ProfileScreen(),
-  OrderDetailsScreen.routeName: (context) => const OrderDetailsScreen()
+  OrderDetailsScreen.routeName: (context) => const OrderDetailsScreen(),
+  PersonalInformationScreen.routeName: (context) =>
+      const PersonalInformationScreen(),
+  StoreInformationScreen.routeName: (context) => const StoreInformationScreen(),
 };
