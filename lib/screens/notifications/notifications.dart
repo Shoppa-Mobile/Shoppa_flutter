@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shoppa_app/dummyData/all_dummy_data.dart';
+import 'package:shoppa_app/screens/notifications/widgets/notificationsCard.dart';
 import 'package:shoppa_app/widgets/customNavBar.dart';
 import 'package:shoppa_app/enums.dart';
-import 'package:shoppa_app/screens/notifications/notificationsContent.dart/notificationsContent.dart';
 import '../../constants/colors.dart';
 import '../../constants/constants.dart';
 import '../../constants/size_configurations.dart';
@@ -33,7 +34,33 @@ class Notifications extends StatelessWidget {
         ],
       ),
       backgroundColor: bgColor,
-      body: const NotificationsContent(),
+      body: SingleChildScrollView(
+      physics: const ScrollPhysics(),
+      scrollDirection: Axis.vertical,
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+            horizontal: getPropWidth(16), vertical: getPropHeight(16)),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 3),
+            ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                scrollDirection: Axis.vertical,
+                itemCount: demoNotifications.length,
+                itemBuilder: (context, index) {
+                  return NotificationsCard(
+                      date: demoNotifications[index].date,
+                      time: demoNotifications[index].time,
+                      messages: demoNotifications[index].message,
+                      press: () {});
+                }),
+            const SizedBox(height: 2)
+          ],
+        ),
+      ),
+    ),
       bottomNavigationBar: const CustomNavBar(selectedMenu: MenuState.empty),
     );
   }

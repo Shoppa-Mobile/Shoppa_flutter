@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:shoppa_app/constants/colors.dart';
 import 'package:shoppa_app/constants/constants.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
-import 'package:shoppa_app/screens/auth/login/loginContent/loginForm.dart';
-import 'package:shoppa_app/widgets/socialCard.dart';
+import 'package:shoppa_app/screens/auth/login/widgets/loginFormWidget.dart';
+import 'package:shoppa_app/screens/auth/login/widgets/socialCard.dart';
 
 class LoginContent extends StatefulWidget {
   const LoginContent({super.key});
@@ -38,7 +38,6 @@ class _LoginContentState extends State<LoginContent> {
                 SizedBox(
                   width: double.infinity,
                   child: Row(
-                    // mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Expanded(
                           child: Container(
@@ -64,9 +63,9 @@ class _LoginContentState extends State<LoginContent> {
                 SizedBox(
                   height: getPropHeight(16),
                 ),
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: const [
+                  children: [
                     SocialCard(
                       icon: "assets/icons/facebook.svg",
                     ),
