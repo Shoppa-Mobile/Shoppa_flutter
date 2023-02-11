@@ -73,7 +73,7 @@ class OrderDetailsScreen extends StatelessWidget {
               size: 14,
             ),
           ),
-          SizedBox(width: 10)
+          const SizedBox(width: 10)
         ],
       ),
       body: Padding(
