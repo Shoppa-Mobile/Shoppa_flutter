@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:shoppa_app/constants/colors.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
 import 'package:shoppa_app/screens/profile/PersonalInformationScreen.dart';
+import 'package:shoppa_app/screens/profile/SecurityInfoScreen.dart';
+import 'package:shoppa_app/screens/profile/SupportInfoScreen.dart';
 import 'package:shoppa_app/screens/profile/storeInformationScreen.dart';
 import 'package:shoppa_app/screens/profile/widgets/profileDetailsCard.dart';
 import 'package:shoppa_app/screens/profile/widgets/profileLogoutCard.dart';
@@ -85,7 +87,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   SizedBox(height: getPropHeight(2)),
                   ProfileDetailsCard(
-                    press: () {},
+                    press: () {
+                      Navigator.pushNamed(
+                        context,
+                        SecurityInfoScreen.routeName,
+                      );
+                    },
                     topText: 'Security',
                     leadingIcon: "assets/icons/lock_icon.svg",
                     iconData1: const Icon(
@@ -105,7 +112,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   SizedBox(height: getPropHeight(2)),
                   ProfileDetailsCard(
-                    press: () {},
+                    press: () {
+                      Navigator.pushNamed(
+                        context,
+                        SupportInfoScreen.routeName,
+                      );
+                    },
                     topText: 'Support center',
                     leadingIcon: "assets/icons/support_icon.svg",
                     iconData1: const Icon(

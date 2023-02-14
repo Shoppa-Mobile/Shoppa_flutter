@@ -10,7 +10,6 @@ void main() {
 
 class Shoppa extends StatelessWidget {
   const Shoppa({Key? key}) : super(key: key);
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
