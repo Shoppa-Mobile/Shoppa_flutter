@@ -19,6 +19,8 @@ import 'package:shoppa_app/screens/auth/proofOfIdentity/votersCardUpload/votersC
 import 'package:shoppa_app/screens/auth/resetPassword/resetPassword_screen.dart';
 import 'package:shoppa_app/screens/auth/signUp/signUp_Screen2.dart';
 import 'package:shoppa_app/screens/auth/signUp/signUp_screen1.dart';
+import 'package:shoppa_app/screens/profile/SecurityInfoScreen.dart';
+import 'package:shoppa_app/screens/profile/SupportInfoScreen.dart';
 import 'package:shoppa_app/screens/profile/storeInformationScreen.dart';
 import 'package:shoppa_app/screens/splash/splash_screen.dart';
 
@@ -46,4 +48,6 @@ final Map<String, WidgetBuilder> routes = {
   PersonalInformationScreen.routeName: (context) =>
       const PersonalInformationScreen(),
   StoreInformationScreen.routeName: (context) => const StoreInformationScreen(),
+  SecurityInfoScreen.routeName: (context) => const SecurityInfoScreen(),
+  SupportInfoScreen.routeName: (context) => const SupportInfoScreen(),
 };

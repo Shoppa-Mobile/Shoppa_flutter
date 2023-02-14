@@ -38,6 +38,7 @@ class _StoreInfoFormState extends State<StoreInfoForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: _formkey,
         child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
