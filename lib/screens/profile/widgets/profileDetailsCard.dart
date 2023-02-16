@@ -17,13 +17,15 @@ class ProfileCard extends StatelessWidget {
     return InkWell(
       onTap: press,
       child: Card(
-        color: primaryColor.withOpacity(0.1),
+        color: primaryColor.withOpacity(0.3),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         child: SizedBox(
           height: getPropHeight(64),
           child: Padding(
             padding: EdgeInsets.symmetric(
-                vertical: getPropHeight(8), horizontal: getPropWidth(10)),
+              vertical: getPropHeight(8),
+              horizontal: getPropWidth(10),
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

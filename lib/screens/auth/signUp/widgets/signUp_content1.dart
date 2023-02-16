@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shoppa_app/constants/colors.dart';
 import 'package:shoppa_app/constants/constants.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
-import 'package:shoppa_app/screens/auth/signUp/signUpContent/signUp_Form1.dart';
+import 'package:shoppa_app/screens/auth/signUp/widgets/signUp_Form1.dart';
 
 class SignUpContent extends StatefulWidget {
   const SignUpContent({super.key});

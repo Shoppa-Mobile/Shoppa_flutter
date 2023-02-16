@@ -4,6 +4,29 @@ import '../models/inventoryModel.dart';
 import '../models/ordersHistoryModel.dart';
 import '../models/pendingOrdersModel.dart';
 
+List<Map<String, String>> onBoardingData = [
+  {
+    'text1': "Manage all your shoppa’s, in one app.",
+    'text2':
+        "Reduce the stress of running your business across multiple social media platforms. With Shoppa, you get to easily manage business from one spot.",
+    'buttontext': "Create Account",
+    'image': 'assets/images/Onboarding_img_1.png'
+  },
+  {
+    'text1': "Get a personal shop for your business.",
+    'text2':
+        "Have all your products displayed in your shop and improve customer satisfaction with  page, share your product page and have your customers enjoy shopping better.",
+    'buttontext': "Create Account",
+    'image': 'assets/images/Onboarding_img_2.png'
+  },
+  {
+    'text1': "Get Started",
+    'text2': '',
+    'buttontext': "Create Account",
+    'image': 'assets/images/Onboarding_img_3.png'
+  }
+];
+
 List<NotificationModel> demoNotifications = [
   NotificationModel(
       date: "10th September 2022",

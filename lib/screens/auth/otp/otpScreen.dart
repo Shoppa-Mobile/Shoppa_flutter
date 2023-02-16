@@ -1,7 +1,7 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:shoppa_app/constants/colors.dart';
-import 'package:shoppa_app/screens/auth/otp/otpContent/otpContent.dart';
+import 'package:shoppa_app/screens/auth/otp/widgets/otpContent.dart';
 
 class OtpScreen extends StatelessWidget {
   static String routeName = "/Otpscreen";
