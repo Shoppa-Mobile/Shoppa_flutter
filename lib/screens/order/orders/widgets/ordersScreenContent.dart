@@ -77,22 +77,23 @@ class _OrdersScreenContentState extends State<OrdersScreenContent> {
   }
 }
 
+// ignore: must_be_immutable
 class OrdersHistoryCard extends StatelessWidget {
-  const OrdersHistoryCard(
+  OrdersHistoryCard(
       {super.key,
       required this.buyerFirstName,
       required this.buyerLastName,
       required this.goodsName,
       required this.price,
-      required this.inTransit,
-      required this.completed,
-      required this.cancelled,
+      this.inTransit = false,
+      this.completed = false,
+      this.cancelled = false,
       required this.press,
       required this.date,
       required this.press1});
 
   final String buyerFirstName, buyerLastName, goodsName, price, date;
-  final bool inTransit, completed, cancelled;
+  bool inTransit, completed, cancelled;
   final GestureTapCallback press, press1;
 
   @override

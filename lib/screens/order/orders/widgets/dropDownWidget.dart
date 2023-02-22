@@ -12,7 +12,7 @@ class ProgessDropDownWidget extends StatefulWidget {
 }
 
 class _ProgessDropDownWidgetState extends State<ProgessDropDownWidget> {
-  String? selectedValue = '';
+  String? selectedValue;
   @override
   Widget build(BuildContext context) {
     List<String> items = [
@@ -27,13 +27,13 @@ class _ProgessDropDownWidgetState extends State<ProgessDropDownWidget> {
       child: Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
-            color: ordersProgressCardColor.withOpacity(0.5),
+            color: ordersProgressCardColor.withOpacity(0.1),
             shape: BoxShape.rectangle),
         child: Center(
           child: DropdownButtonFormField(
             decoration: orderStatusFieldDecoration(),
             elevation: 15,
-            hint: Text(selectedValue!),
+            hint: const Text("All"),
             style: const TextStyle(
               color: ordersProgressCardColor,
               fontFamily: 'Lato',
@@ -57,10 +57,14 @@ class _ProgessDropDownWidgetState extends State<ProgessDropDownWidget> {
                 );
               },
             ).toList(),
-            onSaved: (newValue) {},
-            onChanged: (String? value) => setState(
-              () => selectedValue = value,
-            ),
+            value: selectedValue,
+            onChanged: (String? value) {
+              setState(
+                () {
+                  selectedValue = value as String;
+                },
+              );
+            },
           ),
         ),
       ),
