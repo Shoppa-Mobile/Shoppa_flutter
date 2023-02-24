@@ -54,7 +54,7 @@ TextStyle regTextStyle = const TextStyle(
 
 TextStyle regTextStyle2 = const TextStyle(
   color: regularTextColor,
-  fontFamily: 'Lato',
+  fontFamily: 'Raleway',
   fontSize: 12,
   fontWeight: FontWeight.w400,
 );

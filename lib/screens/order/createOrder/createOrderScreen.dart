@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shoppa_app/constants/constants.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
 import 'package:shoppa_app/screens/notifications/notifications.dart';
 import 'package:shoppa_app/widgets/customNavBar.dart';
@@ -19,19 +20,14 @@ class CreateOrderScreen extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: bgColor,
-        actions: [
-          InkWell(
-            onTap: () {
-              Navigator.pushNamed(context, Notifications.routeName);
-            },
-            child: SvgPicture.asset(
-              'assets/icons/bell.svg',
-              height: getPropHeight(32),
-              width: getPropWidth(32),
-            ),
+        centerTitle: true,
+        automaticallyImplyLeading: true,
+        title: Text(
+          'Create Order',
+          style: headerStyle3.copyWith(
+            fontSize: 20,
           ),
-          const SizedBox(width: 20)
-        ],
+        ),
       ),
       body: const CreateOrderContent(),
       bottomNavigationBar: const CustomNavBar(selectedMenu: MenuState.orders),

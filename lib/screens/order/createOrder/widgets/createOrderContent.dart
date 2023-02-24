@@ -66,8 +66,7 @@ class _CreateOrderContentState extends State<CreateOrderContent> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Create Order', style: headerStyle2),
-              SizedBox(height: getPropHeight(25)),
+              SizedBox(height: getPropHeight(20)),
               Text("Customer Name", style: regTextStyle),
               SizedBox(height: getPropHeight(8)),
               buildCustomerNameField(),
@@ -76,7 +75,7 @@ class _CreateOrderContentState extends State<CreateOrderContent> {
               SizedBox(height: getPropHeight(8)),
               buildPhoneNumField(),
               SizedBox(height: getPropHeight(16)),
-              Text("Store Item", style: regTextStyle),
+              Text("Select Item", style: regTextStyle),
               SizedBox(height: getPropHeight(8)),
               buildSelectItemField(),
               SizedBox(height: getPropHeight(16)),
@@ -117,7 +116,7 @@ class _CreateOrderContentState extends State<CreateOrderContent> {
               Text("Delivery Address", style: regTextStyle),
               SizedBox(height: getPropHeight(8)),
               buildDeliveryAddressField(),
-              SizedBox(height: getPropHeight(40)),
+              SizedBox(height: getPropHeight(80)),
               DefaultButton(
                 text: "Create Order",
                 press: () {},
