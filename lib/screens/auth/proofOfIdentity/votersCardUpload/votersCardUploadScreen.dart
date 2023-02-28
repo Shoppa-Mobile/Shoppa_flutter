@@ -10,10 +10,13 @@ class VotersCardUploadScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: bgColor,
-        appBar: AppBar(
-          elevation: 0,
-        ),
-        body: const SafeArea(child: VotersCardUploadContent()));
+      backgroundColor: bgColor,
+      appBar: AppBar(
+        elevation: 0,
+      ),
+      body: const SafeArea(
+        child: VotersCardUploadContent(),
+      ),
+    );
   }
 }

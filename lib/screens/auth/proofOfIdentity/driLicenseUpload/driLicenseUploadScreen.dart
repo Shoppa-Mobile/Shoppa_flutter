@@ -14,6 +14,6 @@ class DriLicenseUploadScreen extends StatelessWidget {
         appBar: AppBar(
           elevation: 0,
         ),
-        body: const SafeArea(child: DriLicenseUploadContent()));
+        body: const SafeArea(child: DriLicenseUploadContent(),),);
   }
 }

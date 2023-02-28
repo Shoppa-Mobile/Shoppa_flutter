@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:shoppa_app/constants/constants.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
-import 'package:shoppa_app/screens/auth/inputNumResetPassword/inputNum_screen.dart';
+import 'package:shoppa_app/screens/auth/inputReset/inputNum_screen.dart';
 import 'package:shoppa_app/widgets/defaultButton.dart';
 import 'package:shoppa_app/constants/colors.dart';
 import 'package:shoppa_app/screens/home/homeScreen.dart';

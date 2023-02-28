@@ -87,7 +87,7 @@ class _DriLicenseUploadContentState extends State<DriLicenseUploadContent> {
                                 style: subHeaderStyle,
                               )
                             ],
-                          )),
+                          ),),
                         )
                       : SizedBox(
                           height: getPropHeight(226),
@@ -99,7 +99,7 @@ class _DriLicenseUploadContentState extends State<DriLicenseUploadContent> {
                               child: Image.file(
                                 _image!,
                                 fit: BoxFit.fill,
-                              )))),
+                              ),),),),
               SizedBox(
                 height: getPropHeight(38),
               ),

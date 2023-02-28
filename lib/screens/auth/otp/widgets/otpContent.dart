@@ -85,51 +85,51 @@ class _OtpContentState extends State<OtpContent> {
 
   TextButton buildEmailInstead() {
     return TextButton(
-        onPressed: () {},
-        child: const Text(
-          "Use email address instead",
-          style: TextStyle(
-              decoration: TextDecoration.underline,
-              color: secondaryButtonTextColor,
-              fontSize: 16,
-              fontWeight: FontWeight.w400),
-        ));
+      onPressed: () {},
+      child: const Text(
+        "Use email address instead",
+        style: TextStyle(
+            decoration: TextDecoration.underline,
+            color: secondaryButtonTextColor,
+            fontSize: 16,
+            fontWeight: FontWeight.w400),
+      ),
+    );
   }
 
   TextButton buildTimer() {
     return TextButton(
-        onPressed: () {
-          if (toResendAgain = true) {
-            setState(() {
-              toResendAgain = false;
-              startTimer();
-            });
-          }
-        },
-        child: Text(
-          toResendAgain ? "Resend Code" : "Retry in $start",
-          style: TextStyle(
-              color: toResendAgain ? primaryColor : headerTextColor,
-              fontSize: 16),
-        ));
+      onPressed: () {
+        if (toResendAgain = true) {
+          setState(() {
+            toResendAgain = false;
+            startTimer();
+          });
+        }
+      },
+      child: Text(
+        toResendAgain ? "Resend Code" : "Retry in $start",
+        style: TextStyle(
+            color: toResendAgain ? primaryColor : headerTextColor,
+            fontSize: 16),
+      ),
+    );
   }
 
   void startTimer() {
-    // setState(() {
-    //   toResendAgain = true;
-    // });
-
-    const oneSec = Duration(seconds: 4);
+    const oneSec = Duration(seconds: 10);
     timer = Timer.periodic(oneSec, (timer) {
-      setState(() {
-        if (start == 0) {
-          timer.cancel();
-          start = 10;
-          toResendAgain = true;
-        } else {
-          start--;
-        }
-      });
+      setState(
+        () {
+          if (start == 0) {
+            timer.cancel();
+            start = 10;
+            toResendAgain = true;
+          } else {
+            start--;
+          }
+        },
+      );
     });
   }
 

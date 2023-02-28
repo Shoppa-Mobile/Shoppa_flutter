@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:shoppa_app/dummyData/all_dummy_data.dart';
 import 'package:shoppa_app/screens/auth/signUp/signUpOptionsScreen.dart';
-import 'package:shoppa_app/screens/onboarding/widgets/onboarding_content.dart';
+import 'package:shoppa_app/screens/auth/onboarding/widgets/onboarding_content.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   static String routeName = "/Onboarding";

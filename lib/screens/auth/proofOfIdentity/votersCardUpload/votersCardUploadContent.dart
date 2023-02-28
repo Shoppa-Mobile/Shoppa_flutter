@@ -58,18 +58,18 @@ class _VotersCardUploadContentState extends State<VotersCardUploadContent> {
                 height: getPropHeight(45),
               ),
               InkWell(
-                  onTap: () {
-                    imagePicker(ImageSource.gallery);
-                  },
-                  child: _image == null
-                      ? Container(
-                          height: getPropHeight(226),
-                          width: SizeConfig.screenWidth - 20,
-                          decoration: BoxDecoration(
-                              color: subTextColor,
-                              borderRadius: BorderRadius.circular(8)),
-                          child: Center(
-                              child: Column(
+                onTap: () {
+                  imagePicker(ImageSource.gallery);
+                },
+                child: _image == null
+                    ? Container(
+                        height: getPropHeight(226),
+                        width: SizeConfig.screenWidth - 20,
+                        decoration: BoxDecoration(
+                            color: subTextColor,
+                            borderRadius: BorderRadius.circular(8)),
+                        child: Center(
+                          child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
@@ -86,18 +86,22 @@ class _VotersCardUploadContentState extends State<VotersCardUploadContent> {
                                 style: subHeaderStyle,
                               )
                             ],
-                          )))
-                      : SizedBox(
-                          height: getPropHeight(226),
-                          width: SizeConfig.screenWidth - 20,
-                          child: ClipRRect(
-                              borderRadius:
-                                  BorderRadius.circular(getPropWidth(8)),
-                              clipBehavior: Clip.hardEdge,
-                              child: Image.file(
-                                _image!,
-                                fit: BoxFit.fill,
-                              )))),
+                          ),
+                        ),
+                      )
+                    : SizedBox(
+                        height: getPropHeight(226),
+                        width: SizeConfig.screenWidth - 20,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(getPropWidth(8)),
+                          clipBehavior: Clip.hardEdge,
+                          child: Image.file(
+                            _image!,
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      ),
+              ),
               SizedBox(
                 height: getPropHeight(38),
               ),

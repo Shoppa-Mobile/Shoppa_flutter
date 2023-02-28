@@ -1,7 +1,7 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:shoppa_app/constants/colors.dart';
-import 'package:shoppa_app/screens/auth/inputNumResetPassword/component/inputNumContent.dart';
+import 'package:shoppa_app/screens/auth/inputReset/widgets/inputNumContent.dart';
 
 
 class InputNumberScreen extends StatelessWidget {
@@ -16,7 +16,7 @@ class InputNumberScreen extends StatelessWidget {
         elevation: 0,
         automaticallyImplyLeading: true,
       ),
-      body: const SafeArea(child: InputNumberContent()),
+      body: const SafeArea(child: InputNumberContent(),),
     );
   }
 }

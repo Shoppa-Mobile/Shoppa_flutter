@@ -22,7 +22,7 @@ class SignUpScreen2 extends StatelessWidget {
           style: headerStyle2.copyWith(fontSize: 20),
         ),
       ),
-      body: const SafeArea(child: SignUpContent2()),
+      body: const SafeArea(child: SignUpContent2(),),
     );
   }
 }
