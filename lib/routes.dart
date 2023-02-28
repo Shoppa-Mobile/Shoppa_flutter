@@ -5,7 +5,7 @@ import 'package:shoppa_app/screens/home/homeScreen.dart';
 import 'package:shoppa_app/screens/auth/inputReset/inputNum_screen.dart';
 import 'package:shoppa_app/screens/auth/login/login_screen.dart';
 import 'package:shoppa_app/screens/notifications/notifications.dart';
-import 'package:shoppa_app/screens/onBoarding/onboarding_screen.dart';
+import 'package:shoppa_app/screens/auth/onBoarding/onboarding_screen.dart';
 import 'package:shoppa_app/screens/order/orderDetails/orderDetailsScreen.dart';
 import 'package:shoppa_app/screens/order/orders/ordersScreen.dart';
 import 'package:shoppa_app/screens/auth/otp/otpScreen.dart';

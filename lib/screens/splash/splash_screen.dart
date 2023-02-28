@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
-import 'package:shoppa_app/screens/onBoarding/onboarding_screen.dart';
+import 'package:shoppa_app/screens/auth/onBoarding/onboarding_screen.dart';
 import 'dart:math' as math;
 
 class SplashScreen extends StatefulWidget {
