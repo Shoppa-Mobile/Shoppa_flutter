@@ -14,7 +14,7 @@ class ResetPasswordScreen extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
       ),
-      body: const SafeArea(child: ResetPasswordContent()),
+      body: const SafeArea(child: ResetPasswordContent(),),
     );
   }
 }

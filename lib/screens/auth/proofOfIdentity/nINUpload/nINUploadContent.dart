@@ -85,7 +85,7 @@ class _NINUploadContentState extends State<NINUploadContent> {
                                 style: subHeaderStyle,
                               )
                             ],
-                          )),
+                          ),),
                         )
                       : SizedBox(
                           height: getPropHeight(226),
@@ -97,7 +97,7 @@ class _NINUploadContentState extends State<NINUploadContent> {
                               child: Image.file(
                                 _image!,
                                 fit: BoxFit.fill,
-                              )))),
+                              ),),),),
               SizedBox(
                 height: getPropHeight(38),
               ),

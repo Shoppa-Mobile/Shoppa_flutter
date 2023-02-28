@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:shoppa_app/constants/constants.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
-import 'package:shoppa_app/screens/auth/inputNumResetPassword/component/inputNumForm.dart';
+import 'package:shoppa_app/screens/auth/inputReset/widgets/inputNumForm.dart';
 
 class InputNumberContent extends StatefulWidget {
   const InputNumberContent({super.key});

@@ -17,9 +17,14 @@ class SignUpScreen1 extends StatelessWidget {
         automaticallyImplyLeading: true,
         backgroundColor: bgColor,
         centerTitle: true,
-        title: Text('Create your account', style: headerStyle2.copyWith(fontSize: 20),),
+        title: Text(
+          'Create your account',
+          style: headerStyle2.copyWith(fontSize: 20),
+        ),
       ),
-      body: const SafeArea(child: SignUpContent()),
+      body: const SafeArea(
+        child: SignUpContent(),
+      ),
     );
   }
 }

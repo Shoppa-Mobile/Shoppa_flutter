@@ -14,6 +14,6 @@ class NINUploadScreen extends StatelessWidget {
         appBar: AppBar(
           elevation: 0,
         ),
-        body: const SafeArea(child: NINUploadContent()));
+        body: const SafeArea(child: NINUploadContent(),),);
   }
 }

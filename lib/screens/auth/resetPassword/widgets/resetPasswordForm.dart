@@ -69,7 +69,7 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
                     showFailureDialog(
                         context,
                         "Place a message here, not sure what yet",
-                        () => Navigator.of(context).pop());
+                        () => Navigator.of(context).pop(),);
                   }
                 }
               },

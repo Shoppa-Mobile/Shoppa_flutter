@@ -14,6 +14,6 @@ class UtilBillUploadScreen extends StatelessWidget {
         appBar: AppBar(
           elevation: 0,
         ),
-        body: const SafeArea(child: UtilBillUploadContent()));
+        body: const SafeArea(child: UtilBillUploadContent(),),);
   }
 }

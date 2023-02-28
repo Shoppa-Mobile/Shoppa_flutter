@@ -221,7 +221,7 @@ showSuccessDialog(BuildContext context, String text, Function press) {
                 ),
               ),
             ),
-          ));
+          ),);
 }
 
 showFailureDialog(BuildContext context, String text, Function press) {

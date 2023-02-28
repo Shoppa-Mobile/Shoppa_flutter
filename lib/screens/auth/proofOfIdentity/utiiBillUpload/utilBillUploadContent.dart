@@ -86,7 +86,7 @@ class _UtilBillUploadContentState extends State<UtilBillUploadContent> {
                                 style: subHeaderStyle,
                               )
                             ],
-                          )),
+                          ),),
                         )
                       : SizedBox(
                           height: getPropHeight(226),
@@ -98,7 +98,7 @@ class _UtilBillUploadContentState extends State<UtilBillUploadContent> {
                               child: Image.file(
                                 _image!,
                                 fit: BoxFit.fill,
-                              )))),
+                              ),),),),
               SizedBox(
                 height: getPropHeight(38),
               ),
