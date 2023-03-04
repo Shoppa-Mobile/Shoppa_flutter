@@ -12,7 +12,7 @@ import '../../constants/constants.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-  static String routeName = "/home2";
+  static String routeName = "/home";
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +22,11 @@ class HomeScreen extends StatelessWidget {
           automaticallyImplyLeading: false,
           backgroundColor: bgColor,
           scrolledUnderElevation: 2.0,
-          title: Text(
-            "Hello, Oghenefejiro",
-            style: headerStyle.copyWith(fontSize: 28),
+          title: SafeArea(
+            child: Text(
+              "Hello, Oghenefejiro",
+              style: headerStyle.copyWith(fontSize: 28),
+            ),
           ),
           centerTitle: false,
           actions: [
@@ -32,19 +34,21 @@ class HomeScreen extends StatelessWidget {
               onTap: () {
                 Navigator.pushNamed(context, Notifications.routeName);
               },
-              child: SvgPicture.asset(
-                'assets/icons/bell.svg',
-                height: getPropHeight(32),
-                width: getPropWidth(32),
+              child: SafeArea(
+                child: SvgPicture.asset(
+                  'assets/icons/bell.svg',
+                  height: getPropHeight(28),
+                  width: getPropWidth(28),
+                ),
               ),
             ),
-            const SizedBox(width: 15)
+            const SizedBox(width: 20)
           ],
         ),
         backgroundColor: bgColor,
         body: Padding(
           padding: EdgeInsets.symmetric(
-              horizontal: getPropWidth(20), vertical: getPropHeight(20)),
+              horizontal: getPropWidth(15), vertical: getPropHeight(20)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -55,7 +59,7 @@ class HomeScreen extends StatelessWidget {
               ),
               SizedBox(height: getPropHeight(10)),
               const Inventory2(),
-              SizedBox(height: getPropHeight(5)),
+              SizedBox(height: getPropHeight(10)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -64,16 +68,17 @@ class HomeScreen extends StatelessWidget {
                     style: headerStyle3,
                   ),
                   TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        'View all',
-                        style: TextStyle(
-                            color: primaryColor.withOpacity(0.7),
-                            fontFamily: 'Lato',
-                            fontSize: 14,
-                            fontWeight: FontWeight.w300,
-                            decoration: TextDecoration.underline),
-                      ))
+                    onPressed: () {},
+                    child: const Text(
+                      'View all',
+                      style: TextStyle(
+                          color: primaryColor,
+                          fontFamily: 'Lato',
+                          fontSize: 14,
+                          fontWeight: FontWeight.w300,
+                          decoration: TextDecoration.underline),
+                    ),
+                  ),
                 ],
               ),
               SizedBox(height: getPropHeight(3)),
