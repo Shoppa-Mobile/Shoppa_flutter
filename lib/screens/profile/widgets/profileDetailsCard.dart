@@ -107,7 +107,7 @@ class ProfileDetailsCard extends StatelessWidget {
                     iconData1,
                   ],
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 10,),
                 Container(
                   height: 2,
                   width: SizeConfig.screenWidth - 40,
@@ -146,7 +146,7 @@ class ProfileDetailsCard2 extends StatelessWidget {
         width: SizeConfig.screenWidth - 30,
         child: Padding(
           padding: EdgeInsets.symmetric(
-              horizontal: getPropWidth(2), vertical: getPropHeight(1)),
+              horizontal: getPropWidth(2), vertical: getPropHeight(1),),
           child: Column(
             children: [
               Row(

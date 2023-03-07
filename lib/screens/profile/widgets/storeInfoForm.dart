@@ -38,32 +38,41 @@ class _StoreInfoFormState extends State<StoreInfoForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: _formkey,
+        key: _formkey,
         child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text("Store Name", style: regTextStyle),
-        SizedBox(height: getPropHeight(8)),
-        buildStoreNameField(),
-        SizedBox(height: getPropHeight(16)),
-        Text("Store Address", style: regTextStyle),
-        SizedBox(height: getPropHeight(8)),
-        buildStoreAddressField(),
-        SizedBox(height: getPropHeight(16)),
-        Text("Store Phone Number", style: regTextStyle),
-        SizedBox(height: getPropHeight(8)),
-        buildStoreNumField(),
-        SizedBox(height: getPropHeight(10)),
-        FormError(errors: errors),
-        SizedBox(height: getPropHeight(120)),
-        DefaultButton(
-          text: 'Update',
-          press: () {
-            Navigator.pop(context);
-          },
-        )
-      ],
-    ));
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Store Name",
+              style: regTextStyle,
+            ),
+            SizedBox(height: getPropHeight(8)),
+            buildStoreNameField(),
+            SizedBox(height: getPropHeight(16)),
+            Text(
+              "Store Address",
+              style: regTextStyle,
+            ),
+            SizedBox(height: getPropHeight(8)),
+            buildStoreAddressField(),
+            SizedBox(height: getPropHeight(16)),
+            Text(
+              "Store Phone Number",
+              style: regTextStyle,
+            ),
+            SizedBox(height: getPropHeight(8)),
+            buildStoreNumField(),
+            SizedBox(height: getPropHeight(10)),
+            FormError(errors: errors),
+            SizedBox(height: getPropHeight(120)),
+            DefaultButton(
+              text: 'Update',
+              press: () {
+                Navigator.pop(context);
+              },
+            )
+          ],
+        ));
   }
 
   TextFormField buildStoreNameField() {

@@ -26,27 +26,30 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
         elevation: 0,
         scrolledUnderElevation: 2,
         automaticallyImplyLeading: true,
-        title: Text(
-          "Personal Information",
-          style: headerStyle.copyWith(
-            fontWeight: FontWeight.w600,
-            letterSpacing: 1.2,
-            fontSize: 20,
+        title: SafeArea(
+          child: Text(
+            "Personal Information",
+            style: headerStyle.copyWith(
+              fontWeight: FontWeight.w600,
+              letterSpacing: 1.2,
+              fontSize: 20,
+            ),
           ),
         ),
         centerTitle: true,
       ),
       body: SafeArea(
-          child: SingleChildScrollView(
-        child: SizedBox(
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: getPropWidth(15),
+        child: SingleChildScrollView(
+          child: SizedBox(
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: getPropWidth(15),
+              ),
+              child: const PersonalInfoForm(),
             ),
-            child: const PersonalInfoForm(),
           ),
         ),
-      )),
+      ),
       bottomNavigationBar: const CustomNavBar(
         selectedMenu: MenuState.profile,
       ),

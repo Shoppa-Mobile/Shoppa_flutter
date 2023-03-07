@@ -26,12 +26,14 @@ class _StoreInformationScreenState extends State<StoreInformationScreen> {
         elevation: 0,
         scrolledUnderElevation: 2,
         automaticallyImplyLeading: true,
-        title: Text(
-          "Store Information",
-          style: headerStyle.copyWith(
-            fontWeight: FontWeight.w600,
-            letterSpacing: 1.2,
-            fontSize: 20,
+        title: SafeArea(
+          child: Text(
+            "Store Information",
+            style: headerStyle.copyWith(
+              fontWeight: FontWeight.w600,
+              letterSpacing: 1.2,
+              fontSize: 20,
+            ),
           ),
         ),
         centerTitle: true,
@@ -46,7 +48,7 @@ class _StoreInformationScreenState extends State<StoreInformationScreen> {
             child: const StoreInfoForm(),
           ),
         ),
-      )),
+      ),),
       bottomNavigationBar: const CustomNavBar(
         selectedMenu: MenuState.profile,
       ),

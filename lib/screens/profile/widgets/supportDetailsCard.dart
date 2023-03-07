@@ -53,7 +53,7 @@ class SupportDetailsCard extends StatelessWidget {
                     iconData1,
                   ],
                 ),
-                const SizedBox(height: 12),
+                const SizedBox(height: 12,),
                 Container(
                   height: 2,
                   width: SizeConfig.screenWidth - 40,
