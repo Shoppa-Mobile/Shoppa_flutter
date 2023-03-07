@@ -144,7 +144,7 @@ class _SecurityInfoFormState extends State<SecurityInfoForm> {
           setState(() {
             addError(error: passNullError);
           });
-          return "";
+          return '';
         }
         if (confirmPassword != newPassword) {
           setState(() {

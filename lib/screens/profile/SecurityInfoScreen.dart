@@ -25,12 +25,14 @@ class _SecurityInfoScreenState extends State<SecurityInfoScreen> {
         elevation: 0,
         scrolledUnderElevation: 2,
         automaticallyImplyLeading: true,
-        title: Text(
-          "Security",
-          style: headerStyle.copyWith(
-            fontWeight: FontWeight.w600,
-            letterSpacing: 1.2,
-            fontSize: 20,
+        title: SafeArea(
+          child: Text(
+            "Security",
+            style: headerStyle.copyWith(
+              fontWeight: FontWeight.w600,
+              letterSpacing: 1.2,
+              fontSize: 20,
+            ),
           ),
         ),
         centerTitle: true,
@@ -41,6 +43,7 @@ class _SecurityInfoScreenState extends State<SecurityInfoScreen> {
             child: Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: getPropWidth(15),
+                vertical: getPropHeight(2)
               ),
               child: const SecurityInfoForm(),
             ),

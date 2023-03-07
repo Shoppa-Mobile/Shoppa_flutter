@@ -25,12 +25,14 @@ class _SupportInfoScreenState extends State<SupportInfoScreen> {
         elevation: 0,
         scrolledUnderElevation: 2,
         automaticallyImplyLeading: true,
-        title: Text(
-          "Support",
-          style: headerStyle.copyWith(
-            fontWeight: FontWeight.w600,
-            letterSpacing: 1.2,
-            fontSize: 20,
+        title: SafeArea(
+          child: Text(
+            "Support",
+            style: headerStyle.copyWith(
+              fontWeight: FontWeight.w600,
+              letterSpacing: 1.2,
+              fontSize: 20,
+            ),
           ),
         ),
         centerTitle: true,
@@ -65,7 +67,7 @@ class _SupportInfoScreenState extends State<SupportInfoScreen> {
                   ),
                   SupportDetailsCard(
                     press: () {},
-                    topText: 'Send a Mail',
+                    topText: 'Send us a Mail',
                     leadingIcon: 'assets/icons/email.svg',
                     iconData1: const Icon(
                       Icons.arrow_forward_ios,

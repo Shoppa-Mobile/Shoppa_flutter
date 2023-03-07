@@ -1,17 +1,16 @@
 // ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 import 'package:shoppa_app/constants/colors.dart';
+import 'package:shoppa_app/constants/constants.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
+import 'package:shoppa_app/enums.dart';
 import 'package:shoppa_app/screens/profile/PersonalInformationScreen.dart';
 import 'package:shoppa_app/screens/profile/SecurityInfoScreen.dart';
 import 'package:shoppa_app/screens/profile/SupportInfoScreen.dart';
 import 'package:shoppa_app/screens/profile/storeInformationScreen.dart';
 import 'package:shoppa_app/screens/profile/widgets/profileDetailsCard.dart';
 import 'package:shoppa_app/screens/profile/widgets/profileLogoutCard.dart';
-import '../../widgets/customNavBar.dart';
-import '../../constants/constants.dart';
-import '../../enums.dart';
+import 'package:shoppa_app/widgets/customNavBar.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -30,11 +29,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
         elevation: 0,
         scrolledUnderElevation: 2,
         automaticallyImplyLeading: false,
-        title: Text(
-          "Profile",
-          style: headerStyle.copyWith(
-            fontWeight: FontWeight.w700,
-            letterSpacing: 1.2,
+        title: SafeArea(
+          child: Text(
+            "Profile",
+            style: headerStyle.copyWith(
+              fontWeight: FontWeight.w700,
+              letterSpacing: 1.2,
+            ),
           ),
         ),
       ),
@@ -42,7 +43,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
           child: SingleChildScrollView(
         physics: const ScrollPhysics(),
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: getPropWidth(15)),
+          padding: EdgeInsets.symmetric(
+            horizontal: getPropWidth(15),
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -100,7 +103,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       size: 18,
                     ),
                   ),
-                  SizedBox(height: getPropHeight(2)),
+                  SizedBox(
+                    height: getPropHeight(2),
+                  ),
                   ProfileDetailsCard(
                     press: () {},
                     topText: 'FAQ',
