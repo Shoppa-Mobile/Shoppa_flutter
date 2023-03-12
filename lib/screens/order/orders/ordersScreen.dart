@@ -28,17 +28,21 @@ class _OrdersScreenState extends State<OrdersScreen> {
         elevation: 0,
         scrolledUnderElevation: 2,
         automaticallyImplyLeading: false,
-        title: Text(
-          "Orders",
-          style: headerStyle2,
-        ),
-        actions: [
-          Padding(
-            padding: EdgeInsets.all(getPropHeight(16)),
-            child: const ProgessDropDownWidget(),
+        title: SafeArea(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Orders",
+                style: headerStyle2,
+              ),
+              Padding(
+                padding: EdgeInsets.all(getPropHeight(16)),
+                child: const ProgessDropDownWidget(),
+              ),
+            ],
           ),
-          const SizedBox(width: 16),
-        ],
+        ),
       ),
       body: const OrdersScreenContent(),
       bottomNavigationBar: const CustomNavBar(selectedMenu: MenuState.orders),

@@ -1,9 +1,9 @@
 // ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../../../../constants/colors.dart';
-import '../../../../constants/size_configurations.dart';
+import 'package:shoppa_app/constants/colors.dart';
+import 'package:shoppa_app/constants/size_configurations.dart';
+
 
 class SocialCard extends StatelessWidget {
   const SocialCard({

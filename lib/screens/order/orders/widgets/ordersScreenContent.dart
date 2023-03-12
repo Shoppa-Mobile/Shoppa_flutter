@@ -66,7 +66,6 @@ class _OrdersScreenContentState extends State<OrdersScreenContent> {
                               address: demoHistory[index].address),
                         );
                       },
-                      press1: () {},
                     );
                   }),
             )
@@ -79,22 +78,22 @@ class _OrdersScreenContentState extends State<OrdersScreenContent> {
 
 // ignore: must_be_immutable
 class OrdersHistoryCard extends StatelessWidget {
-  OrdersHistoryCard(
-      {super.key,
-      required this.buyerFirstName,
-      required this.buyerLastName,
-      required this.goodsName,
-      required this.price,
-      this.inTransit = false,
-      this.completed = false,
-      this.cancelled = false,
-      required this.press,
-      required this.date,
-      required this.press1});
+  OrdersHistoryCard({
+    super.key,
+    required this.buyerFirstName,
+    required this.buyerLastName,
+    required this.goodsName,
+    required this.price,
+    this.inTransit = false,
+    this.completed = false,
+    this.cancelled = false,
+    required this.press,
+    required this.date,
+  });
 
   final String buyerFirstName, buyerLastName, goodsName, price, date;
   bool inTransit, completed, cancelled;
-  final GestureTapCallback press, press1;
+  final GestureTapCallback press;
 
   @override
   Widget build(BuildContext context) {

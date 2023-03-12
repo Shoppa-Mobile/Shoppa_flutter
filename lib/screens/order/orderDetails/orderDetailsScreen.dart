@@ -5,8 +5,10 @@ import 'package:shoppa_app/constants/constants.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
 import 'package:shoppa_app/enums.dart';
 import 'package:shoppa_app/models/screenArguments.dart';
+import 'package:shoppa_app/screens/order/orderDetails/widgets/socialIconsData.dart';
 import 'package:shoppa_app/widgets/customNavBar.dart';
 import 'package:shoppa_app/widgets/defaultButton.dart';
+import 'package:shoppa_app/screens/order/orderDetails/widgets/socialButtonWidget.dart';
 
 class OrderDetailsScreen extends StatelessWidget {
   const OrderDetailsScreen({super.key});
@@ -326,7 +328,69 @@ class OrderDetailsScreen extends StatelessWidget {
             ),
             DefaultButton(
               text: 'Share',
-              press: () {},
+              press: () {
+                showModalBottomSheet(
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                  context: context,
+                  builder: ((context) {
+                    return Container(
+                      height: getPropHeight(280),
+                      decoration: const BoxDecoration(
+                        color: bgColor,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(24),
+                          topRight: Radius.circular(24),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 10,
+                          vertical: getPropHeight(30),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Center(
+                              child: Text(
+                                'Share',
+                                style: regTextStyle.copyWith(
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: getPropHeight(10),
+                            ),
+                            const Divider(
+                              height: 1.5,
+                              thickness: 1.5,
+                            ),
+                            SizedBox(
+                              height: getPropHeight(10),
+                            ),
+                            Wrap(
+                              direction: Axis.horizontal,
+                              spacing: 10,
+                              runSpacing: 15,
+                              children: List.generate(
+                                demoSocials.length,
+                                (index) {
+                                  return SocialIconWidget(
+                                    icon: demoSocials[index].icon,
+                                    pressed: demoSocials[index].pressed,
+                                    iconName: demoSocials[index].iconName,
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  }),
+                );
+              },
             ),
             const SizedBox(),
           ],
