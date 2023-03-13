@@ -22,6 +22,7 @@ import 'package:shoppa_app/screens/auth/signUp/signUp_screen1.dart';
 import 'package:shoppa_app/screens/profile/SecurityInfoScreen.dart';
 import 'package:shoppa_app/screens/profile/SupportInfoScreen.dart';
 import 'package:shoppa_app/screens/profile/storeInformationScreen.dart';
+import 'package:shoppa_app/screens/shop/shopScreen.dart';
 import 'package:shoppa_app/screens/splash/splash_screen.dart';
 
 final Map<String, WidgetBuilder> routes = {
@@ -50,4 +51,5 @@ final Map<String, WidgetBuilder> routes = {
   StoreInformationScreen.routeName: (context) => const StoreInformationScreen(),
   SecurityInfoScreen.routeName: (context) => const SecurityInfoScreen(),
   SupportInfoScreen.routeName: (context) => const SupportInfoScreen(),
+  ShopScreen.routeName:(context) => const ShopScreen()
 };
