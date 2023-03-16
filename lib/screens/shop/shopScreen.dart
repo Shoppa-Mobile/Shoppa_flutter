@@ -6,6 +6,8 @@ import 'package:shoppa_app/constants/constants.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
 import 'package:shoppa_app/enums.dart';
 import 'package:shoppa_app/screens/notifications/notifications.dart';
+import 'package:shoppa_app/screens/shop/widgets/inventoryDisplayWidget.dart';
+import 'package:shoppa_app/screens/shop/widgets/reviewsDisplayWidget.dart';
 import 'package:shoppa_app/screens/shop/widgets/searchInvFieldWidget.dart';
 import 'package:shoppa_app/widgets/customNavBar.dart';
 
@@ -17,7 +19,16 @@ class ShopScreen extends StatefulWidget {
   State<ShopScreen> createState() => _ShopScreenState();
 }
 
-class _ShopScreenState extends State<ShopScreen> {
+class _ShopScreenState extends State<ShopScreen> with TickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+    _tabController.animateTo(1);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,7 +72,43 @@ class _ShopScreenState extends State<ShopScreen> {
               SizedBox(
                 height: getPropHeight(32),
               ),
-              const SearchInventoryField()
+              const SearchInventoryField(),
+              SizedBox(
+                height: getPropHeight(32),
+              ),
+              Container(
+                width: getPropWidth(225),
+                height: getPropHeight(36),
+                padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 1),
+                color: Colors.transparent,
+                child: TabBar(
+                  controller: _tabController,
+                  indicatorColor: primaryColor,
+                  unselectedLabelColor: regularTextColor.withOpacity(0.6),
+                  unselectedLabelStyle:
+                      regTextStyle.copyWith(fontWeight: FontWeight.w500),
+                  labelColor: regularTextColor,
+                  labelStyle:
+                      regTextStyle.copyWith(fontWeight: FontWeight.w700),
+                  indicatorSize: TabBarIndicatorSize.tab,
+                  tabs: const [
+                    Text('Inventory'),
+                    Text('Review'),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: getPropHeight(32),
+              ),
+              Expanded(
+                child: TabBarView(
+                  controller: _tabController,
+                  children: const [
+                    InventoryDisplayWidget(),
+                    ReviewDisplayWidget(),
+                  ],
+                ),
+              )
             ],
           ),
         ),
