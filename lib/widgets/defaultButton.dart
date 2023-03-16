@@ -18,14 +18,14 @@ class DefaultButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        width: double.infinity,
-        height: getPropHeight(65),
-        child: MaterialButton(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-          color: primaryColor,
-          onPressed: press,
-          child: Text(text, style: primaryButtonText),
-        ));
+      width: double.infinity,
+      height: getPropHeight(65),
+      child: MaterialButton(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        color: primaryColor,
+        onPressed: press,
+        child: Text(text, style: primaryButtonText),
+      ),
+    );
   }
 }
