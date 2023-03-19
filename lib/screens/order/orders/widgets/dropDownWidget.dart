@@ -4,7 +4,9 @@ import 'package:shoppa_app/constants/colors.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
 
 class ProgessDropDownWidget extends StatefulWidget {
-  const ProgessDropDownWidget({super.key});
+  const ProgessDropDownWidget({
+    super.key,
+  });
 
   @override
   State<ProgessDropDownWidget> createState() => _ProgessDropDownWidgetState();

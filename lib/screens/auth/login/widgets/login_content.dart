@@ -73,7 +73,7 @@ class _LoginContentState extends State<LoginContent> {
                       icon: "assets/icons/google.svg",
                     ),
                     SocialCard(
-                      icon: "assets/icons/instagram.svg",
+                      icon: "assets/icons/instagram1.svg",
                     )
                   ],
                 ),
