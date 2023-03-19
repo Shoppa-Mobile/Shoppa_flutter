@@ -1,8 +1,7 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
-import 'package:shoppa_app/constants/constants.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
-import 'package:shoppa_app/constants/colors.dart';
+import 'package:shoppa_app/widgets/inventoryItemCard.dart';
 import '../../../dummyData/all_dummy_data.dart';
 
 class Inventory1 extends StatelessWidget {
@@ -36,99 +35,6 @@ class Inventory1 extends StatelessWidget {
                 );
               })
         ],
-      ),
-    );
-  }
-}
-
-class InventoryCard extends StatelessWidget {
-  const InventoryCard(
-      {super.key,
-      required this.goodsImage,
-      required this.goodsName,
-      required this.price,
-      required this.outOfStock,
-      required this.press});
-
-  final String goodsImage, goodsName, price;
-  final bool outOfStock;
-  final GestureTapCallback press;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: press,
-      child: SizedBox(
-        width: getPropWidth(185),
-        height: getPropHeight(200),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Center(
-              child: Container(
-                height: getPropHeight(145),
-                width: getPropWidth(185),
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(16),
-                    topRight: Radius.circular(16),
-                  ),
-                ),
-                child: ClipRect(
-                  clipBehavior: Clip.hardEdge,
-                  child: Stack(
-                    children: [
-                      Image.asset(
-                        goodsImage,
-                        fit: BoxFit.fill,
-                        height: getPropHeight(135),
-                        width: getPropWidth(185),
-                      ),
-                      (outOfStock == true)
-                          ? Positioned(
-                              top: getPropHeight(92),
-                              left: getPropWidth(70),
-                              right: getPropWidth(5),
-                              child: Container(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: getPropWidth(5),
-                                    vertical: getPropHeight(7)),
-                                decoration: BoxDecoration(
-                                  color: secondaryButtonTextColor,
-                                  borderRadius: BorderRadius.circular(
-                                    getPropWidth(16),
-                                  ),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    'Out  of  Stock',
-                                    style: ordersCardText1,
-                                  ),
-                                ),
-                              ),
-                            )
-                          : const SizedBox()
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(height: getPropHeight(2)),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(goodsName, style: regTextStyle2),
-                const Icon(Icons.more_vert, size: 12, color: regularTextColor)
-              ],
-            ),
-            SizedBox(height: getPropHeight(6)),
-            Text(
-              "$price NGN",
-              style: inventoryPriceText,
-            )
-          ],
-        ),
       ),
     );
   }
