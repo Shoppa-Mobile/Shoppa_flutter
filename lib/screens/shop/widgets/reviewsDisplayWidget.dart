@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shoppa_app/constants/colors.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
 import 'package:shoppa_app/dummyData/all_dummy_data.dart';
+import 'package:shoppa_app/screens/shop/reviewDisplayScreen.dart';
 import 'package:shoppa_app/widgets/inventoryItemCard.dart';
 
 class ReviewDisplayWidget extends StatelessWidget {
@@ -34,7 +35,10 @@ class ReviewDisplayWidget extends StatelessWidget {
                         goodsName: demoInventory[index].goodsName,
                         price: demoInventory[index].price,
                         homeColor: false,
-                        press: () {},
+                        press: () {
+                          Navigator.of(context)
+                              .pushNamed(ReviewDisplayScreen.routeName);
+                        },
                       );
                     })
               ],
