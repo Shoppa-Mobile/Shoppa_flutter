@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shoppa_app/constants/colors.dart';
 import 'package:shoppa_app/constants/constants.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
+import 'package:shoppa_app/screens/shop/widgets/addItemScreenWidgets.dart';
 import 'package:shoppa_app/widgets/loading.dart';
 
 class AddItemScreen extends StatefulWidget {
@@ -14,6 +15,28 @@ class AddItemScreen extends StatefulWidget {
 }
 
 class _AddItemScreenState extends State<AddItemScreen> {
+  final _formkey = GlobalKey<FormState>();
+  String? itemName;
+  String? description;
+  String? color;
+  final List<String> errors = [];
+
+  void removeError({required String error}) {
+    if (errors.contains(error)) {
+      setState(() {
+        errors.remove(error);
+      });
+    }
+  }
+
+  void addError({required String error}) {
+    if (!errors.contains(error)) {
+      setState(() {
+        errors.add(error);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +60,22 @@ class _AddItemScreenState extends State<AddItemScreen> {
             horizontal: getPropWidth(18),
             vertical: getPropHeight(20),
           ),
-          child: const Column(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("Item Name", style: regTextStyle),
+              SizedBox(height: getPropHeight(8)),
+              buildItemNameField(itemName ?? "", errors),
+              SizedBox(height: getPropHeight(16)),
+              Text("Description", style: regTextStyle),
+              SizedBox(height: getPropHeight(8)),
+              buildItemNameField(description ?? "", errors),
+              SizedBox(height: getPropHeight(16)),
+              Text("Colors Available in...", style: regTextStyle),
+              SizedBox(height: getPropHeight(8)),
+              buildColorField(color ?? "", errors),
+            ],
+          ),
         ),
       )),
     );

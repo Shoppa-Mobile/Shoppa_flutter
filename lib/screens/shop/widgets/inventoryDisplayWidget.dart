@@ -4,6 +4,7 @@ import 'package:shoppa_app/constants/colors.dart';
 import 'package:shoppa_app/constants/constants.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
 import 'package:shoppa_app/dummyData/all_dummy_data.dart';
+import 'package:shoppa_app/screens/shop/addItemScreen.dart';
 import 'package:shoppa_app/screens/shop/itemDisplayScreen.dart';
 import 'package:shoppa_app/widgets/inventoryItemCard.dart';
 
@@ -24,7 +25,9 @@ class InventoryDisplayWidget extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8)),
               color: primaryColor,
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed(AddItemScreen.routeName);
+              },
               child: Text(
                 " +  Add new Item ",
                 style: whiteHeaderStyle.copyWith(
