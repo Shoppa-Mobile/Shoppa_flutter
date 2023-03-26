@@ -127,18 +127,21 @@ const String phoneNumNullError = "Please enter your Phone Number";
 const String storeNameNullError = "Please enter your Store Name";
 const String addressNullError = "Please enter your Store address";
 const String storeNumNullError = "Please enter your Store's Phone Number";
+const String itemNameNullError = "Please enter your Item Name";
+const String descriptionNullError = "Please enter your Item description";
 
 InputDecoration textFieldDecoration(String fieldtext) {
   return InputDecoration(
-      contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-      hintText: fieldtext,
-      hintStyle: subTextStyle,
-      border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: const BorderSide(
-            color: textFieldBorderColor,
-          ),
-          gapPadding: 10));
+    contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+    hintText: fieldtext,
+    hintStyle: subTextStyle,
+    border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8),
+        borderSide: const BorderSide(
+          color: textFieldBorderColor,
+        ),
+        gapPadding: 10),
+  );
 }
 
 InputDecoration textCreateOrderFieldDecoration(String fieldtext) {
