@@ -57,7 +57,7 @@ class SignUpOptionsScreen extends StatelessWidget {
             ),
             BuildSignUpOptionCard(
                 option: 'Instagram',
-                icon: "assets/icons/instagram1.svg",
+                icon: "assets/icons/instagram.svg",
                 press: () {}),
             SizedBox(
               height: getPropHeight(20),

@@ -37,7 +37,7 @@ class _LoadingState extends State<Loading> {
             ),
             const SizedBox(height: 10),
             Text(
-              widget.text!,
+              widget.text ?? " ",
               style: headerStyle3,
             )
           ],

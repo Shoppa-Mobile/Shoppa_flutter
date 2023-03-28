@@ -1,8 +1,11 @@
 // ignore_for_file: file_names, unused_import
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:shoppa_app/constants/constants.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
 import 'package:shoppa_app/screens/auth/inputReset/inputNum_screen.dart';
+import 'package:shoppa_app/services/AuthServiceClass.dart';
 import 'package:shoppa_app/widgets/defaultButton.dart';
 import 'package:shoppa_app/constants/colors.dart';
 import 'package:shoppa_app/screens/home/homeScreen.dart';
@@ -38,6 +41,28 @@ class _LoginFormState extends State<LoginForm> {
     }
   }
 
+  _login(Map loginData) async {
+    var payload = loginData;
+    Response response = await AuthApi().loginUser(
+      payload,
+      '/auth/login',
+    );
+    Map body = json.decode(response.body);
+    if (response.statusCode == 200) {
+      var token = body['access_token'];
+      debugPrint(token);
+      await Future.delayed(const Duration(seconds: 2), () {
+        Navigator.of(context).pushNamed(
+          HomeScreen.routeName,
+        );
+      });
+    } else {
+      debugPrint(
+        response.statusCode.toString(),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -62,14 +87,14 @@ class _LoginFormState extends State<LoginForm> {
             DefaultButton(
               text: "Login",
               press: () {
-                // if (_formkey.currentState!.validate()) {
-                //   // Go to Home screen
-                //   () {
-                //     _formkey.currentState!.save();
-
-                //   };
-                // }
-                Navigator.of(context).pushNamed(HomeScreen.routeName);
+                if (_formkey.currentState!.validate()) {
+                  _formkey.currentState!.save();
+                  var loginData = {
+                    'email': email,
+                    'password': password,
+                  };
+                  _login(loginData);
+                }
               },
             )
           ],

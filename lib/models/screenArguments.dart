@@ -14,3 +14,17 @@ class OrderDetailsArguments {
       required this.completed,
       required this.cancelled});
 }
+
+class UserData1Arguments {
+  final String firstName;
+  final String lastName;
+  final String phoneNum;
+  final String email;
+
+  UserData1Arguments({
+    required this.firstName,
+    required this.lastName,
+    required this.phoneNum,
+    required this.email,
+  });
+}
