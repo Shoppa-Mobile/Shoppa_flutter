@@ -1,10 +1,15 @@
 // ignore_for_file: file_names
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:shoppa_app/constants/constants.dart';
+import 'package:shoppa_app/models/screenArguments.dart';
+import 'package:shoppa_app/services/AuthServiceClass.dart';
 import 'package:shoppa_app/widgets/defaultButton.dart';
 import 'package:shoppa_app/widgets/formError.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
 import 'package:shoppa_app/screens/auth/signUp/signUp_Screen2.dart';
+import 'package:shoppa_app/widgets/loading.dart';
 
 class SignUpForm1 extends StatefulWidget {
   const SignUpForm1({super.key});
@@ -14,10 +19,11 @@ class SignUpForm1 extends StatefulWidget {
 }
 
 class _SignUpForm1State extends State<SignUpForm1> {
+  bool isLoading = false;
   final _formkey = GlobalKey<FormState>();
   late String firstName;
   late String lastName;
-  late int phoneNum;
+  late String phoneNum;
   late String email;
   final List<String> errors = [];
 
@@ -34,6 +40,35 @@ class _SignUpForm1State extends State<SignUpForm1> {
       setState(() {
         errors.add(error);
       });
+    }
+  }
+
+  _findUser(String payload, BuildContext context) async {
+    Response response = await AuthApi().checkEmail(
+      payload,
+      '/users/find',
+    );
+
+    var body = json.decode(response.body);
+    if (body['status'] == false) {
+      debugPrint(
+        body['message'],
+      );
+      await Future.delayed(const Duration(seconds: 2), () {
+        return Navigator.of(context).pushNamed(
+          SignUpScreen2.routeName,
+          arguments: UserData1Arguments(
+            firstName: firstName,
+            lastName: lastName,
+            phoneNum: phoneNum,
+            email: email,
+          ),
+        );
+      });
+    } else {
+      debugPrint(
+        body['message'],
+      );
     }
   }
 
@@ -65,14 +100,11 @@ class _SignUpForm1State extends State<SignUpForm1> {
           DefaultButton(
             text: "Next",
             press: () {
-              // if (_formkey.currentState!.validate()) {
-              //   // Go to SignUp Screen 2
-              //   () {
-              //     _formkey.currentState!.save();
-              //     Navigator.of(context).pushNamed(SignUpScreen2.routeName);
-              //   };
-              // }
-              Navigator.of(context).pushNamed(SignUpScreen2.routeName);
+              // Check if user already exist
+              if (_formkey.currentState!.validate()) {
+                _formkey.currentState!.save();
+                _findUser(email, context);
+              }
             },
           )
         ],
@@ -132,14 +164,14 @@ class _SignUpForm1State extends State<SignUpForm1> {
 
   TextFormField buildPhoneNumField() {
     return TextFormField(
-      onSaved: (newValue) => phoneNum = newValue as int,
+      onSaved: (newValue) => phoneNum = newValue!,
       onChanged: (value) {
         if (value.isNotEmpty) {
           setState(() {
             removeError(error: phoneNumNullError);
           });
         }
-        phoneNum = value as int;
+        phoneNum = value;
       },
       validator: (value) {
         if (value!.isEmpty) {

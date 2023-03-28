@@ -1,11 +1,15 @@
 // ignore_for_file: file_names
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
+import 'package:shoppa_app/models/screenArguments.dart';
 import 'package:shoppa_app/screens/auth/proofOfIdentity/proofOfIdentityScreen.dart';
+import 'package:shoppa_app/services/AuthServiceClass.dart';
 import 'package:shoppa_app/widgets/defaultButton.dart';
 import 'package:shoppa_app/widgets/formError.dart';
 import 'package:shoppa_app/constants/constants.dart';
-
 
 class SignUpForm2 extends StatefulWidget {
   const SignUpForm2({super.key});
@@ -38,8 +42,30 @@ class _SignUpForm2State extends State<SignUpForm2> {
     }
   }
 
+  _register(Map userData) async {
+    var payload = userData;
+    Response response = await AuthApi().registerUser(
+      payload,
+      '/vendor/register',
+    );
+    Map body = json.decode(response.body);
+    if (response.statusCode == 201) {
+      // ignore: use_build_context_synchronously
+      Navigator.of(context).pushNamed(
+        ProofOfIdentityScreen.routeName,
+      );
+      debugPrint(body['message']);
+    } else {
+      debugPrint(
+        response.statusCode.toString(),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final args =
+        ModalRoute.of(context)!.settings.arguments as UserData1Arguments;
     return Form(
         key: _formkey,
         child: Column(
@@ -75,16 +101,21 @@ class _SignUpForm2State extends State<SignUpForm2> {
             DefaultButton(
               text: "Create Account",
               press: () {
-                // if (_formkey.currentState!.validate()) {
-                //   // Go to Otp Screen
-                //   () {
-                //     _formkey.currentState!.save();
-                //     Navigator.of(context).pushNamed(OtpScreen.routeName);
-                //   };
-                // }
-                _formkey.currentState!.save();
-                Navigator.of(context)
-                    .pushNamed(ProofOfIdentityScreen.routeName);
+                // Register User
+                if (_formkey.currentState!.validate()) {
+                  _formkey.currentState!.save();
+                  var user = {
+                    'first_name': args.firstName,
+                    'last_name': args.lastName,
+                    'phone': args.phoneNum,
+                    'email': args.email,
+                    'store_name': storeName,
+                    'store_address': storeAddress,
+                    'store_phone_number': storeNum,
+                    'password': password,
+                  };
+                  _register(user);
+                }
               },
             )
           ],
