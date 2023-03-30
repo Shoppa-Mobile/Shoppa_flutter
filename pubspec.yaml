@@ -40,6 +40,7 @@ dependencies:
   animated_svg: ^1.1.2
   loading_overlay: ^0.3.0
   http: ^0.13.5
+  hooks_riverpod: ^2.3.2
 
 dev_dependencies:
   flutter_test:

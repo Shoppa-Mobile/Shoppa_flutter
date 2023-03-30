@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:shoppa_app/constants/constants.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
+import 'package:shoppa_app/enums.dart';
 import 'package:shoppa_app/screens/auth/inputReset/inputNum_screen.dart';
 import 'package:shoppa_app/services/AuthServiceClass.dart';
 import 'package:shoppa_app/widgets/defaultButton.dart';
@@ -43,24 +44,10 @@ class _LoginFormState extends State<LoginForm> {
 
   _login(Map loginData) async {
     var payload = loginData;
-    Response response = await AuthApi().loginUser(
+    await AuthApi().loginUser(
       payload,
       '/auth/login',
     );
-    Map body = json.decode(response.body);
-    if (response.statusCode == 200) {
-      var token = body['access_token'];
-      debugPrint(token);
-      await Future.delayed(const Duration(seconds: 2), () {
-        Navigator.of(context).pushNamed(
-          HomeScreen.routeName,
-        );
-      });
-    } else {
-      debugPrint(
-        response.statusCode.toString(),
-      );
-    }
   }
 
   @override
@@ -180,13 +167,17 @@ class ForgotPassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-        onPressed: () {
-          Navigator.of(context).pushNamed(InputNumberScreen.routeName);
-        },
-        child: const Text(
-          "Forgot Password?",
-          style: TextStyle(
-              color: primaryColor, fontSize: 14, fontWeight: FontWeight.w400),
-        ));
+      onPressed: () {
+        Navigator.of(context).pushNamed(InputNumberScreen.routeName);
+      },
+      child: const Text(
+        "Forgot Password?",
+        style: TextStyle(
+          color: primaryColor,
+          fontSize: 14,
+          fontWeight: FontWeight.w400,
+        ),
+      ),
+    );
   }
 }

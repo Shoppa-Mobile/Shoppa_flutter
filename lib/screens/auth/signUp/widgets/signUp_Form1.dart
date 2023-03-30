@@ -3,13 +3,13 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:shoppa_app/constants/constants.dart';
+import 'package:shoppa_app/enums.dart';
 import 'package:shoppa_app/models/screenArguments.dart';
 import 'package:shoppa_app/services/AuthServiceClass.dart';
 import 'package:shoppa_app/widgets/defaultButton.dart';
 import 'package:shoppa_app/widgets/formError.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
 import 'package:shoppa_app/screens/auth/signUp/signUp_Screen2.dart';
-import 'package:shoppa_app/widgets/loading.dart';
 
 class SignUpForm1 extends StatefulWidget {
   const SignUpForm1({super.key});
@@ -44,16 +44,12 @@ class _SignUpForm1State extends State<SignUpForm1> {
   }
 
   _findUser(String payload, BuildContext context) async {
-    Response response = await AuthApi().checkEmail(
+    await AuthApi().checkEmail(
       payload,
       '/users/find',
     );
-
-    var body = json.decode(response.body);
-    if (body['status'] == false) {
-      debugPrint(
-        body['message'],
-      );
+    // ignore: unrelated_type_equality_checks
+    if (EmailScope.notfound == true) {
       await Future.delayed(const Duration(seconds: 2), () {
         return Navigator.of(context).pushNamed(
           SignUpScreen2.routeName,
@@ -66,9 +62,7 @@ class _SignUpForm1State extends State<SignUpForm1> {
         );
       });
     } else {
-      debugPrint(
-        body['message'],
-      );
+      return null;
     }
   }
 
