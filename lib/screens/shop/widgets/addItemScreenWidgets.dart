@@ -1,7 +1,6 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:shoppa_app/constants/constants.dart';
-import 'package:shoppa_app/constants/size_configurations.dart';
 
 TextFormField buildItemNameField(String itemName, List<String> errors) {
   return TextFormField(
@@ -60,10 +59,6 @@ TextFormField buildColorField(String color, List<String> errors) {
       }
       return null;
     },
-    // expands: true,
-    // minLines: null,
-    // maxLines: null,
-    // scrollPhysics: const ScrollPhysics(),
     keyboardType: TextInputType.text,
     decoration: textFieldDecoration('Select Colors').copyWith(),
   );
