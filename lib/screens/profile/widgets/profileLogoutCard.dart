@@ -13,7 +13,7 @@ class LogOutCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(
+        Navigator.pushReplacementNamed(
           context,
           LoginScreen.routeName,
         );

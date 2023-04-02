@@ -57,7 +57,7 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
               press: () {
                 if (_formkey.currentState!.validate()) {
                   if (password == confirmpassword) {
-                    showSuccessDialog(
+                    ConstantFunction.showSuccessDialog(
                         context,
                         "Your password has been reset successfully",
                         () => Navigator.of(context)
@@ -66,7 +66,7 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
                   _formkey.currentState!.save();
                 } else {
                   if (password != confirmpassword) {
-                    showFailureDialog(
+                    ConstantFunction.showFailureDialog(
                         context,
                         "Place a message here, not sure what yet",
                         () => Navigator.of(context).pop(),);

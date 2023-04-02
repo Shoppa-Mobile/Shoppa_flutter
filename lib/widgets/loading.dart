@@ -33,7 +33,7 @@ class _LoadingState extends State<Loading> {
           children: [
             const CircularProgressIndicator(
               color: primaryColor,
-              strokeWidth: 7.0,
+              strokeWidth: 2.0,
             ),
             const SizedBox(height: 10),
             Text(

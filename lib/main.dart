@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shoppa_app/constants/colors.dart';
 import 'package:shoppa_app/routes.dart';
 import 'package:shoppa_app/screens/splash/splash_screen.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const Shoppa());
+  runApp(
+    const ProviderScope(
+      child: Shoppa(),
+    ),
+  );
 }
 
 class Shoppa extends StatelessWidget {
