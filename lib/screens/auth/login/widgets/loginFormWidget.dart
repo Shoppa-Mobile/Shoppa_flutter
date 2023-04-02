@@ -1,10 +1,14 @@
 // ignore_for_file: file_names, unused_import
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:http/http.dart';
 import 'package:shoppa_app/constants/constants.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
 import 'package:shoppa_app/enums.dart';
+import 'package:shoppa_app/models/userModel.dart';
+import 'package:shoppa_app/providers/GlobalStateProvider.dart';
+import 'package:shoppa_app/providers/UserStateProvider.dart';
 import 'package:shoppa_app/screens/auth/inputReset/inputNum_screen.dart';
 import 'package:shoppa_app/services/AuthServiceClass.dart';
 import 'package:shoppa_app/widgets/defaultButton.dart';
@@ -12,6 +16,7 @@ import 'package:shoppa_app/constants/colors.dart';
 import 'package:shoppa_app/screens/home/homeScreen.dart';
 import 'package:shoppa_app/screens/auth/resetPassword/resetPassword_screen.dart';
 import 'package:shoppa_app/widgets/formError.dart';
+import 'package:shoppa_app/widgets/loading.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -42,50 +47,82 @@ class _LoginFormState extends State<LoginForm> {
     }
   }
 
-  _login(Map loginData) async {
-    var payload = loginData;
-    await AuthApi().loginUser(
-      payload,
-      '/auth/login',
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Form(
-        key: _formkey,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text("Email Address", style: regTextStyle),
-            SizedBox(height: getPropHeight(8)),
-            buildEmailField(),
-            SizedBox(height: getPropHeight(16)),
-            Text("Password", style: regTextStyle),
-            SizedBox(height: getPropHeight(8)),
-            buildPasswordField(),
-            const Align(
-              alignment: Alignment.centerRight,
-              child: ForgotPassword(),
-            ),
-            SizedBox(height: getPropHeight(10)),
-            FormError(errors: errors),
-            SizedBox(height: getPropHeight(60)),
-            DefaultButton(
-              text: "Login",
-              press: () {
-                if (_formkey.currentState!.validate()) {
-                  _formkey.currentState!.save();
-                  var loginData = {
-                    'email': email,
-                    'password': password,
-                  };
-                  _login(loginData);
-                }
-              },
-            )
-          ],
-        ));
+    return Consumer(
+      builder: (context, ref, child) {
+        return Form(
+            key: _formkey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Email Address", style: regTextStyle),
+                SizedBox(height: getPropHeight(8)),
+                buildEmailField(),
+                SizedBox(height: getPropHeight(16)),
+                Text("Password", style: regTextStyle),
+                SizedBox(height: getPropHeight(8)),
+                buildPasswordField(),
+                const Align(
+                  alignment: Alignment.centerRight,
+                  child: ForgotPassword(),
+                ),
+                SizedBox(height: getPropHeight(10)),
+                FormError(errors: errors),
+                SizedBox(height: getPropHeight(60)),
+                DefaultButton(
+                  text: "Login",
+                  press: () async {
+                    if (_formkey.currentState!.validate()) {
+                      _formkey.currentState!.save();
+                      ref.read(globalLoading.notifier).state = true;
+                      try {
+                        String token = await const AuthApi().loginUser(
+                          {
+                            'email': email,
+                            'password': password,
+                          },
+                          '/auth/login',
+                        );
+                        
+                        // ignore: unnecessary_null_comparison
+                        if (token != null) {
+                          // ignore: use_build_context_synchronously
+                          await ConstantFunction.showSuccessDialog(context,
+                                'Vendor successfully logged in, proceed to Home',
+                                () {
+                              Navigator.of(context).pushReplacementNamed(
+                                HomeScreen.routeName,
+                              );
+                            });
+                        } else{
+                        ref.read(globalLoading.notifier).state = false;
+                        // ignore: use_build_context_synchronously
+                        await ConstantFunction.showFailureDialog(
+                          context,
+                          'Invalid Credentials, Cannot Sign In...',
+                          () {
+                            Navigator.pop(context);
+                          },
+                        );
+                        }
+                      } catch (e) {
+                        ref.read(globalLoading.notifier).state = false;
+                        await ConstantFunction.showFailureDialog(
+                          context,
+                          'Error Signing into your account, Please try again...',
+                          () {
+                            Navigator.pop(context);
+                          },
+                        );
+                      }
+                    }
+                  },
+                )
+              ],
+            ));
+      },
+    );
   }
 
   TextFormField buildEmailField() {

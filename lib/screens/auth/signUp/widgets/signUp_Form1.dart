@@ -1,10 +1,9 @@
-// ignore_for_file: file_names
-import 'dart:convert';
+// ignore_for_file: file_names, use_build_context_synchronously
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shoppa_app/constants/constants.dart';
-import 'package:shoppa_app/enums.dart';
 import 'package:shoppa_app/models/screenArguments.dart';
+import 'package:shoppa_app/providers/GlobalStateProvider.dart';
 import 'package:shoppa_app/services/AuthServiceClass.dart';
 import 'package:shoppa_app/widgets/defaultButton.dart';
 import 'package:shoppa_app/widgets/formError.dart';
@@ -43,67 +42,86 @@ class _SignUpForm1State extends State<SignUpForm1> {
     }
   }
 
-  _findUser(String payload, BuildContext context) async {
-    await AuthApi().checkEmail(
-      payload,
-      '/users/find',
-    );
-    // ignore: unrelated_type_equality_checks
-    if (EmailScope.notfound == true) {
-      await Future.delayed(const Duration(seconds: 2), () {
-        return Navigator.of(context).pushNamed(
-          SignUpScreen2.routeName,
-          arguments: UserData1Arguments(
-            firstName: firstName,
-            lastName: lastName,
-            phoneNum: phoneNum,
-            email: email,
-          ),
-        );
-      });
-    } else {
-      return null;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formkey,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text("First Name", style: regTextStyle),
-          SizedBox(height: getPropHeight(8)),
-          buildFirstNameField(),
-          SizedBox(height: getPropHeight(20)),
-          Text("Last Name", style: regTextStyle),
-          SizedBox(height: getPropHeight(8)),
-          buildLastNameField(),
-          SizedBox(height: getPropHeight(20)),
-          Text("Phone Number", style: regTextStyle),
-          SizedBox(height: getPropHeight(8)),
-          buildPhoneNumField(),
-          SizedBox(height: getPropHeight(20)),
-          Text("Email Address", style: regTextStyle),
-          SizedBox(height: getPropHeight(8)),
-          buildEmailField(),
-          SizedBox(height: getPropHeight(10)),
-          FormError(errors: errors),
-          SizedBox(height: getPropHeight(35)),
-          DefaultButton(
-            text: "Next",
-            press: () {
-              // Check if user already exist
-              if (_formkey.currentState!.validate()) {
-                _formkey.currentState!.save();
-                _findUser(email, context);
-              }
-            },
-          )
-        ],
-      ),
-    );
+    return Consumer(builder: (context, ref, child) {
+      return Form(
+        key: _formkey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text("First Name", style: regTextStyle),
+            SizedBox(height: getPropHeight(8)),
+            buildFirstNameField(),
+            SizedBox(height: getPropHeight(20)),
+            Text("Last Name", style: regTextStyle),
+            SizedBox(height: getPropHeight(8)),
+            buildLastNameField(),
+            SizedBox(height: getPropHeight(20)),
+            Text("Phone Number", style: regTextStyle),
+            SizedBox(height: getPropHeight(8)),
+            buildPhoneNumField(),
+            SizedBox(height: getPropHeight(20)),
+            Text("Email Address", style: regTextStyle),
+            SizedBox(height: getPropHeight(8)),
+            buildEmailField(),
+            SizedBox(height: getPropHeight(10)),
+            FormError(errors: errors),
+            SizedBox(height: getPropHeight(35)),
+            DefaultButton(
+              text: "Next",
+              press: () async {
+                // Check if user already exist
+                if (_formkey.currentState!.validate()) {
+                  _formkey.currentState!.save();
+                  ref.read(globalLoading.notifier).state = true;
+                  try {
+                    String message = await const AuthApi().checkEmail(
+                      email,
+                      '/users/find',
+                    );
+                    if (message == 'User not found') {
+                      ref.read(globalLoading.notifier).state = false;
+                      await Future.delayed(const Duration(milliseconds: 300),
+                          () {
+                        return Navigator.of(context).pushNamed(
+                          SignUpScreen2.routeName,
+                          arguments: UserData1Arguments(
+                            firstName: firstName,
+                            lastName: lastName,
+                            phoneNum: phoneNum,
+                            email: email,
+                          ),
+                        );
+                      });
+                      ref.read(globalLoading.notifier).state = false;
+                    } else {
+                      ref.read(globalLoading.notifier).state = false;
+                      await ConstantFunction.showFailureDialog(
+                        context,
+                        'Email already exists, \n Try new email',
+                        () {
+                          Navigator.pop(context);
+                        },
+                      );
+                    }
+                  } catch (e) {
+                    ref.read(globalLoading.notifier).state = false;
+                    await ConstantFunction.showFailureDialog(
+                      context,
+                      'Could not verify email... Try again!',
+                      () {
+                        Navigator.pop(context);
+                      },
+                    );
+                  }
+                }
+              },
+            )
+          ],
+        ),
+      );
+    });
   }
 
   TextFormField buildFirstNameField() {
