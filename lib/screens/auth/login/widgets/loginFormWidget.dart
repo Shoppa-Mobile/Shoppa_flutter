@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:http/http.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shoppa_app/constants/constants.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
 import 'package:shoppa_app/enums.dart';
@@ -17,6 +18,12 @@ import 'package:shoppa_app/screens/home/homeScreen.dart';
 import 'package:shoppa_app/screens/auth/resetPassword/resetPassword_screen.dart';
 import 'package:shoppa_app/widgets/formError.dart';
 import 'package:shoppa_app/widgets/loading.dart';
+import 'dart:developer' as devtools show log;
+
+@override
+extension Log on Object {
+  void log() => devtools.log(toString());
+}
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -77,40 +84,44 @@ class _LoginFormState extends State<LoginForm> {
                       _formkey.currentState!.save();
                       ref.read(globalLoading.notifier).state = true;
                       try {
-                        String token = await const AuthApi().loginUser(
+                        int status = await const AuthApi().loginUser(
                           {
                             'email': email,
                             'password': password,
                           },
                           '/auth/login',
                         );
-                        
                         // ignore: unnecessary_null_comparison
-                        if (token != null) {
+                        if (status == 200) {
                           // ignore: use_build_context_synchronously
                           await ConstantFunction.showSuccessDialog(context,
-                                'Vendor successfully logged in, proceed to Home',
-                                () {
-                              Navigator.of(context).pushReplacementNamed(
-                                HomeScreen.routeName,
-                              );
-                            });
-                        } else{
-                        ref.read(globalLoading.notifier).state = false;
-                        // ignore: use_build_context_synchronously
-                        await ConstantFunction.showFailureDialog(
-                          context,
-                          'Invalid Credentials, Cannot Sign In...',
-                          () {
-                            Navigator.pop(context);
-                          },
-                        );
+                              'Vendor successfully logged in, proceed to Home',
+                              () {
+                            Navigator.of(context).pushReplacementNamed(
+                              HomeScreen.routeName,
+                            );
+                          });
+                          ref.read(globalLoading.notifier).state = false;
+                        }
+                        if (status == 422) {
+                          ref.read(globalLoading.notifier).state = false;
+                          // ignore: use_build_context_synchronously
+                          await ConstantFunction.showFailureDialog(
+                            context,
+                            'Invalid Credentials, Cannot Sign In...',
+                            () {
+                              Navigator.pop(context);
+                            },
+                          );
                         }
                       } catch (e) {
                         ref.read(globalLoading.notifier).state = false;
+                        var error = e.toString();
+                        // log();
+                        debugPrint(error);
                         await ConstantFunction.showFailureDialog(
                           context,
-                          'Error Signing into your account, Please try again...',
+                          'Error Signing into your account,\n $error \n Please try again...',
                           () {
                             Navigator.pop(context);
                           },

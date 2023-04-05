@@ -14,6 +14,7 @@ class Notifications extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool newUser = true;
     return Scaffold(
       appBar: AppBar(
         scrolledUnderElevation: 2,
@@ -34,33 +35,53 @@ class Notifications extends StatelessWidget {
         ],
       ),
       backgroundColor: bgColor,
-      body: SingleChildScrollView(
-      physics: const ScrollPhysics(),
-      scrollDirection: Axis.vertical,
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-            horizontal: getPropWidth(16), vertical: getPropHeight(16)),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 3),
-            ListView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                itemCount: demoNotifications.length,
-                itemBuilder: (context, index) {
-                  return NotificationsCard(
-                      date: demoNotifications[index].date,
-                      time: demoNotifications[index].time,
-                      messages: demoNotifications[index].message,
-                      press: () {});
-                }),
-            const SizedBox(height: 2)
-          ],
-        ),
-      ),
-    ),
+      body: (newUser == true)
+          ? Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset('assets/images/notification.png'),
+                  SizedBox(
+                    height: getPropHeight(5),
+                  ),
+                  Text(
+                    'You have no notifications yet',
+                    style: regTextStyle.copyWith(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w300,
+                      color: regularTextColor.withOpacity(0.4),
+                    ),
+                  ),
+                ],
+              ),
+            )
+          : SingleChildScrollView(
+              physics: const ScrollPhysics(),
+              scrollDirection: Axis.vertical,
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: getPropWidth(16), vertical: getPropHeight(16)),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 3),
+                    ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        scrollDirection: Axis.vertical,
+                        itemCount: demoNotifications.length,
+                        itemBuilder: (context, index) {
+                          return NotificationsCard(
+                              date: demoNotifications[index].date,
+                              time: demoNotifications[index].time,
+                              messages: demoNotifications[index].message,
+                              press: () {});
+                        }),
+                    const SizedBox(height: 2)
+                  ],
+                ),
+              ),
+            ),
       bottomNavigationBar: const CustomNavBar(selectedMenu: MenuState.empty),
     );
   }

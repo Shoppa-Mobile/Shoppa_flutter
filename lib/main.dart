@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shoppa_app/constants/colors.dart';
@@ -6,6 +7,7 @@ import 'package:shoppa_app/screens/splash/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  DartPluginRegistrant.ensureInitialized();
   runApp(
     const ProviderScope(
       child: Shoppa(),

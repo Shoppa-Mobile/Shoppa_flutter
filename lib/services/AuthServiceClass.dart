@@ -5,6 +5,8 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'dart:developer' as devtools show log;
 
+import 'package:shared_preferences/shared_preferences.dart';
+
 extension Log on Object {
   void log() => devtools.log(toString());
 }
@@ -59,15 +61,23 @@ class AuthApi {
       body: jsonEncode(payload),
       headers: setHeaders(),
     );
-    Map body = json.decode(response.body);
+    var body = json.decode(response.body);
     if (response.statusCode == 200) {
-      var token = body['access_token'];
-      debugPrint(token);
-      return token;
+      // var token = body['access_token'];
+      SharedPreferences localStorage = await SharedPreferences.getInstance();
+      var token = localStorage.setString('token', body['access_token']);
+      localStorage.setString('user', json.encode(body['user']));
+      token.log();
+      // debugPrint(
+      //   token.toString(),
+      // );
+      return response.statusCode;
     }
-    if (response.statusCode == 401) {
+    if (response.statusCode == 422) {
       String error = 'User ${body['error']}, Invalid Login Credentials';
       error.log();
+      return response.statusCode;
+    } else {
       return null;
     }
   }
@@ -79,11 +89,16 @@ class AuthApi {
       body: jsonEncode(payload),
       headers: setHeaders(),
     );
-    if (response.statusCode != 201) {
+    if (response.statusCode == 201) {
+      response.body.log();
+    } else {
       response.body.log();
     }
     return response.statusCode;
   }
+
+  logoutUser(String token, String endpoint) async {}
+
   setHeaders() => {
         "Accept": "application/json",
         "Content-Type": "application/json",
