@@ -1,7 +1,9 @@
 // ignore_for_file: file_names
+import 'dart:convert';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shoppa_app/models/userModel.dart';
-import 'package:shoppa_app/services/AuthServiceClass.dart';
 import 'dart:developer' as devtools show log;
 
 extension Log on Object {
@@ -9,38 +11,35 @@ extension Log on Object {
 }
 
 class UserStateProvider extends StateNotifier<UserModel> {
-  final _authenticator = const AuthApi();
+  // final _authenticator = const AuthApi();
+
   UserStateProvider([UserModel? state]) : super(UserModel.unknown());
 
-  // Future<UserModel> login(
-  //   String email,
-  //   String password,
-  // ) async {
-  //   final result = await _authenticator.loginUser(
-  //     email,
-  //     password,
-  //   );
-  //   return result;
-  // }
+  Future<void> saveCurrentUser(Map user) async {
+    Box userBox = await Hive.openBox<UserModel>('user');
+    await userBox.add(user);
+  }
 
-  // Future<UserModel?> register(
-  //   Map payload,
-  // ) async {
-  //   final result = await _authenticator.register(
-  //     payload,
-  //   );
-  //   return result;
-  // }
+  Future<void> saveUserToken(String token) async {
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    localStorage.setString(
+      'token',
+      token,
+    );
+    // getUserToken();
+    // localStorage.log();
+  }
 
-  // Future<void> saveCurrentUser(UserModel user) async {
-  //   Box userBox = await Hive.openBox<UserModel>('user');
-  //   // Box tokenBox = Hive.box('token');
-  //   final result = await userBox.add(user);
-  //   // await tokenBox.put(1, token);
-  //   debugPrint('Saved current user: $result');
-  //   // debugPrint(tokenBox.get('1'));
-  //   state = user;
-  // }
+  Future<String?> getUserToken() async {
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    var token = localStorage.getString('token');
+    return token!;
+  }
+
+  Future<void> deleteUserToken() async {
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    localStorage.remove('token');
+  }
 }
 
 final userProvider = StateNotifierProvider(

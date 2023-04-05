@@ -138,28 +138,49 @@ class PendingOrder2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool newUser = true;
     return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ListView.builder(
-              scrollDirection: Axis.vertical,
-              itemCount: demoHistory.length,
-              shrinkWrap: true,
-              physics: const ScrollPhysics(),
-              controller: ScrollController(),
-              itemBuilder: (context, index) {
-                return PendingOrdersCard2(
-                  boolo: demoHistory[index].inProgress,
-                  buyerLastName: demoHistory[index].buyerLastName,
-                  buyerFirstName: demoHistory[index].buyerFirstName,
-                  price: demoHistory[index].price,
-                  goodsName: demoHistory[index].goodsName,
-                  press: () {},
-                );
-              })
-        ],
-      ),
+      child: (newUser == true)
+          ? Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset('assets/images/orders.png'),
+                  SizedBox(
+                    height: getPropHeight(5),
+                  ),
+                  Text(
+                    'You have no orders yet',
+                    style: regTextStyle.copyWith(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w300,
+                      color: regularTextColor.withOpacity(0.4),
+                    ),
+                  ),
+                ],
+              ),
+            )
+          : Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    itemCount: demoHistory.length,
+                    shrinkWrap: true,
+                    physics: const ScrollPhysics(),
+                    controller: ScrollController(),
+                    itemBuilder: (context, index) {
+                      return PendingOrdersCard2(
+                        boolo: demoHistory[index].inProgress,
+                        buyerLastName: demoHistory[index].buyerLastName,
+                        buyerFirstName: demoHistory[index].buyerFirstName,
+                        price: demoHistory[index].price,
+                        goodsName: demoHistory[index].goodsName,
+                        press: () {},
+                      );
+                    })
+              ],
+            ),
     );
   }
 }

@@ -102,7 +102,7 @@ class _SignUpForm2State extends State<SignUpForm2> {
                           '/vendor/register',
                         );
                         if (response == 201) {
-                          String token = await const AuthApi().loginUser(
+                          int status = await const AuthApi().loginUser(
                             {
                               'email': args.email,
                               'password': password,
@@ -110,7 +110,7 @@ class _SignUpForm2State extends State<SignUpForm2> {
                             '/auth/login',
                           );
                           // ignore: unnecessary_null_comparison
-                          if (token != null) {
+                          if (status == 200) {
                             ref.read(globalLoading.notifier).state = false;
                             // ignore: use_build_context_synchronously
                             await ConstantFunction.showSuccessDialog(context,
@@ -120,18 +120,18 @@ class _SignUpForm2State extends State<SignUpForm2> {
                                 HomeScreen.routeName,
                               );
                             });
-                          } else {
+                          }
+                          if (status == 422) {
                             ref.read(globalLoading.notifier).state = false;
                             // ignore: use_build_context_synchronously
                             await ConstantFunction.showFailureDialog(
                               context,
-                              'Invalid Credentials, Unable to Create Vendor...',
+                              'Invalid Credentials, Unable to Sign In after creating vendor... \n Try again...',
                               () {
                                 Navigator.pop(context);
                               },
                             );
                           }
-                          return token;
                         } else {
                           ref.read(globalLoading.notifier).state = false;
                           // ignore: use_build_context_synchronously
@@ -145,9 +145,11 @@ class _SignUpForm2State extends State<SignUpForm2> {
                         }
                       } catch (e) {
                         ref.read(globalLoading.notifier).state = false;
+                        var error = e.toString();
+                        debugPrint(error);
                         await ConstantFunction.showFailureDialog(
                           context,
-                          'Invalid Credentials, Unable to Sign In...',
+                          'Invalid Credentials, Unable to Create Vendor... \n Error: $error',
                           () {
                             Navigator.pop(context);
                           },

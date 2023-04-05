@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:shoppa_app/constants/colors.dart';
+import 'package:shoppa_app/constants/constants.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
 import 'package:shoppa_app/dummyData/all_dummy_data.dart';
 import 'package:shoppa_app/screens/shop/reviewDisplayScreen.dart';
@@ -11,9 +12,28 @@ class ReviewDisplayWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool showReviews = true;
-    return (showReviews == true)
-        ? SingleChildScrollView(
+    bool userNew = true;
+    return (userNew == true)
+        ? Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset('assets/images/reviews.png'),
+                SizedBox(
+                  height: getPropHeight(5),
+                ),
+                Text(
+                  'You have no reviews yet',
+                  style: regTextStyle.copyWith(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w300,
+                    color: regularTextColor.withOpacity(0.4),
+                  ),
+                ),
+              ],
+            ),
+          )
+        : SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -43,17 +63,6 @@ class ReviewDisplayWidget extends StatelessWidget {
                     })
               ],
             ),
-          )
-        : Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.library_add_sharp,
-                size: getPropWidth(200),
-                color: primaryColor.withOpacity(0.3),
-              )
-            ],
           );
   }
 }
