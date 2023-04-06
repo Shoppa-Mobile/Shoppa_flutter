@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shoppa_app/constants/colors.dart';
+import 'package:shoppa_app/providers/AuthStateProvider.dart';
 import 'package:shoppa_app/routes.dart';
 import 'package:shoppa_app/screens/splash/splash_screen.dart';
 
@@ -15,11 +16,12 @@ void main() async {
   );
 }
 
-class Shoppa extends StatelessWidget {
+class Shoppa extends ConsumerWidget {
   const Shoppa({Key? key}) : super(key: key);
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    ref.read(authProvider.notifier).setCurrentUser();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Shoppa',

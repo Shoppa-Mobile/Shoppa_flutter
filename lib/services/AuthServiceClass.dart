@@ -63,14 +63,10 @@ class AuthApi {
     );
     var body = json.decode(response.body);
     if (response.statusCode == 200) {
-      // var token = body['access_token'];
       SharedPreferences localStorage = await SharedPreferences.getInstance();
       var token = localStorage.setString('token', body['access_token']);
       localStorage.setString('user', json.encode(body['user']));
       token.log();
-      // debugPrint(
-      //   token.toString(),
-      // );
       return response.statusCode;
     }
     if (response.statusCode == 422) {

@@ -18,6 +18,7 @@ class SignUpScreen1 extends StatelessWidget {
         bool loading = ref.watch(globalLoading);
         return Loading(
           isLoading: loading,
+          text: 'Creating Vendor Account...',
           child: Scaffold(
             resizeToAvoidBottomInset: false,
             backgroundColor: bgColor,

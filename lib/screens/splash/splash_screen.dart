@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
-import 'package:shoppa_app/screens/auth/onBoarding/onboarding_screen.dart';
+import 'package:shoppa_app/screens/auth/authScreen.dart';
 import 'dart:math' as math;
 
 class SplashScreen extends StatefulWidget {
@@ -33,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen>
     Timer(
         const Duration(seconds: 7),
         () => Navigator.pushReplacementNamed(
-            context, OnBoardingScreen.routeName));
+            context, AuthenticationScreen.routeName));
     SizeConfig().init(context);
     final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
     return Scaffold(

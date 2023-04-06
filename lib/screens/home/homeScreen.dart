@@ -22,11 +22,9 @@ class HomeScreen extends StatelessWidget {
           automaticallyImplyLeading: false,
           backgroundColor: bgColor,
           scrolledUnderElevation: 2.0,
-          title: SafeArea(
-            child: Text(
-              "Hello, Oghenefejiro",
-              style: headerStyle.copyWith(fontSize: 28),
-            ),
+          title: Text(
+            "Hello, Oghenefejiro",
+            style: headerStyle.copyWith(fontSize: 28),
           ),
           centerTitle: false,
           actions: [
@@ -83,7 +81,9 @@ class HomeScreen extends StatelessWidget {
               ),
               SizedBox(height: getPropHeight(3)),
               const Expanded(
-                child: PendingOrder2(),
+                child: Center(
+                  child: PendingOrder2(),
+                ),
               ),
             ],
           ),

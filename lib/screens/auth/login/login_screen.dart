@@ -19,6 +19,7 @@ class LoginScreen extends StatelessWidget {
         bool loading = ref.watch(globalLoading);
         return Loading(
           isLoading: loading,
+          text: 'Logging In Vendor...',
           child: Scaffold(
             resizeToAvoidBottomInset: false,
             backgroundColor: bgColor,
