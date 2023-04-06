@@ -8,8 +8,8 @@ import 'package:shoppa_app/constants/constants.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
 import 'package:shoppa_app/enums.dart';
 import 'package:shoppa_app/models/userModel.dart';
+import 'package:shoppa_app/providers/AuthStateProvider.dart';
 import 'package:shoppa_app/providers/GlobalStateProvider.dart';
-import 'package:shoppa_app/providers/UserStateProvider.dart';
 import 'package:shoppa_app/screens/auth/inputReset/inputNum_screen.dart';
 import 'package:shoppa_app/services/AuthServiceClass.dart';
 import 'package:shoppa_app/widgets/defaultButton.dart';
@@ -93,6 +93,7 @@ class _LoginFormState extends State<LoginForm> {
                         );
                         // ignore: unnecessary_null_comparison
                         if (status == 200) {
+                          ref.read(authProvider.notifier).setCurrentUser();
                           // ignore: use_build_context_synchronously
                           await ConstantFunction.showSuccessDialog(context,
                               'Vendor successfully logged in, proceed to Home',

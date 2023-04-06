@@ -70,8 +70,8 @@ class Inventory2 extends StatelessWidget {
                   height: getPropHeight(5),
                 ),
                 SizedBox(
-                  width: getPropWidth(220),
-                  height: getPropHeight(48),
+                  width: getPropWidth(210),
+                  height: getPropHeight(40),
                   child: MaterialButton(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8)),

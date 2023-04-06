@@ -38,7 +38,10 @@ class _LoadingState extends State<Loading> {
             const SizedBox(height: 10),
             Text(
               widget.text ?? " ",
-              style: headerStyle3,
+              style: headerStyle3.copyWith(
+                color: primaryColor,
+                fontSize: 14,
+              ),
             )
           ],
         ),

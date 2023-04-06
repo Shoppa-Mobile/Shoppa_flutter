@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
 import 'package:shoppa_app/models/screenArguments.dart';
+import 'package:shoppa_app/providers/AuthStateProvider.dart';
 import 'package:shoppa_app/providers/GlobalStateProvider.dart';
 import 'package:shoppa_app/screens/home/homeScreen.dart';
 import 'package:shoppa_app/services/AuthServiceClass.dart';
@@ -112,6 +113,7 @@ class _SignUpForm2State extends State<SignUpForm2> {
                           // ignore: unnecessary_null_comparison
                           if (status == 200) {
                             ref.read(globalLoading.notifier).state = false;
+                            ref.read(authProvider.notifier).setCurrentUser();
                             // ignore: use_build_context_synchronously
                             await ConstantFunction.showSuccessDialog(context,
                                 'Vendor successfully created, proceed to Home',

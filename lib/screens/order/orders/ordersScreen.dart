@@ -28,20 +28,18 @@ class _OrdersScreenState extends State<OrdersScreen> {
         elevation: 0,
         scrolledUnderElevation: 2,
         automaticallyImplyLeading: false,
-        title: SafeArea(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Orders",
-                style: headerStyle2,
-              ),
-              Padding(
-                padding: EdgeInsets.all(getPropHeight(16)),
-                child: const ProgessDropDownWidget(),
-              ),
-            ],
-          ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              "Orders",
+              style: headerStyle2,
+            ),
+            Padding(
+              padding: EdgeInsets.all(getPropHeight(16)),
+              child: const ProgessDropDownWidget(),
+            ),
+          ],
         ),
       ),
       body: const OrdersScreenContent(),
