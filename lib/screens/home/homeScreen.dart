@@ -1,6 +1,8 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:shoppa_app/providers/VendorProvider.dart';
 import 'package:shoppa_app/screens/home/widgets/inventoryWidget.dart';
 import 'package:shoppa_app/screens/home/widgets/pendingOrdersWidget.dart';
 import 'package:shoppa_app/widgets/customNavBar.dart';
@@ -9,6 +11,11 @@ import 'package:shoppa_app/constants/size_configurations.dart';
 import 'package:shoppa_app/enums.dart';
 import 'package:shoppa_app/screens/notifications/notifications.dart';
 import '../../constants/constants.dart';
+import 'dart:developer' as devtools show log;
+
+extension Log on Object {
+  void log() => devtools.log(toString());
+}
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -22,9 +29,17 @@ class HomeScreen extends StatelessWidget {
           automaticallyImplyLeading: false,
           backgroundColor: bgColor,
           scrolledUnderElevation: 2.0,
-          title: Text(
-            "Hello, Oghenefejiro",
-            style: headerStyle.copyWith(fontSize: 28),
+          title: Consumer(
+            builder: (context, ref, child) {
+              final myVendor = ref.watch(myVendorProvider);
+              return myVendor.when(
+                  data: (vendor) => Text(
+                        "Hello ${vendor.firstname}",
+                        style: headerStyle.copyWith(fontSize: 28),
+                      ),
+                  error: (error, stackTrace) => Text('Error: $error'),
+                  loading: () => const CircularProgressIndicator());
+            },
           ),
           centerTitle: false,
           actions: [

@@ -25,14 +25,12 @@ class _SecurityInfoScreenState extends State<SecurityInfoScreen> {
         elevation: 0,
         scrolledUnderElevation: 2,
         automaticallyImplyLeading: true,
-        title: SafeArea(
-          child: Text(
-            "Security",
-            style: headerStyle.copyWith(
-              fontWeight: FontWeight.w600,
-              letterSpacing: 1.2,
-              fontSize: 20,
-            ),
+        title: Text(
+          "Security",
+          style: headerStyle.copyWith(
+            fontWeight: FontWeight.w600,
+            letterSpacing: 1.2,
+            fontSize: 20,
           ),
         ),
         centerTitle: true,

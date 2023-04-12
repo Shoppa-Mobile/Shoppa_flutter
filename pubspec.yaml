@@ -41,8 +41,6 @@ dependencies:
   loading_overlay: ^0.3.0
   http: ^0.13.5
   hooks_riverpod: ^2.3.2
-  hive_flutter: ^1.1.0
-  hive: ^2.2.3
   shared_preferences: ^2.1.0
   shared_preferences_ios: ^2.1.0
   shared_preferences_android: ^2.1.0

@@ -26,14 +26,12 @@ class _StoreInformationScreenState extends State<StoreInformationScreen> {
         elevation: 0,
         scrolledUnderElevation: 2,
         automaticallyImplyLeading: true,
-        title: SafeArea(
-          child: Text(
-            "Store Information",
-            style: headerStyle.copyWith(
-              fontWeight: FontWeight.w600,
-              letterSpacing: 1.2,
-              fontSize: 20,
-            ),
+        title: Text(
+          "Store Information",
+          style: headerStyle.copyWith(
+            fontWeight: FontWeight.w600,
+            letterSpacing: 1.2,
+            fontSize: 20,
           ),
         ),
         centerTitle: true,

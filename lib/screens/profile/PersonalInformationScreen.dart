@@ -26,14 +26,12 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
         elevation: 0,
         scrolledUnderElevation: 2,
         automaticallyImplyLeading: true,
-        title: SafeArea(
-          child: Text(
-            "Personal Information",
-            style: headerStyle.copyWith(
-              fontWeight: FontWeight.w600,
-              letterSpacing: 1.2,
-              fontSize: 20,
-            ),
+        title: Text(
+          "Personal Information",
+          style: headerStyle.copyWith(
+            fontWeight: FontWeight.w600,
+            letterSpacing: 1.2,
+            fontSize: 20,
           ),
         ),
         centerTitle: true,

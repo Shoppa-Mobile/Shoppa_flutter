@@ -6,6 +6,7 @@ import 'package:shoppa_app/constants/constants.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
 import 'package:shoppa_app/enums.dart';
 import 'package:shoppa_app/providers/GlobalStateProvider.dart';
+import 'package:shoppa_app/providers/VendorProvider.dart';
 import 'package:shoppa_app/screens/profile/PersonalInformationScreen.dart';
 import 'package:shoppa_app/screens/profile/SecurityInfoScreen.dart';
 import 'package:shoppa_app/screens/profile/SupportInfoScreen.dart';
@@ -29,6 +30,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Consumer(
       builder: (context, ref, child) {
         bool loading = ref.watch(globalLoading);
+        final myVendor = ref.watch(myVendorProvider);
         return Loading(
           isLoading: loading,
           text: 'Logging Out Vendor...',
@@ -59,12 +61,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     SizedBox(
                       height: getPropHeight(16),
                     ),
-                    Text(
-                      "Helen's Boutique",
-                      style: headerStyle3.copyWith(
-                        letterSpacing: 1.2,
-                      ),
-                    ),
+                    myVendor.when(
+                        data: (vendor) => Text(
+                              "${vendor.firstname}'s Boutique",
+                              style: headerStyle.copyWith(fontSize: 28),
+                            ),
+                        error: (error, stackTrace) => Text('Error: $error'),
+                        loading: () => const CircularProgressIndicator()),
                     SizedBox(
                       height: getPropHeight(16),
                     ),
@@ -171,7 +174,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ProfileDetailsCard2(
                           press: () {},
                           topText: 'Store Link',
-                          bottomText: "shoppa/helen’s boutique",
+                          bottomText: "shoppa.com/${myVendor.when(
+                            data: (vendor) => vendor.firstname,
+                            error: (error, stackTrace) => error,
+                            loading: () => const CircularProgressIndicator(),
+                          )}'s boutique",
                           iconData1: const Icon(Icons.share),
                           iconData2: const Icon(Icons.content_copy_outlined),
                         ),

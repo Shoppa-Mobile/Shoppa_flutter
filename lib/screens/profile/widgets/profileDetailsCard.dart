@@ -1,9 +1,11 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shoppa_app/constants/colors.dart';
 import 'package:shoppa_app/constants/constants.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
+import 'package:shoppa_app/providers/VendorProvider.dart';
 
 class ProfileCard extends StatelessWidget {
   const ProfileCard({
@@ -14,46 +16,58 @@ class ProfileCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: press,
-      child: Card(
-        color: primaryColor.withOpacity(0.3),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        child: SizedBox(
-          height: getPropHeight(64),
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-              vertical: getPropHeight(8),
-              horizontal: getPropWidth(10),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+    return Consumer(
+      builder: (context, ref, child) {
+        final myVendor = ref.watch(myVendorProvider);
+        return InkWell(
+          onTap: press,
+          child: Card(
+            color: primaryColor.withOpacity(0.3),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+            child: SizedBox(
+              height: getPropHeight(64),
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  vertical: getPropHeight(8),
+                  horizontal: getPropWidth(10),
+                ),
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      "Helen Adegoke",
-                      style: regTextStyle.copyWith(
-                        fontWeight: FontWeight.w500,
-                      ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        myVendor.when(
+                            data: (vendor) => Text(
+                                  "${vendor.firstname} ${vendor.lastname}",
+                                  style: regTextStyle.copyWith(
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                            error: (error, stackTrace) => Text('Error: $error'),
+                            loading: () => const CircularProgressIndicator()),
+                        myVendor.when(
+                            data: (vendor) => Text(
+                                  vendor.email,
+                                  style: regTextStyle2,
+                                ),
+                            error: (error, stackTrace) => Text('Error: $error'),
+                            loading: () => const CircularProgressIndicator()),
+                      ],
                     ),
-                    Text(
-                      "helenadegoke@gmail.com",
-                      style: regTextStyle2,
+                    const Icon(
+                      Icons.arrow_forward_ios,
+                      size: 18,
                     ),
                   ],
                 ),
-                const Icon(
-                  Icons.arrow_forward_ios,
-                  size: 18,
-                ),
-              ],
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
@@ -107,7 +121,9 @@ class ProfileDetailsCard extends StatelessWidget {
                     iconData1,
                   ],
                 ),
-                const SizedBox(height: 10,),
+                const SizedBox(
+                  height: 10,
+                ),
                 Container(
                   height: 2,
                   width: SizeConfig.screenWidth - 40,
@@ -146,7 +162,9 @@ class ProfileDetailsCard2 extends StatelessWidget {
         width: SizeConfig.screenWidth - 30,
         child: Padding(
           padding: EdgeInsets.symmetric(
-              horizontal: getPropWidth(2), vertical: getPropHeight(1),),
+            horizontal: getPropWidth(2),
+            vertical: getPropHeight(1),
+          ),
           child: Column(
             children: [
               Row(

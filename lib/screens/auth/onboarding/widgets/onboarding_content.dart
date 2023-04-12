@@ -79,6 +79,9 @@ class _OnboardingContentState extends State<OnboardingContent> {
                     height: getPropWidth(15),
                   ),
                   const LoginWidget(),
+                  SizedBox(
+                    height: getPropWidth(35),
+                  ),
                 ],
               ),
             ),
