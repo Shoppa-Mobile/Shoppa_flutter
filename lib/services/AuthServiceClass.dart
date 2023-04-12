@@ -61,12 +61,11 @@ class AuthApi {
       body: jsonEncode(payload),
       headers: setHeaders(),
     );
-    var body = json.decode(response.body);
+    Map body = json.decode(response.body);
     if (response.statusCode == 200) {
       SharedPreferences localStorage = await SharedPreferences.getInstance();
       var token = localStorage.setString('token', body['access_token']);
-      localStorage.setString('user', json.encode(body['user']));
-      token.log();
+      localStorage.setString('user', json.encode(body['user']));      token.log();
       return response.statusCode;
     }
     if (response.statusCode == 422) {
@@ -85,6 +84,7 @@ class AuthApi {
       body: jsonEncode(payload),
       headers: setHeaders(),
     );
+
     if (response.statusCode == 201) {
       response.body.log();
     } else {

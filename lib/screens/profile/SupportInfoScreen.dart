@@ -25,14 +25,12 @@ class _SupportInfoScreenState extends State<SupportInfoScreen> {
         elevation: 0,
         scrolledUnderElevation: 2,
         automaticallyImplyLeading: true,
-        title: SafeArea(
-          child: Text(
-            "Support",
-            style: headerStyle.copyWith(
-              fontWeight: FontWeight.w600,
-              letterSpacing: 1.2,
-              fontSize: 20,
-            ),
+        title: Text(
+          "Support",
+          style: headerStyle.copyWith(
+            fontWeight: FontWeight.w600,
+            letterSpacing: 1.2,
+            fontSize: 20,
           ),
         ),
         centerTitle: true,

@@ -6,7 +6,7 @@ import '../models/pendingOrdersModel.dart';
 
 List<Map<String, String>> onBoardingData = [
   {
-    'text1': "Manage all your shoppa’s, in one app.",
+    'text1': "Manage all your shops, in one app.",
     'text2':
         "Reduce the stress of running your business across multiple social media platforms. With Shoppa, you get to easily manage business from one spot.",
     'buttontext': "Create Account",
