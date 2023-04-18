@@ -10,6 +10,7 @@ import 'package:shoppa_app/enums.dart';
 import 'package:shoppa_app/models/vendorModel.dart';
 import 'package:shoppa_app/providers/AuthStateProvider.dart';
 import 'package:shoppa_app/providers/GlobalStateProvider.dart';
+import 'package:shoppa_app/providers/VendorProvider.dart';
 import 'package:shoppa_app/screens/auth/inputReset/inputNum_screen.dart';
 import 'package:shoppa_app/services/AuthServiceClass.dart';
 import 'package:shoppa_app/widgets/defaultButton.dart';
@@ -98,6 +99,7 @@ class _LoginFormState extends State<LoginForm> {
                           await ConstantFunction.showSuccessDialog(context,
                               'Vendor successfully logged in, proceed to Home',
                               () {
+                            ref.read(vendorProvider.notifier).getVendor();
                             Navigator.of(context).pushReplacementNamed(
                               HomeScreen.routeName,
                             );

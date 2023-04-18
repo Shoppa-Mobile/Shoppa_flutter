@@ -65,7 +65,8 @@ class AuthApi {
     if (response.statusCode == 200) {
       SharedPreferences localStorage = await SharedPreferences.getInstance();
       var token = localStorage.setString('token', body['access_token']);
-      localStorage.setString('user', json.encode(body['user']));      token.log();
+      localStorage.setString('user', json.encode(body['user']));      
+      token.log();
       return response.statusCode;
     }
     if (response.statusCode == 422) {

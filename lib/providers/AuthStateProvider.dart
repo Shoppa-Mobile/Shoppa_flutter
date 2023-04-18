@@ -27,6 +27,7 @@ class AuthStateProvider extends StateNotifier<bool> {
     SharedPreferences localStorage = await SharedPreferences.getInstance();
     await localStorage.remove('user');
     await localStorage.remove('token');
+    await localStorage.clear();
     state = false;
   }
 }
