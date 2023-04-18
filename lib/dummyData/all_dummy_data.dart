@@ -8,7 +8,7 @@ List<Map<String, String>> onBoardingData = [
   {
     'text1': "Manage all your shops, in one app.",
     'text2':
-        "Reduce the stress of running your business across multiple social media platforms. With Shoppa, you get to easily manage business from one spot.",
+        "Reduce the stress of running your business across multiple social media platforms. With shoppa_app, you get to easily manage business from one spot.",
     'buttontext': "Create Account",
     'image': 'assets/images/Onboarding_img_1.png'
   },

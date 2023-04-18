@@ -30,7 +30,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Consumer(
       builder: (context, ref, child) {
         bool loading = ref.watch(globalLoading);
-        final myVendor = ref.watch(myVendorProvider);
+        final vendor = ref.watch(vendorProvider);
         return Loading(
           isLoading: loading,
           text: 'Logging Out Vendor...',
@@ -61,13 +61,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     SizedBox(
                       height: getPropHeight(16),
                     ),
-                    myVendor.when(
-                        data: (vendor) => Text(
-                              "${vendor.firstname}'s Boutique",
-                              style: headerStyle.copyWith(fontSize: 28),
-                            ),
-                        error: (error, stackTrace) => Text('Error: $error'),
-                        loading: () => const CircularProgressIndicator()),
+                    Text(
+                      "${vendor?.firstname}'s Boutique",
+                      style: headerStyle.copyWith(fontSize: 28),
+                    ),
                     SizedBox(
                       height: getPropHeight(16),
                     ),
@@ -170,15 +167,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             size: 18,
                           ),
                         ),
-                        SizedBox(height: getPropHeight(2)),
+                        SizedBox(
+                          height: getPropHeight(2),
+                        ),
                         ProfileDetailsCard2(
                           press: () {},
                           topText: 'Store Link',
-                          bottomText: "shoppa.com/${myVendor.when(
-                            data: (vendor) => vendor.firstname,
-                            error: (error, stackTrace) => error,
-                            loading: () => const CircularProgressIndicator(),
-                          )}'s boutique",
+                          bottomText:
+                              "shoppa.com/${vendor?.firstname}'s boutique",
                           iconData1: const Icon(Icons.share),
                           iconData2: const Icon(Icons.content_copy_outlined),
                         ),

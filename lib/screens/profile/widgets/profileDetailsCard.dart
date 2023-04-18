@@ -16,58 +16,51 @@ class ProfileCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer(
-      builder: (context, ref, child) {
-        final myVendor = ref.watch(myVendorProvider);
-        return InkWell(
-          onTap: press,
-          child: Card(
-            color: primaryColor.withOpacity(0.3),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-            child: SizedBox(
-              height: getPropHeight(64),
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  vertical: getPropHeight(8),
-                  horizontal: getPropWidth(10),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
+    return InkWell(
+      onTap: press,
+      child: Card(
+        color: primaryColor.withOpacity(0.3),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        child: SizedBox(
+          height: getPropHeight(64),
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: getPropHeight(8),
+              horizontal: getPropWidth(10),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Consumer(
+                  builder: (context, ref, child) {
+                    final vendor = ref.watch(vendorProvider);
+                    return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        myVendor.when(
-                            data: (vendor) => Text(
-                                  "${vendor.firstname} ${vendor.lastname}",
-                                  style: regTextStyle.copyWith(
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                            error: (error, stackTrace) => Text('Error: $error'),
-                            loading: () => const CircularProgressIndicator()),
-                        myVendor.when(
-                            data: (vendor) => Text(
-                                  vendor.email,
-                                  style: regTextStyle2,
-                                ),
-                            error: (error, stackTrace) => Text('Error: $error'),
-                            loading: () => const CircularProgressIndicator()),
+                        Text(
+                          "${vendor?.firstname} ${vendor?.lastname}",
+                          style: regTextStyle.copyWith(
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        Text(
+                          vendor!.email,
+                          style: regTextStyle2,
+                        )
                       ],
-                    ),
-                    const Icon(
-                      Icons.arrow_forward_ios,
-                      size: 18,
-                    ),
-                  ],
+                    );
+                  },
                 ),
-              ),
+                const Icon(
+                  Icons.arrow_forward_ios,
+                  size: 18,
+                ),
+              ],
             ),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }

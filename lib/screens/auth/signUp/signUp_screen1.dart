@@ -32,7 +32,7 @@ class SignUpScreen1 extends StatelessWidget {
                 style: headerStyle2.copyWith(fontSize: 20),
               ),
             ),
-            body:const SafeArea(
+            body: const SafeArea(
               child: SignUpContent(),
             ),
           ),

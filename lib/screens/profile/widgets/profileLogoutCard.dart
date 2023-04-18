@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shoppa_app/constants/colors.dart';
 import 'package:shoppa_app/constants/constants.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
@@ -21,12 +22,27 @@ class LogOutCard extends StatelessWidget {
           onTap: () async {
             ref.read(globalLoading.notifier).state = true;
             await ref.read(authProvider.notifier).clearCurrentUser();
+            final localStorage = await SharedPreferences.getInstance();
+            final loggedOut = await localStorage.clear();
+            resetState();
             ref.read(globalLoading.notifier).state = false;
-            // ignore: use_build_context_synchronously
-            Navigator.pushReplacementNamed(
-              context,
-              AuthenticationScreen.routeName,
-            );
+            debugPrint(loggedOut.toString());
+            if (loggedOut == true) {
+              // ignore: use_build_context_synchronously
+              Navigator.pushReplacementNamed(
+                context,
+                AuthenticationScreen.routeName,
+              );
+            } else {
+              // ignore: use_build_context_synchronously
+              ConstantFunction.showFailureDialog(
+                context,
+                'Unable to Log out, Try again...',
+                () {
+                  Navigator.pop(context);
+                },
+              );
+            }
           },
           child: Card(
             color: ordersCardColor,
@@ -62,4 +78,9 @@ class LogOutCard extends StatelessWidget {
       },
     );
   }
+}
+
+// Reset state when user logs out
+void resetState() {
+  ProviderContainer().dispose();
 }

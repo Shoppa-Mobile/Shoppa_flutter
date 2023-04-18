@@ -41,6 +41,7 @@ class _LoadingState extends State<Loading> {
               style: headerStyle3.copyWith(
                 color: primaryColor,
                 fontSize: 14,
+                decoration: TextDecoration.none,
               ),
             )
           ],

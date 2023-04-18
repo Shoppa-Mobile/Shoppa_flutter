@@ -26,7 +26,7 @@ class LoginScreen extends StatelessWidget {
             appBar: AppBar(
               elevation: 0,
             ),
-            body:SafeArea(
+            body: SafeArea(
               child: SingleChildScrollView(
                 child: SizedBox(
                   width: double.infinity,
