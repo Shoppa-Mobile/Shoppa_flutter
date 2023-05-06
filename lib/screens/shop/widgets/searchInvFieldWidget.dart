@@ -19,7 +19,7 @@ class SearchInventoryField extends StatelessWidget {
               style: BorderStyle.solid,
               width: 1),
           color: bgColor,
-          borderRadius: BorderRadius.circular(8)),
+          borderRadius: BorderRadius.circular(8),),
       child: TextField(
         onChanged: (value) {
           // search value
@@ -27,7 +27,7 @@ class SearchInventoryField extends StatelessWidget {
         decoration: InputDecoration(
           enabledBorder: InputBorder.none,
           focusedBorder: InputBorder.none,
-          hintText: "Search Order",
+          hintText: "Search Item",
           hintStyle: TextStyle(
             color: subHeaderTextColor.withOpacity(0.5),
             fontFamily: 'Lato',
