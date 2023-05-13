@@ -1,6 +1,5 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, must_be_immutable, prefer_const_constructors_in_immutables
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
@@ -15,6 +14,7 @@ TextFormField buildItemNameField(String itemName, List<String> errors) {
       if (value.isNotEmpty && errors.contains(itemNameNullError)) {
         errors.remove(itemNameNullError);
       }
+      itemName = value;
     },
     validator: (value) {
       if (value!.isEmpty && !errors.contains(itemNameNullError)) {
@@ -36,6 +36,7 @@ TextFormField buildItemDescriptionField(
       if (value.isNotEmpty && errors.contains(itemNameNullError)) {
         errors.remove(itemNameNullError);
       }
+      description = value;
     },
     validator: (value) {
       if (value!.isEmpty && !errors.contains(itemNameNullError)) {
@@ -57,13 +58,14 @@ TextFormField buildColorField(String color, List<String> errors) {
   return TextFormField(
     onSaved: (newValue) => color = newValue!,
     onChanged: (value) {
-      if (value.isNotEmpty && errors.contains(descriptionNullError)) {
-        errors.remove(descriptionNullError);
+      if (value.isNotEmpty && errors.contains(priceNullError)) {
+        errors.remove(priceNullError);
       }
+      color = value;
     },
     validator: (value) {
-      if (value!.isEmpty && !errors.contains(descriptionNullError)) {
-        errors.add(descriptionNullError);
+      if (value!.isEmpty && !errors.contains(priceNullError)) {
+        errors.add(priceNullError);
         return "";
       }
       return null;
@@ -73,7 +75,6 @@ TextFormField buildColorField(String color, List<String> errors) {
   );
 }
 
-// ignore: must_be_immutable
 class ItemImageField extends StatefulWidget {
   ItemImageField({
     super.key,
@@ -159,8 +160,26 @@ class _ItemImageFieldState extends State<ItemImageField> {
   }
 }
 
-class BuildPriceField extends StatelessWidget {
-  const BuildPriceField({super.key});
+List<String> currency = [
+  'NGN',
+  'USD',
+  'GBP',
+];
+
+String? selectedCur;
+
+class BuildPriceField extends StatefulWidget {
+  BuildPriceField({
+    super.key,
+    required this.errors,
+  });
+  final List<String> errors;
+  @override
+  State<BuildPriceField> createState() => _BuildPriceFieldState();
+}
+
+class _BuildPriceFieldState extends State<BuildPriceField> {
+  int? price;
 
   @override
   Widget build(BuildContext context) {
@@ -175,6 +194,82 @@ class BuildPriceField extends StatelessWidget {
       child: SizedBox(
         width: getPropWidth(381),
         height: getPropHeight(64),
+        child: Row(
+          children: [
+            Container(
+              width: getPropWidth(103),
+              height: getPropHeight(62),
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(8.0),
+                  topLeft: Radius.circular(8.0),
+                  bottomLeft: Radius.circular(8.0),
+                ),
+                color: primaryColor,
+              ),
+              child: DropdownButtonHideUnderline(
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: DropdownButton(
+                    dropdownColor: primaryColor,
+                    value: selectedCur,
+                    icon: const Icon(
+                      Icons.keyboard_arrow_down_rounded,
+                      size: 14,
+                      color: bgColor,
+                    ),
+                    items: currency.map(
+                      (String cur) {
+                        return DropdownMenuItem(
+                          value: cur,
+                          child: Text(
+                            cur,
+                            style: whiteHeaderStyle.copyWith(
+                              fontSize: 16,
+                            ),
+                          ),
+                        );
+                      },
+                    ).toList(),
+                    onChanged: (String? value) => setState(
+                      () {
+                        selectedCur = value;
+                      },
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              width: getPropWidth(8.0),
+            ),
+            Expanded(
+              child: TextFormField(
+                onSaved: (newValue) => price = int.parse(newValue!),
+                onChanged: (value) {
+                  if (value.isNotEmpty &&
+                      widget.errors.contains(priceNullError)) {
+                    widget.errors.remove(priceNullError);
+                  }
+                  price = int.parse(value);
+                },
+                validator: (value) {
+                  if (value!.isEmpty &&
+                      !widget.errors.contains(priceNullError)) {
+                    widget.errors.add(priceNullError);
+                    return "";
+                  }
+                  return null;
+                },
+                decoration: InputDecoration.collapsed(
+                  hintText: "Enter your Item's price",
+                  hintStyle: subTextStyle,
+                ),
+                keyboardType: TextInputType.text,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
