@@ -129,6 +129,7 @@ const String addressNullError = "Please enter your Store address";
 const String storeNumNullError = "Please enter your Store's Phone Number";
 const String itemNameNullError = "Please enter your Item Name";
 const String descriptionNullError = "Please enter your Item description";
+const String priceNullError = "Please enter your Item price";
 
 InputDecoration textFieldDecoration(String fieldtext) {
   return InputDecoration(
