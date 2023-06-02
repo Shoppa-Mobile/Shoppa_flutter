@@ -60,7 +60,7 @@ class _SignUpContentState extends State<SignUpContent> {
                 ],
               ),
               SizedBox(height: getPropHeight(45)),
-              const SignUpForm1()
+              const SingleChildScrollView(child: SignUpForm1())
             ],
           ),
         ),

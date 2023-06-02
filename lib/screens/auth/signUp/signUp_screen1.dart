@@ -26,6 +26,7 @@ class SignUpScreen1 extends StatelessWidget {
               elevation: 0,
               automaticallyImplyLeading: true,
               backgroundColor: bgColor,
+              scrolledUnderElevation: 1.5,
               centerTitle: true,
               title: Text(
                 'Create your account',
