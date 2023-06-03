@@ -179,7 +179,7 @@ class BuildPriceField extends StatefulWidget {
 }
 
 class _BuildPriceFieldState extends State<BuildPriceField> {
-  int? price;
+  double? price;
 
   @override
   Widget build(BuildContext context) {
@@ -245,13 +245,13 @@ class _BuildPriceFieldState extends State<BuildPriceField> {
             ),
             Expanded(
               child: TextFormField(
-                onSaved: (newValue) => price = int.parse(newValue!),
+                onSaved: (newValue) => price = double.parse(newValue!),
                 onChanged: (value) {
                   if (value.isNotEmpty &&
                       widget.errors.contains(priceNullError)) {
                     widget.errors.remove(priceNullError);
                   }
-                  price = int.parse(value);
+                  price = double.parse(value);
                 },
                 validator: (value) {
                   if (value!.isEmpty &&
