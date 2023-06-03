@@ -5,6 +5,7 @@ import 'package:shoppa_app/constants/size_configurations.dart';
 import 'package:shoppa_app/models/screenArguments.dart';
 import 'package:shoppa_app/providers/AuthStateProvider.dart';
 import 'package:shoppa_app/providers/GlobalStateProvider.dart';
+import 'package:shoppa_app/providers/VendorProvider.dart';
 import 'package:shoppa_app/screens/home/homeScreen.dart';
 import 'package:shoppa_app/services/AuthServiceClass.dart';
 import 'package:shoppa_app/widgets/defaultButton.dart';
@@ -118,6 +119,7 @@ class _SignUpForm2State extends State<SignUpForm2> {
                             await ConstantFunction.showSuccessDialog(context,
                                 'Vendor successfully created, proceed to Home',
                                 () {
+                              ref.read(vendorProvider.notifier).getVendor();
                               Navigator.of(context).pushReplacementNamed(
                                 HomeScreen.routeName,
                               );

@@ -284,9 +284,9 @@ class ConstantFunction {
         onWillPop: () async => false,
         child: AlertDialog(
           title: Text(text),
-          content: const Column(
+          content: Column(
             mainAxisSize: MainAxisSize.min,
-            children: [
+            children: const [
               CircularProgressIndicator(
                 color: primaryColor,
                 strokeWidth: 7.0,

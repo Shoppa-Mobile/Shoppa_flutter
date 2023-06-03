@@ -76,7 +76,7 @@ class _OnboardingContentState extends State<OnboardingContent> {
                   ),
                   DefaultButton(text: widget.buttonText, press: widget.press),
                   SizedBox(
-                    height: getPropWidth(15),
+                    height: getPropWidth(5),
                   ),
                   const LoginWidget(),
                   SizedBox(
