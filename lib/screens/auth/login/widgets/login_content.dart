@@ -63,9 +63,9 @@ class _LoginContentState extends State<LoginContent> {
                 SizedBox(
                   height: getPropHeight(16),
                 ),
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: const [
+                  children: [
                     SocialCard(
                       icon: "assets/icons/facebook.svg",
                     ),
