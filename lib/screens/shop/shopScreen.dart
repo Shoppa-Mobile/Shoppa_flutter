@@ -57,7 +57,7 @@ class _ShopScreenState extends State<ShopScreen> with TickerProviderStateMixin {
         body: Padding(
           padding: EdgeInsets.symmetric(
             horizontal: getPropWidth(18),
-            vertical: getPropHeight(20),
+            vertical: getPropHeight(10),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

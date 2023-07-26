@@ -182,11 +182,11 @@ class _LoginFormState extends State<LoginForm> {
               removeError(error: passNullError);
             });
           }
-          // else if (value.length >= 8) {
-          //   setState(() {
-          //     removeError(error: shortPassError);
-          //   });
-          // }
+          else if (value.length >= 8) {
+            setState(() {
+              removeError(error: shortPassError);
+            });
+          }
           password = value;
         },
         validator: (value) {
@@ -196,12 +196,12 @@ class _LoginFormState extends State<LoginForm> {
             });
             return "";
           }
-          // else if (value.length < 8) {
-          //   setState(() {
-          //     addError(error: shortPassError);
-          //   });
-          //   return "";
-          // }
+          else if (value.length < 8) {
+            setState(() {
+              addError(error: shortPassError);
+            });
+            return "";
+          }
           return null;
         },
         obscureText: true,

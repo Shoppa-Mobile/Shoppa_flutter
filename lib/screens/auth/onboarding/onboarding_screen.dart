@@ -1,7 +1,6 @@
 // ignore_for_file: unused_local_variable
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:shoppa_app/constants/size_configurations.dart';
 import 'package:shoppa_app/dummyData/all_dummy_data.dart';
 import 'package:shoppa_app/screens/auth/signUp/signUpOptionsScreen.dart';
 import 'package:shoppa_app/screens/auth/onboarding/widgets/onboarding_content.dart';

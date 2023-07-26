@@ -9,10 +9,11 @@ extension Log on Object {
   void log() => devtools.log(toString());
 }
 
-final sharedPreferencesProvider =
-    FutureProvider<SharedPreferences>((ref) async {
-  return await SharedPreferences.getInstance();
-});
+final sharedPreferencesProvider = FutureProvider<SharedPreferences>(
+  (ref) async {
+    return await SharedPreferences.getInstance();
+  },
+);
 
 final myVendorProvider = FutureProvider.autoDispose<VendorModel>(
   (ref) async {
@@ -64,6 +65,8 @@ final vendorProvider =
   return VendorNotifier()..getVendor();
 });
 
-final logoutProvider = StateNotifierProvider<LogoutNotifier, bool?>((ref) {
-  return LogoutNotifier()..clearVendor();
-});
+final logoutProvider = StateNotifierProvider<LogoutNotifier, bool?>(
+  (ref) {
+    return LogoutNotifier()..clearVendor();
+  },
+);
