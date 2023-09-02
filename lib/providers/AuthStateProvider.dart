@@ -32,6 +32,22 @@ class AuthStateProvider extends StateNotifier<bool> {
   }
 }
 
+class AuthKeyProvider extends StateNotifier<String> {
+  AuthKeyProvider(String state) : super('');
+
+  Future<String> getCurrentUser() async {
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    var userToken = localStorage.getString('token') ?? 'Not authenticated';
+    userToken.log();
+    state = userToken;
+    return state;
+  }
+}
+
+final authKeyProvider = StateNotifierProvider<AuthKeyProvider, String>(
+  (ref) => AuthKeyProvider('')..getCurrentUser(),
+);
+
 final authProvider = StateNotifierProvider<AuthStateProvider, bool>(
   (ref) => AuthStateProvider(false),
 );

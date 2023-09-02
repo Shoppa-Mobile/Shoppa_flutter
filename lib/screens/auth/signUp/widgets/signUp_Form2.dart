@@ -50,120 +50,121 @@ class _SignUpForm2State extends State<SignUpForm2> {
     return Consumer(
       builder: (context, ref, child) {
         return Form(
-            key: _formkey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("Store Name", style: regTextStyle),
-                SizedBox(height: getPropHeight(8)),
-                buildStoreNameField(),
-                SizedBox(height: getPropHeight(20)),
-                Text(
-                  "Store Address",
-                  style: regTextStyle,
-                ),
-                SizedBox(height: getPropHeight(8)),
-                buildStoreAddressField(),
-                SizedBox(height: getPropHeight(20)),
-                Text(
-                  "Store Phone Number",
-                  style: regTextStyle,
-                ),
-                SizedBox(height: getPropHeight(8)),
-                buildStoreNumberField(),
-                SizedBox(height: getPropHeight(20)),
-                Text(
-                  "Password",
-                  style: regTextStyle,
-                ),
-                SizedBox(height: getPropHeight(8)),
-                buildPasswordField(),
-                SizedBox(height: getPropHeight(10)),
-                FormError(errors: errors),
-                SizedBox(height: getPropHeight(35)),
-                DefaultButton(
-                  text: "Create Account",
-                  press: () async {
-                    // Register User
-                    if (_formkey.currentState!.validate()) {
-                      _formkey.currentState!.save();
-                      var user = {
-                        'first_name': args.firstName,
-                        'last_name': args.lastName,
-                        'phone': args.phoneNum,
-                        'email': args.email,
-                        'store_name': storeName,
-                        'store_address': storeAddress,
-                        'store_phone_number': storeNum,
-                        'password': password,
-                      };
-                      ref.read(globalLoading.notifier).state = true;
-                      try {
-                        int response = await const AuthApi().registerUser(
-                          user,
-                          '/vendor/register',
+          key: _formkey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("Store Name", style: regTextStyle),
+              SizedBox(height: getPropHeight(8)),
+              buildStoreNameField(),
+              SizedBox(height: getPropHeight(20)),
+              Text(
+                "Store Address",
+                style: regTextStyle,
+              ),
+              SizedBox(height: getPropHeight(8)),
+              buildStoreAddressField(),
+              SizedBox(height: getPropHeight(20)),
+              Text(
+                "Store Phone Number",
+                style: regTextStyle,
+              ),
+              SizedBox(height: getPropHeight(8)),
+              buildStoreNumberField(),
+              SizedBox(height: getPropHeight(20)),
+              Text(
+                "Password",
+                style: regTextStyle,
+              ),
+              SizedBox(height: getPropHeight(8)),
+              buildPasswordField(),
+              SizedBox(height: getPropHeight(10)),
+              FormError(errors: errors),
+              SizedBox(height: getPropHeight(35)),
+              DefaultButton(
+                text: "Create Account",
+                press: () async {
+                  // Register User
+                  if (_formkey.currentState!.validate()) {
+                    _formkey.currentState!.save();
+                    var user = {
+                      'first_name': args.firstName,
+                      'last_name': args.lastName,
+                      'phone': args.phoneNum,
+                      'email': args.email,
+                      'store_name': storeName,
+                      'store_address': storeAddress,
+                      'store_phone_number': storeNum,
+                      'password': password,
+                    };
+                    ref.read(globalLoading.notifier).state = true;
+                    try {
+                      int response = await const AuthApi().registerUser(
+                        user,
+                        '/vendor/register',
+                      );
+                      if (response == 201) {
+                        int status = await const AuthApi().loginUser(
+                          {
+                            'email': args.email,
+                            'password': password,
+                          },
+                          '/auth/login',
                         );
-                        if (response == 201) {
-                          int status = await const AuthApi().loginUser(
-                            {
-                              'email': args.email,
-                              'password': password,
-                            },
-                            '/auth/login',
-                          );
-                          // ignore: unnecessary_null_comparison
-                          if (status == 200) {
-                            ref.read(globalLoading.notifier).state = false;
-                            ref.read(authProvider.notifier).setCurrentUser();
-                            // ignore: use_build_context_synchronously
-                            await ConstantFunction.showSuccessDialog(context,
-                                'Vendor successfully created, proceed to Home',
-                                () {
-                              ref.read(vendorProvider.notifier).getVendor();
-                              Navigator.of(context).pushReplacementNamed(
-                                HomeScreen.routeName,
-                              );
-                            });
-                          }
-                          if (status == 422) {
-                            ref.read(globalLoading.notifier).state = false;
-                            // ignore: use_build_context_synchronously
-                            await ConstantFunction.showFailureDialog(
-                              context,
-                              'Invalid Credentials, Unable to Sign In after creating vendor... \n Try again...',
+                        // ignore: unnecessary_null_comparison
+                        if (status == 200) {
+                          ref.read(globalLoading.notifier).state = false;
+                          ref.read(authProvider.notifier).setCurrentUser();
+                          // ignore: use_build_context_synchronously
+                          await ConstantFunction.showSuccessDialog(context,
+                              'Vendor successfully created, proceed to Home',
                               () {
-                                Navigator.pop(context);
-                              },
+                            ref.read(vendorProvider.notifier).getVendor();
+                            Navigator.of(context).pushReplacementNamed(
+                              HomeScreen.routeName,
                             );
-                          }
-                        } else {
+                          });
+                        }
+                        if (status == 422) {
                           ref.read(globalLoading.notifier).state = false;
                           // ignore: use_build_context_synchronously
                           await ConstantFunction.showFailureDialog(
                             context,
-                            'Invalid Credentials, Unable to Create Vendor...',
+                            'Invalid Credentials, Unable to Sign In after creating vendor... \n Try again...',
                             () {
                               Navigator.pop(context);
                             },
                           );
                         }
-                      } catch (e) {
+                      } else {
                         ref.read(globalLoading.notifier).state = false;
-                        var error = e.toString();
-                        debugPrint(error);
+                        // ignore: use_build_context_synchronously
                         await ConstantFunction.showFailureDialog(
                           context,
-                          'Invalid Credentials, Unable to Create Vendor... \n Error: $error',
+                          'Invalid Credentials, Unable to Create Vendor...',
                           () {
                             Navigator.pop(context);
                           },
                         );
                       }
+                    } catch (e) {
+                      ref.read(globalLoading.notifier).state = false;
+                      var error = e.toString();
+                      debugPrint(error);
+                      await ConstantFunction.showFailureDialog(
+                        context,
+                        'Invalid Credentials, Unable to Create Vendor... \n Error: $error',
+                        () {
+                          Navigator.pop(context);
+                        },
+                      );
                     }
-                  },
-                )
-              ],
-            ));
+                  }
+                },
+              )
+            ],
+          ),
+        );
       },
     );
   }

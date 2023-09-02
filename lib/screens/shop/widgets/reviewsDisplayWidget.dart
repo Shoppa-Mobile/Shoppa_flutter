@@ -51,14 +51,15 @@ class ReviewDisplayWidget extends StatelessWidget {
                     physics: const ScrollPhysics(),
                     itemBuilder: (context, index) {
                       return InventoryCard(
-                        goodsImage: demoInventory[index].goodsImage,
+                        goodsImage: const {},
                         goodsName: demoInventory[index].goodsName,
                         price: demoInventory[index].price,
                         homeColor: false,
-                        press: () {
+                        press1: () {
                           Navigator.of(context)
                               .pushNamed(ReviewDisplayScreen.routeName);
                         },
+                        press2: () {},
                       );
                     })
               ],
