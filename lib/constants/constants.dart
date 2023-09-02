@@ -127,9 +127,10 @@ const String phoneNumNullError = "Please enter your Phone Number";
 const String storeNameNullError = "Please enter your Store Name";
 const String addressNullError = "Please enter your Store address";
 const String storeNumNullError = "Please enter your Store's Phone Number";
-const String itemNameNullError = "Please enter your Item Name";
-const String descriptionNullError = "Please enter your Item description";
-const String priceNullError = "Please enter your Item price";
+const String productNameNullError = "Please enter your product Name";
+const String descriptionNullError = "Please enter your product description";
+const String priceNullError = "Please enter your product price";
+const String productColorError = "Please choose your products color";
 
 InputDecoration textFieldDecoration(String fieldtext) {
   return InputDecoration(

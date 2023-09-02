@@ -92,6 +92,8 @@ class _LoginFormState extends State<LoginForm> {
                           },
                           '/auth/login',
                         );
+                        String authKey = ref.read(authKeyProvider);
+                        debugPrint(authKey);
                         // ignore: unnecessary_null_comparison
                         if (status == 200) {
                           ref.read(authProvider.notifier).setCurrentUser();
@@ -121,6 +123,7 @@ class _LoginFormState extends State<LoginForm> {
                         ref.read(globalLoading.notifier).state = false;
                         var error = e.toString();
                         // log();
+
                         debugPrint(error);
                         await ConstantFunction.showFailureDialog(
                           context,
@@ -181,8 +184,7 @@ class _LoginFormState extends State<LoginForm> {
             setState(() {
               removeError(error: passNullError);
             });
-          }
-          else if (value.length >= 8) {
+          } else if (value.length >= 8) {
             setState(() {
               removeError(error: shortPassError);
             });
@@ -195,8 +197,7 @@ class _LoginFormState extends State<LoginForm> {
               addError(error: passNullError);
             });
             return "";
-          }
-          else if (value.length < 8) {
+          } else if (value.length < 8) {
             setState(() {
               addError(error: shortPassError);
             });

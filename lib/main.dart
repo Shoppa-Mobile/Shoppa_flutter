@@ -22,6 +22,7 @@ class Shoppa extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ref.read(authProvider.notifier).setCurrentUser();
+    ref.read(authKeyProvider.notifier).getCurrentUser();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Shoppa',
