@@ -61,24 +61,24 @@ class InventoryDisplayWidget extends StatelessWidget {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Image.asset('assets/images/inventory.png'),
-                            SizedBox(
-                              height: getPropHeight(5),
-                            ),
-                            Text(
-                              'Nothing to see here yet',
-                              style: regTextStyle.copyWith(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w300,
-                                color: regularTextColor.withOpacity(0.4),
+                            Center(
+                              child: Text(
+                                'Unable to retrieve vendors products',
+                                style: regTextStyle.copyWith(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                  color: regularTextColor.withOpacity(0.4),
+                                ),
                               ),
                             ),
-                            Text(
-                              'Check your Internet connection or Contact your Admin',
-                              style: regTextStyle.copyWith(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w300,
-                                color: regularTextColor.withOpacity(0.4),
+                            Center(
+                              child: Text(
+                                'Check your Internet connection or Contact your Admin',
+                                style: regTextStyle.copyWith(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: regularTextColor.withOpacity(0.4),
+                                ),
                               ),
                             ),
                           ],
