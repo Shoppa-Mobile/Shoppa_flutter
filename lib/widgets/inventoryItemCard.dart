@@ -20,7 +20,7 @@ class InventoryCard extends StatelessWidget {
   final String goodsName, price;
   bool? outOfStock, homeColor;
   final GestureTapCallback press1, press2;
-  Map<String, dynamic> goodsImage;
+  String goodsImage;
 
   @override
   Widget build(BuildContext context) {
@@ -28,15 +28,9 @@ class InventoryCard extends StatelessWidget {
       'Edit Item',
       'Delete from Inventory',
     ];
-    String imageUrl = '';
-    final images = goodsImage;
-    for (var key in images.keys) {
-      final imageInfo = images[key] as Map<String, dynamic>;
-      // Access the 'preview_url' property within each image
-      final String previewUrl = imageInfo['preview_url'];
-      previewUrl;
-      imageUrl = previewUrl;
-    }
+    // final images = goodsImage;
+    // final firstImagePreviewUrl =
+    //     images.isNotEmpty ? images.values.elementAt(0)['preview_url'] : null;
 
     return SizedBox(
       width: getPropWidth(185),
@@ -65,12 +59,15 @@ class InventoryCard extends StatelessWidget {
                           topRight: Radius.circular(16),
                         ),
                       ),
-                      child: (imageUrl.isEmpty)
+                      child: (goodsImage.isEmpty)
                           ? Center(
-                              child: Image.asset('assets/images/inventory.png'),
+                              child: Text(
+                                'No image available',
+                                style: regTextStyle2,
+                              ),
                             )
                           : Image.network(
-                              imageUrl,
+                              goodsImage,
                               fit: BoxFit.cover,
                               height: getPropHeight(135),
                               width: getPropWidth(185),
