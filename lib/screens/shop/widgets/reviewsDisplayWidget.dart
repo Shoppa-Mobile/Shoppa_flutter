@@ -51,7 +51,7 @@ class ReviewDisplayWidget extends StatelessWidget {
                     physics: const ScrollPhysics(),
                     itemBuilder: (context, index) {
                       return InventoryCard(
-                        goodsImage: const {},
+                        goodsImage: '',
                         goodsName: demoInventory[index].goodsName,
                         price: demoInventory[index].price,
                         homeColor: false,
