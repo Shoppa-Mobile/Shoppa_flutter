@@ -104,7 +104,8 @@ class InventoryDisplayWidget extends StatelessWidget {
                               physics: const ScrollPhysics(),
                               itemBuilder: (context, index) {
                                 return InventoryCard(
-                                  goodsImage: products[index].goodsImage[0],
+                                  // goodsImage: products[index].goodsImage[0],
+                                  goodsImage: {},
                                   goodsName: products[index].productName,
                                   price:
                                       products[index].productPrice.toString(),

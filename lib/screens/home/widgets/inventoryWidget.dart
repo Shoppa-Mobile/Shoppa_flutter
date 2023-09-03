@@ -83,7 +83,8 @@ class Inventory2 extends StatelessWidget {
                         return Padding(
                             padding: EdgeInsets.only(right: getPropWidth(10)),
                             child: InventoryCard(
-                              goodsImage: products[index].goodsImage[0],
+                              // goodsImage: products[index].goodsImage[0] ?? 'https://place-hold.it/300x200',
+                              goodsImage: {},
                               goodsName: products[index].productName,
                               price: products[index].productPrice.toString(),
                               homeColor: true,

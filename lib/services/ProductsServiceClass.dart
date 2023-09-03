@@ -26,6 +26,7 @@ class ProductsAPI {
   }) async {
     try {
       String url = "$baseUrl/product/create";
+      print('URL: $url');
       var uri = Uri.parse(url);
       var formData = http.MultipartRequest(
         'POST',
@@ -35,8 +36,9 @@ class ProductsAPI {
       formData.fields['name'] = productName;
       formData.fields['description'] = productDescription;
       formData.fields['price'] = price.toString();
+      formData.fields['in_stock'] = '1';
       if (colors != []) {
-        formData.fields['colours'] = jsonEncode(colors);
+        // formData.fields['colours'] = jsonEncode([]);
       }
       // Add product image file
       if (file != null) {
@@ -51,6 +53,8 @@ class ProductsAPI {
       // Set Headers
       formData.headers['Authorization'] = 'Bearer $authKey';
       formData.headers['Content-Type'] = 'multipart/form-data';
+      formData.headers['Accept'] = 'application/json';
+
 
       var response = await formData.send().timeout(const Duration(seconds: 30));
       var responseBody = await response.stream.bytesToString();
