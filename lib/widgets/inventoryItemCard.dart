@@ -20,7 +20,7 @@ class InventoryCard extends StatelessWidget {
   final String goodsName, price;
   bool? outOfStock, homeColor;
   final GestureTapCallback press1, press2;
-  Map goodsImage;
+  Map<String, dynamic> goodsImage;
 
   @override
   Widget build(BuildContext context) {
