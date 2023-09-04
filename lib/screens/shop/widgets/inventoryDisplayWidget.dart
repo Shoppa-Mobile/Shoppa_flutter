@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shoppa_app/constants/colors.dart';
 import 'package:shoppa_app/constants/constants.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
+import 'package:shoppa_app/models/productsModel.dart';
 import 'package:shoppa_app/providers/AuthStateProvider.dart';
 import 'package:shoppa_app/providers/GlobalStateProvider.dart';
 import 'package:shoppa_app/screens/shop/uploadProductScreen.dart';
@@ -54,6 +55,26 @@ class InventoryDisplayWidget extends StatelessWidget {
             child: Consumer(
               builder: (context, ref, child) {
                 final productsAsyncValue = ref.watch(productsProvider);
+                final refreshProducts = ref.read(refreshProductsProvider);
+                Future<bool> deleteProduct(int productID, String authToken,
+                    AsyncValue<List<ProductsModel>> productsAsyncValue) async {
+                  try {
+                    // Perform the deletion operation here
+                    int response = await productService.deleteProduct(
+                        productID, authToken);
+                    if (response == 200) {
+                      refreshProducts(productsAsyncValue);
+                      return true;
+                    } else {
+                      return false;
+                    }
+                  } catch (error) {
+                    // Handle error
+                    debugPrint(error.toString());
+                    return false;
+                  }
+                }
+
                 return productsAsyncValue.when(
                   data: (products) {
                     if (products.isEmpty) {
@@ -61,24 +82,16 @@ class InventoryDisplayWidget extends StatelessWidget {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Center(
-                              child: Text(
-                                'Unable to retrieve vendors products',
-                                style: regTextStyle.copyWith(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                  color: regularTextColor.withOpacity(0.4),
-                                ),
-                              ),
+                            Image.asset('assets/images/inventory.png'),
+                            SizedBox(
+                              height: getPropHeight(5),
                             ),
-                            Center(
-                              child: Text(
-                                'Check your Internet connection or Contact your Admin',
-                                style: regTextStyle.copyWith(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                  color: regularTextColor.withOpacity(0.4),
-                                ),
+                            Text(
+                              'Nothing to see here yet',
+                              style: regTextStyle.copyWith(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w300,
+                                color: regularTextColor.withOpacity(0.4),
                               ),
                             ),
                           ],
@@ -104,8 +117,7 @@ class InventoryDisplayWidget extends StatelessWidget {
                               physics: const ScrollPhysics(),
                               itemBuilder: (context, index) {
                                 return InventoryCard(
-                                  // goodsImage: products[index].goodsImage[0],
-                                  goodsImage: {},
+                                  goodsImage: products[index].images,
                                   goodsName: products[index].productName,
                                   price:
                                       products[index].productPrice.toString(),
@@ -122,9 +134,11 @@ class InventoryDisplayWidget extends StatelessWidget {
                                         ref.read(authKeyProvider);
                                     int productID = products[index].productID;
                                     try {
-                                      int response = await productService
-                                          .deleteProduct(productID, authToken);
-                                      if (response == 200) {
+                                      bool response = await deleteProduct(
+                                          productID,
+                                          authToken,
+                                          productsAsyncValue);
+                                      if (response == true) {
                                         ref.read(globalLoading.notifier).state =
                                             false;
                                         await ConstantFunction
@@ -132,7 +146,6 @@ class InventoryDisplayWidget extends StatelessWidget {
                                           context,
                                           'Item successfully deleted',
                                           () {
-                                            ref.watch(productsProvider);
                                             Navigator.pop(context);
                                           },
                                         );

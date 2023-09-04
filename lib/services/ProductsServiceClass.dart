@@ -55,7 +55,6 @@ class ProductsAPI {
       formData.headers['Content-Type'] = 'multipart/form-data';
       formData.headers['Accept'] = 'application/json';
 
-
       var response = await formData.send().timeout(const Duration(seconds: 30));
       var responseBody = await response.stream.bytesToString();
 
@@ -233,8 +232,8 @@ class ProductsAPI {
                 productName: item['name'],
                 productDescription: item['description'],
                 productPrice: double.parse(item['price']),
-                goodsImage: (item['images'] as List<dynamic>)
-                    .cast<Map<String, dynamic>>(),
+                images: item['images'],
+                colors: item['colours'],
               ),
             )
             .toList();

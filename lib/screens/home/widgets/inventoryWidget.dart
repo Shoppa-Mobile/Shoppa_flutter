@@ -50,73 +50,98 @@ class Inventory2 extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Center(
-                      child: Text(
-                        'Unable to retrieve vendors products',
-                        style: regTextStyle.copyWith(
-                          fontSize: 22,
-                          fontWeight: FontWeight.w600,
-                          color: regularTextColor.withOpacity(0.4),
-                        ),
+                    Image.asset('assets/images/inventory.png'),
+                    Container(
+                      height: getPropHeight(5),
+                    ),
+                    Text(
+                      'Nothing to see here yet',
+                      style: regTextStyle.copyWith(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w300,
+                        color: regularTextColor,
                       ),
                     ),
-                    Center(
-                      child: Text(
-                        'Check your Internet connection or Contact your Admin',
-                        style: regTextStyle.copyWith(
-                          fontSize: 22,
-                          fontWeight: FontWeight.w500,
-                          color: regularTextColor.withOpacity(0.4),
+                    SizedBox(
+                      width: getPropWidth(210),
+                      height: getPropHeight(40),
+                      child: MaterialButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8)),
+                        color: primaryColor,
+                        onPressed: () {
+                          Navigator.of(context)
+                              .pushNamed(UploadProductScreen.routeName);
+                        },
+                        child: Text(
+                          " +  Add new Item ",
+                          style: whiteHeaderStyle.copyWith(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
                     ),
                   ],
                 ),
               );
-            }
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: getPropHeight(230),
-                  width: double.infinity,
-                  child: ListView.builder(
-                      shrinkWrap: true,
-                      padding: const EdgeInsets.only(right: 10),
-                      itemCount: products.length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                            padding: EdgeInsets.only(right: getPropWidth(10)),
-                            child: InventoryCard(
-                              // goodsImage: products[index].goodsImage[0] ?? 'https://place-hold.it/300x200',
-                              goodsImage: {},
-                              goodsName: products[index].productName,
-                              price: products[index].productPrice.toString(),
-                              homeColor: true,
-                              press1: () {
-                                Navigator.of(context)
-                                    .pushNamed(ItemDisplayScreen.routeName);
-                              },
-                              press2: () async {
-                                Navigator.pop(context);
-                                ref.read(globalLoading.notifier).state = true;
-                                String authToken = ref.read(authKeyProvider);
-                                int productID = products[index].productID;
-                                try {
-                                  bool response = await deleteProduct(
-                                      productID, authToken, productsAsyncValue);
-                                  if (response == true) {
-                                    ref.read(globalLoading.notifier).state =
-                                        false;
-                                    await ConstantFunction.showSuccessDialog(
-                                      context,
-                                      'Item successfully deleted',
-                                      () {
-                                        Navigator.pop(context);
-                                      },
-                                    );
-                                  } else {
+            } else {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: getPropHeight(230),
+                    width: double.infinity,
+                    child: ListView.builder(
+                        shrinkWrap: true,
+                        padding: const EdgeInsets.only(right: 10),
+                        itemCount: products.length,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                              padding: EdgeInsets.only(right: getPropWidth(10)),
+                              child: InventoryCard(
+                                goodsImage: products[index].images,
+                                goodsName: products[index].productName,
+                                price: products[index].productPrice.toString(),
+                                homeColor: true,
+                                press1: () {
+                                  Navigator.of(context)
+                                      .pushNamed(ItemDisplayScreen.routeName);
+                                },
+                                press2: () async {
+                                  Navigator.pop(context);
+                                  ref.read(globalLoading.notifier).state = true;
+                                  String authToken = ref.read(authKeyProvider);
+                                  int productID = products[index].productID;
+                                  try {
+                                    bool response = await deleteProduct(
+                                        productID,
+                                        authToken,
+                                        productsAsyncValue);
+                                    if (response == true) {
+                                      ref.read(globalLoading.notifier).state =
+                                          false;
+                                      await ConstantFunction.showSuccessDialog(
+                                        context,
+                                        'Item successfully deleted',
+                                        () {
+                                          Navigator.pop(context);
+                                        },
+                                      );
+                                    } else {
+                                      ref.read(globalLoading.notifier).state =
+                                          false;
+                                      await ConstantFunction.showFailureDialog(
+                                        context,
+                                        'Unable to delete Item, Check Internet Connection',
+                                        () {
+                                          Navigator.pop(context);
+                                        },
+                                      );
+                                      debugPrint(response.toString());
+                                    }
+                                  } catch (e) {
                                     ref.read(globalLoading.notifier).state =
                                         false;
                                     await ConstantFunction.showFailureDialog(
@@ -126,26 +151,15 @@ class Inventory2 extends StatelessWidget {
                                         Navigator.pop(context);
                                       },
                                     );
-                                    debugPrint(response.toString());
+                                    debugPrint(e.toString());
                                   }
-                                } catch (e) {
-                                  ref.read(globalLoading.notifier).state =
-                                      false;
-                                  await ConstantFunction.showFailureDialog(
-                                    context,
-                                    'Unable to delete Item, Check Internet Connection',
-                                    () {
-                                      Navigator.pop(context);
-                                    },
-                                  );
-                                  debugPrint(e.toString());
-                                }
-                              },
-                            ));
-                      }),
-                )
-              ],
-            );
+                                },
+                              ));
+                        }),
+                  )
+                ],
+              );
+            }
           },
           loading: () => const Center(
             child: CircularProgressIndicator(
@@ -161,7 +175,7 @@ class Inventory2 extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset('assets/images/inventory.png'),
-                  SizedBox(
+                  Container(
                     height: getPropHeight(5),
                   ),
                   Text(
@@ -172,7 +186,7 @@ class Inventory2 extends StatelessWidget {
                       color: regularTextColor.withOpacity(0.4),
                     ),
                   ),
-                  SizedBox(
+                  Container(
                     height: getPropHeight(5),
                   ),
                   SizedBox(

@@ -11,6 +11,7 @@ import 'package:shoppa_app/constants/constants.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
 import 'package:shoppa_app/providers/AuthStateProvider.dart';
 import 'package:shoppa_app/providers/GlobalStateProvider.dart';
+import 'package:shoppa_app/providers/productServiceProvider.dart';
 import 'package:shoppa_app/screens/shop/shopScreen.dart';
 import 'package:shoppa_app/services/ProductsServiceClass.dart';
 import 'package:shoppa_app/widgets/defaultButton.dart';
@@ -103,6 +104,8 @@ class _UploadProductFormState extends State<UploadProductForm> {
   Widget build(BuildContext context) {
     return Consumer(
       builder: (context, ref, child) {
+        final productsAsyncValue = ref.watch(productsProvider);
+        final refreshProducts = ref.read(refreshProductsProvider);
         return Form(
           key: _formkey,
           child: Column(
@@ -181,6 +184,7 @@ class _UploadProductFormState extends State<UploadProductForm> {
                           colors: hexColorList,
                           file: itemImage);
                       if (response == 201) {
+                        refreshProducts(productsAsyncValue);
                         ref.read(globalLoading.notifier).state = false;
                         await ConstantFunction.showSuccessDialog(
                           context,
