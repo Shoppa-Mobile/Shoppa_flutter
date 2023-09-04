@@ -20,7 +20,7 @@ class InventoryCard extends StatelessWidget {
   final String goodsName, price;
   bool? outOfStock, homeColor;
   final GestureTapCallback press1, press2;
-  Map<String, dynamic> goodsImage;
+  List goodsImage;
 
   @override
   Widget build(BuildContext context) {
@@ -61,13 +61,10 @@ class InventoryCard extends StatelessWidget {
                       ),
                       child: (goodsImage.isEmpty)
                           ? Center(
-                              child: Text(
-                                'No image available',
-                                style: regTextStyle2,
-                              ),
+                              child: Image.asset('assets/images/inventory.png'),
                             )
                           : Image.network(
-                              goodsImage,
+                              goodsImage[0],
                               fit: BoxFit.cover,
                               height: getPropHeight(135),
                               width: getPropWidth(185),
