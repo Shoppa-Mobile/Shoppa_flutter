@@ -6,6 +6,7 @@ import 'package:shoppa_app/constants/size_configurations.dart';
 import 'package:shoppa_app/models/productsModel.dart';
 import 'package:shoppa_app/providers/AuthStateProvider.dart';
 import 'package:shoppa_app/providers/GlobalStateProvider.dart';
+import 'package:shoppa_app/screens/shop/editItemScreen.dart';
 import 'package:shoppa_app/screens/shop/uploadProductScreen.dart';
 import 'package:shoppa_app/screens/shop/itemDisplayScreen.dart';
 import 'package:shoppa_app/services/ProductsServiceClass.dart';
@@ -106,7 +107,7 @@ class InventoryDisplayWidget extends StatelessWidget {
                               gridDelegate:
                                   SliverGridDelegateWithFixedCrossAxisCount(
                                       crossAxisCount: 2,
-                                      mainAxisExtent: getPropHeight(200),
+                                      mainAxisExtent: getPropHeight(240),
                                       childAspectRatio: 1.2,
                                       crossAxisSpacing: getPropWidth(15),
                                       mainAxisSpacing: getPropHeight(25)),
@@ -122,9 +123,10 @@ class InventoryDisplayWidget extends StatelessWidget {
                                   price:
                                       products[index].productPrice.toString(),
                                   homeColor: false,
+                                  colors: products[index].colors,
                                   press1: () {
                                     Navigator.of(context)
-                                        .pushNamed(ItemDisplayScreen.routeName);
+                                        .pushNamed(EditItemScreen.routeName);
                                   },
                                   press2: () async {
                                     Navigator.pop(context);
@@ -174,6 +176,10 @@ class InventoryDisplayWidget extends StatelessWidget {
                                       );
                                       debugPrint(e.toString());
                                     }
+                                  },
+                                  press3: () {
+                                    Navigator.of(context)
+                                        .pushNamed(ItemDisplayScreen.routeName);
                                   },
                                 );
                               })

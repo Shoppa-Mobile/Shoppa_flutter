@@ -82,7 +82,7 @@ class _SignUpForm2State extends State<SignUpForm2> {
               FormError(errors: errors),
               SizedBox(height: getPropHeight(35)),
               DefaultButton(
-                text: "Create Account",
+                text: "View Store",
                 press: () async {
                   // Register User
                   if (_formkey.currentState!.validate()) {

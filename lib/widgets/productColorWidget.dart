@@ -10,8 +10,7 @@ class ColorWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return CircleAvatar(
       backgroundColor: productColor,
-      radius: 12,
+      radius: 24,
     );
-    
   }
 }

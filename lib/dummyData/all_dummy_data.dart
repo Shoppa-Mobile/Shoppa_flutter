@@ -6,23 +6,23 @@ import '../models/pendingOrdersModel.dart';
 
 List<Map<String, String>> onBoardingData = [
   {
-    'text1': "Manage all your shops, in one app.",
+    'text1': "Manage all your shoppa’s, in one app.",
     'text2':
-        "Reduce the stress of running your business across multiple social media platforms. With shoppa_app, you get to easily manage business from one spot.",
-    'buttontext': "Create Account",
+        "Reduce the stress of running your business across multiple social media platforms. With Shoppa, you get to easily manage all your businesses from one app. ",
+    'buttontext': "Let's get started",
     'image': 'assets/images/Onboarding_img_1.png'
   },
   {
     'text1': "Get a personal shop for your business.",
     'text2':
-        "Have all your products displayed in your shop and improve customer satisfaction with  page, share your product page and have your customers enjoy shopping better.",
-    'buttontext': "Create Account",
+        "Create a free shop and customizable link that makes shopping for your customers and business easier. Shoppa gives you value and ease, all year round.",
+    'buttontext': "Let's get started",
     'image': 'assets/images/Onboarding_img_2.png'
   },
   {
-    'text1': "Get Started",
+    'text1': "It’s time to get your customers shopping!",
     'text2': '',
-    'buttontext': "Create Account",
+    'buttontext': "Create an Account",
     'image': 'assets/images/Onboarding_img_3.png'
   }
 ];

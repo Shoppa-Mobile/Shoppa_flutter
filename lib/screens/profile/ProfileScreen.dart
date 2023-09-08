@@ -31,6 +31,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       builder: (context, ref, child) {
         bool loading = ref.watch(globalLoading);
         final vendor = ref.watch(vendorProvider);
+        
         return Loading(
           isLoading: loading,
           text: 'Logging Out Vendor...',
