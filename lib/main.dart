@@ -1,24 +1,43 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:shoppa_app/constants/colors.dart';
+import 'package:shoppa_app/providers/AuthStateProvider.dart';
+import 'package:shoppa_app/routes.dart';
+import 'package:shoppa_app/screens/splash/splash_screen.dart';
 
-void main() {
-  runApp(MaterialApp(
-    title: 'Shoppa Mobile',
-    theme: ThemeData(
-      primarySwatch: Colors.green,
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  DartPluginRegistrant.ensureInitialized();
+  runApp(
+    const ProviderScope(
+      child: Shoppa(),
     ),
-    home: const HomePage(),
-  ));
+  );
 }
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
+class Shoppa extends ConsumerWidget {
+  const Shoppa({Key? key}) : super(key: key);
+  // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home Page'),
+  Widget build(BuildContext context, WidgetRef ref) {
+    ref.read(authProvider.notifier).setCurrentUser();
+    ref.read(authKeyProvider.notifier).getCurrentUser();
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Shoppa',
+      theme: ThemeData(
+        appBarTheme: const AppBarTheme(
+          iconTheme: IconThemeData(color: regularTextColor),
+          backgroundColor: bgColor,
+        ),
+        fontFamily: "Raleway",
+        colorScheme: ColorScheme.fromSwatch(
+          backgroundColor: bgColor,
+        ),
       ),
+      initialRoute: SplashScreen.routeName,
+      routes: routes,
     );
   }
 }

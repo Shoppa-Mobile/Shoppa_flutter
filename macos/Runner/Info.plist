@@ -28,5 +28,10 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>NSCameraUsageDescription</key>
+	<string>shoppa_app needs access to the camera for capturing photos</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>shoppa_app needs access to the photo library to select photos</string>
+
 </dict>
 </plist>

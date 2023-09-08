@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "349283684780",
+    "project_id": "shoppa-fed7e",
+    "storage_bucket": "shoppa-fed7e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:349283684780:android:770ede9680acbd0d966a09",
+        "android_client_info": {
+          "package_name": "com.example.shoppa_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "349283684780-a8dkpcg7puljlv256co8dmticctskk4m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWY8gyh0oG32nfuYXxDb1YZtCM_62fx_0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "349283684780-a8dkpcg7puljlv256co8dmticctskk4m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
