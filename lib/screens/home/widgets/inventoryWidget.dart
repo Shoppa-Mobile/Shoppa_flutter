@@ -8,6 +8,7 @@ import 'package:shoppa_app/models/productsModel.dart';
 import 'package:shoppa_app/providers/AuthStateProvider.dart';
 import 'package:shoppa_app/providers/GlobalStateProvider.dart';
 import 'package:shoppa_app/providers/productServiceProvider.dart';
+import 'package:shoppa_app/screens/shop/editItemScreen.dart';
 import 'package:shoppa_app/screens/shop/uploadProductScreen.dart';
 import 'package:shoppa_app/services/ProductsServiceClass.dart';
 import 'package:shoppa_app/widgets/inventoryItemCard.dart';
@@ -62,102 +63,78 @@ class Inventory2 extends StatelessWidget {
                         color: regularTextColor,
                       ),
                     ),
-                    SizedBox(
-                      width: getPropWidth(210),
-                      height: getPropHeight(40),
-                      child: MaterialButton(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8)),
-                        color: primaryColor,
-                        onPressed: () {
-                          Navigator.of(context)
-                              .pushNamed(UploadProductScreen.routeName);
-                        },
-                        child: Text(
-                          " +  Add new Item ",
-                          style: whiteHeaderStyle.copyWith(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                    ),
                   ],
                 ),
               );
             } else {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: getPropHeight(230),
-                    width: double.infinity,
-                    child: ListView.builder(
-                        shrinkWrap: true,
-                        padding: const EdgeInsets.only(right: 10),
-                        itemCount: products.length,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                              padding: EdgeInsets.only(right: getPropWidth(10)),
-                              child: InventoryCard(
-                                goodsImage: products[index].images,
-                                goodsName: products[index].productName,
-                                price: products[index].productPrice.toString(),
-                                homeColor: true,
-                                press1: () {
-                                  Navigator.of(context)
-                                      .pushNamed(ItemDisplayScreen.routeName);
-                                },
-                                press2: () async {
+              return SizedBox(
+                height: getPropHeight(230),
+                width: double.infinity,
+                child: ListView.builder(
+                    shrinkWrap: true,
+                    padding: const EdgeInsets.only(right: 10),
+                    itemCount: products.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: EdgeInsets.only(right: getPropWidth(10)),
+                        child: InventoryCard(
+                          goodsImage: products[index].images,
+                          goodsName: products[index].productName,
+                          price: products[index].productPrice.toString(),
+                          homeColor: true,
+                          colors: products[index].colors,
+                          press1: () {
+                            Navigator.of(context)
+                                .pushNamed(EditItemScreen.routeName);
+                          },
+                          press2: () async {
+                            Navigator.pop(context);
+                            ref.read(globalLoading.notifier).state = true;
+                            String authToken = ref.read(authKeyProvider);
+                            int productID = products[index].productID;
+                            try {
+                              bool response = await deleteProduct(
+                                  productID, authToken, productsAsyncValue);
+                              if (response == true) {
+                                ref.read(globalLoading.notifier).state = false;
+                                await ConstantFunction.showSuccessDialog(
+                                  context,
+                                  'Item successfully deleted',
+                                  () {
+                                    Navigator.pop(context);
+                                  },
+                                );
+                              } else {
+                                ref.read(globalLoading.notifier).state = false;
+                                await ConstantFunction.showFailureDialog(
+                                  context,
+                                  'Unable to delete Item, Check Internet Connection',
+                                  () {
+                                    Navigator.pop(context);
+                                  },
+                                );
+                                debugPrint(response.toString());
+                              }
+                            } catch (e) {
+                              ref.read(globalLoading.notifier).state = false;
+                              await ConstantFunction.showFailureDialog(
+                                context,
+                                'Unable to delete Item, Check Internet Connection',
+                                () {
                                   Navigator.pop(context);
-                                  ref.read(globalLoading.notifier).state = true;
-                                  String authToken = ref.read(authKeyProvider);
-                                  int productID = products[index].productID;
-                                  try {
-                                    bool response = await deleteProduct(
-                                        productID,
-                                        authToken,
-                                        productsAsyncValue);
-                                    if (response == true) {
-                                      ref.read(globalLoading.notifier).state =
-                                          false;
-                                      await ConstantFunction.showSuccessDialog(
-                                        context,
-                                        'Item successfully deleted',
-                                        () {
-                                          Navigator.pop(context);
-                                        },
-                                      );
-                                    } else {
-                                      ref.read(globalLoading.notifier).state =
-                                          false;
-                                      await ConstantFunction.showFailureDialog(
-                                        context,
-                                        'Unable to delete Item, Check Internet Connection',
-                                        () {
-                                          Navigator.pop(context);
-                                        },
-                                      );
-                                      debugPrint(response.toString());
-                                    }
-                                  } catch (e) {
-                                    ref.read(globalLoading.notifier).state =
-                                        false;
-                                    await ConstantFunction.showFailureDialog(
-                                      context,
-                                      'Unable to delete Item, Check Internet Connection',
-                                      () {
-                                        Navigator.pop(context);
-                                      },
-                                    );
-                                    debugPrint(e.toString());
-                                  }
                                 },
-                              ));
-                        }),
-                  )
-                ],
+                              );
+                              debugPrint(e.toString());
+                            }
+                          },
+                          press3: () {
+                            Navigator.of(context)
+                                .pushNamed(ItemDisplayScreen.routeName);
+                          },
+                        ),
+                      );
+                    }),
               );
             }
           },

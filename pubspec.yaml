@@ -46,6 +46,7 @@ dependencies:
   shared_preferences_android: ^2.1.0
   flutter_colorpicker: ^1.0.3
   permission_handler: ^10.4.3
+  hexcolor: ^3.0.1
 
 dev_dependencies:
   flutter_test:

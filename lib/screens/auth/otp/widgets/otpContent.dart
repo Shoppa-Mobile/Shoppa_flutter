@@ -24,6 +24,7 @@ class _OtpContentState extends State<OtpContent> {
   Widget build(BuildContext context) {
     // ? = object can accept null,
     // ! =  tells the compiler that the variable is not null, and can be used safely
+    // ignore: unused_local_variable
     final Object? number = ModalRoute.of(context)!.settings.arguments;
     startTimer();
     return SingleChildScrollView(
@@ -40,7 +41,7 @@ class _OtpContentState extends State<OtpContent> {
                 Text("Reset Password", style: headerStyle2),
                 const SizedBox(height: 8),
                 Text(
-                    'A four digit code has been sent to $number \nKindly input it below:',
+                    'A four digit code has been sent to 080***** \n Kindly input it below:',
                     style: subHeaderStyle),
                 SizedBox(
                   height: getPropHeight(38),

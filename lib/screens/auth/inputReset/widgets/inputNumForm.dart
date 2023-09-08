@@ -47,7 +47,7 @@ class _InputNumberFormState extends State<InputNumberForm> {
             FormError(errors: errors),
             SizedBox(height: getPropHeight(117)),
             DefaultButton(
-              text: "Next",
+              text: "Get OTP",
               press: () {
                 // if (_formkey.currentState!.validate()) {
                 //   // Go to Home screen

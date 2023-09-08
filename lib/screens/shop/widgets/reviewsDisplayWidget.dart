@@ -55,11 +55,13 @@ class ReviewDisplayWidget extends StatelessWidget {
                         goodsName: demoInventory[index].goodsName,
                         price: demoInventory[index].price,
                         homeColor: false,
+                        colors: const [],
                         press1: () {
                           Navigator.of(context)
                               .pushNamed(ReviewDisplayScreen.routeName);
                         },
                         press2: () {},
+                        press3: () {},
                       );
                     })
               ],

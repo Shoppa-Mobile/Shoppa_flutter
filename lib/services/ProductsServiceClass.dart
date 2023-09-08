@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer' as devtools show log;
 import 'dart:io';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:http_parser/http_parser.dart' show MediaType;
@@ -20,9 +21,9 @@ class ProductsAPI {
     required String productName,
     required String productDescription,
     required double price,
-    List? colors,
+    List<String>? colors,
     required String authKey,
-    File? file,
+    List<File>? images,
   }) async {
     try {
       String url = "$baseUrl/product/create";
@@ -36,19 +37,30 @@ class ProductsAPI {
       formData.fields['name'] = productName;
       formData.fields['description'] = productDescription;
       formData.fields['price'] = price.toString();
-      formData.fields['in_stock'] = '1';
+      formData.fields['in_stock'] = '100';
       if (colors != []) {
-        // formData.fields['colours'] = jsonEncode([]);
+        for (int i = 0; i < colors!.length; i++) {
+          var color = colors[i];
+          formData.fields['colours[$i][hex]'] = color;
+        }
       }
       // Add product image file
-      if (file != null) {
-        formData.files.add(
-          await http.MultipartFile.fromPath(
-            'fileField',
-            file.path,
-            contentType: MediaType('application', 'octet-stream'),
-          ),
-        );
+      if (images != []) {
+        for (int i = 0; i < images!.length; i++) {
+          var image = images[i];
+          formData.files.add(
+            http.MultipartFile(
+              'images[$i]', // Form field name for the file
+              image.readAsBytes().asStream(),
+              image.lengthSync(),
+              filename: image.path
+                  .split('/')
+                  .last, // Use the file name as the filename
+              contentType:
+                  MediaType('application', 'octet-stream'), // Set content type
+            ),
+          );
+        }
       }
       // Set Headers
       formData.headers['Authorization'] = 'Bearer $authKey';
@@ -70,29 +82,39 @@ class ProductsAPI {
             newRequest.fields['name'] = productName;
             newRequest.fields['description'] = productDescription;
             newRequest.fields['price'] = price.toString();
+            newRequest.fields['in_stock'] = '100';
             if (colors != []) {
               newRequest.fields['colours'] = jsonEncode(colors);
             }
             // Add product image file
-            if (file != null) {
-              newRequest.files.add(
-                await http.MultipartFile.fromPath(
-                  'fileField',
-                  file.path,
-                  contentType: MediaType('application', 'octet-stream'),
-                ),
-              );
+            if (images != []) {
+              for (var file in images!) {
+                newRequest.files.add(
+                  http.MultipartFile(
+                    'images[]', // Form field name for the file
+                    file.readAsBytes().asStream(),
+                    file.lengthSync(),
+                    filename: file.path
+                        .split('/')
+                        .last, // Use the file name as the filename
+                    contentType: MediaType(
+                        'application', 'octet-stream'), // Set content type
+                  ),
+                );
+              }
             }
             // Set Headers
             newRequest.headers['Authorization'] = 'Bearer $authKey';
             newRequest.headers['Content-Type'] = 'multipart/form-data';
+            newRequest.headers['Accept'] = 'application/json';
 
             var newResponse =
                 await newRequest.send().timeout(const Duration(seconds: 30));
             var newresponseBody = await newResponse.stream.bytesToString();
             if (newResponse.statusCode == 201) {
               // Request successful
-              response.statusCode.log();
+              debugPrint(newresponseBody);
+              newResponse.statusCode.log();
             } else {
               // Request failed
               print(
@@ -109,6 +131,7 @@ class ProductsAPI {
         }
       } else if (response.statusCode == 201) {
         // Request successful
+        debugPrint(responseBody);
         response.statusCode.log();
       } else {
         // Request failed

@@ -11,6 +11,7 @@ import 'package:shoppa_app/models/vendorModel.dart';
 import 'package:shoppa_app/providers/AuthStateProvider.dart';
 import 'package:shoppa_app/providers/GlobalStateProvider.dart';
 import 'package:shoppa_app/providers/VendorProvider.dart';
+import 'package:shoppa_app/providers/productServiceProvider.dart';
 import 'package:shoppa_app/screens/auth/inputReset/inputNum_screen.dart';
 import 'package:shoppa_app/services/AuthServiceClass.dart';
 import 'package:shoppa_app/widgets/defaultButton.dart';
@@ -79,7 +80,7 @@ class _LoginFormState extends State<LoginForm> {
                 FormError(errors: errors),
                 SizedBox(height: getPropHeight(60)),
                 DefaultButton(
-                  text: "Login",
+                  text: "Access Store",
                   press: () async {
                     if (_formkey.currentState!.validate()) {
                       _formkey.currentState!.save();
@@ -92,8 +93,7 @@ class _LoginFormState extends State<LoginForm> {
                           },
                           '/auth/login',
                         );
-                        String authKey = ref.read(authKeyProvider);
-                        debugPrint(authKey);
+
                         // ignore: unnecessary_null_comparison
                         if (status == 200) {
                           ref.read(authProvider.notifier).setCurrentUser();
@@ -102,6 +102,14 @@ class _LoginFormState extends State<LoginForm> {
                               'Vendor successfully logged in, proceed to Home',
                               () {
                             ref.read(vendorProvider.notifier).getVendor();
+                            ref.read(authKeyProvider.notifier).getCurrentUser();
+                            String authKey = ref.read(authKeyProvider);
+                            final productsAsyncValue =
+                                ref.watch(productsProvider);
+                            final refreshProducts =
+                                ref.read(refreshProductsProvider);
+                            refreshProducts(productsAsyncValue);
+                            debugPrint(authKey);
                             Navigator.of(context).pushReplacementNamed(
                               HomeScreen.routeName,
                             );

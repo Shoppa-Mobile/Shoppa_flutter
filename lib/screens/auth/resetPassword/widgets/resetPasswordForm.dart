@@ -67,9 +67,10 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
                 } else {
                   if (password != confirmpassword) {
                     ConstantFunction.showFailureDialog(
-                        context,
-                        "Place a message here, not sure what yet",
-                        () => Navigator.of(context).pop(),);
+                      context,
+                      "Password reset failed, try again in 1 minute",
+                      () => Navigator.of(context).pop(),
+                    );
                   }
                 }
               },
