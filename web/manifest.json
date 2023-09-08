@@ -1,6 +1,6 @@
 {
-    "name": "shoppa_flutter",
-    "short_name": "shoppa_flutter",
+    "name": "shoppa_app",
+    "short_name": "shoppa_app",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
