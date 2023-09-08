@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-const bgColor = Colors.white;
+const bgColor = Color(0xFFFBFBF9);
+const cardBgColor = Colors.white;
 const primaryColor = Color(0xFF0D832E);
 const lightPrimaryColor = Color(0xFFC8EC96);
 const regularTextColor = Color(0xFF000000);

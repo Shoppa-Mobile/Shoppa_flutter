@@ -47,9 +47,7 @@ class _UploadProductScreenState extends State<UploadProductScreen> {
                     horizontal: getPropWidth(18),
                     vertical: getPropHeight(20),
                   ),
-                  child: const Expanded(
-                    child: UploadProductForm(),
-                  ),
+                  child: const UploadProductForm(),
                 ),
               ),
             ),

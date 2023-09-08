@@ -46,11 +46,14 @@ class InventoryCard extends StatelessWidget {
       onTap: press3,
       child: Container(
         width: getPropWidth(185),
-        height: getPropHeight(220),
+        height: getPropHeight(210),
         decoration: const BoxDecoration(
+          color: cardBgColor,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(16),
             topRight: Radius.circular(16),
+            bottomLeft: Radius.circular(16),
+            bottomRight: Radius.circular(16),
           ),
         ),
         child: Column(
@@ -64,6 +67,8 @@ class InventoryCard extends StatelessWidget {
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(16),
                     topRight: Radius.circular(16),
+                    bottomLeft: Radius.circular(16),
+                    bottomRight: Radius.circular(16),
                   ),
                 ),
                 child: ClipRect(
@@ -119,95 +124,115 @@ class InventoryCard extends StatelessWidget {
               ),
             ),
             SizedBox(height: getPropHeight(2)),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(goodsName, style: regTextStyle2),
-                PopupMenuButton(
-                  color: bgColor,
-                  padding: EdgeInsets.only(
-                      left: getPropWidth(30),
-                      right: getPropWidth(10),
-                      top: getPropHeight(23)),
-                  position: PopupMenuPosition.under,
-                  itemBuilder: (context) {
-                    return [
-                      PopupMenuItem(
-                        value: dropdownitem[0],
-                        textStyle: regTextStyle,
-                        child: TextButton(
-                          onPressed: press1,
-                          child: Text(
-                            dropdownitem[0],
-                            style: regTextStyle,
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: getPropWidth(8),
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(goodsName, style: regTextStyle2),
+                  PopupMenuButton(
+                    color: bgColor,
+                    padding: EdgeInsets.only(
+                        left: getPropWidth(30),
+                        right: getPropWidth(10),
+                        top: getPropHeight(23)),
+                    position: PopupMenuPosition.under,
+                    itemBuilder: (context) {
+                      return [
+                        PopupMenuItem(
+                          value: dropdownitem[0],
+                          textStyle: regTextStyle,
+                          child: TextButton(
+                            onPressed: press1,
+                            child: Text(
+                              dropdownitem[0],
+                              style: regTextStyle,
+                            ),
                           ),
                         ),
-                      ),
-                      PopupMenuItem(
-                        value: dropdownitem[0],
-                        textStyle:
-                            regTextStyle.copyWith(color: deleteIconColor),
-                        child: TextButton(
-                          onPressed: press2,
-                          child: Text(
-                            dropdownitem[1],
-                            style:
-                                regTextStyle.copyWith(color: deleteIconColor),
+                        PopupMenuItem(
+                          value: dropdownitem[0],
+                          textStyle:
+                              regTextStyle.copyWith(color: deleteIconColor),
+                          child: TextButton(
+                            onPressed: press2,
+                            child: Text(
+                              dropdownitem[1],
+                              style:
+                                  regTextStyle.copyWith(color: deleteIconColor),
+                            ),
                           ),
                         ),
-                      ),
-                    ];
-                  },
-                  child: const Icon(
-                    Icons.more_vert,
-                    size: 12,
-                    color: regularTextColor,
-                  ),
-                )
-              ],
-            ),
-            SizedBox(height: getPropHeight(2)),
-            Text(
-              "$price NGN",
-              style: (homeColor == true)
-                  ? inventoryPriceText
-                  : inventoryPriceText.copyWith(
+                      ];
+                    },
+                    child: const Icon(
+                      Icons.more_vert,
+                      size: 12,
                       color: regularTextColor,
                     ),
+                  )
+                ],
+              ),
+            ),
+            SizedBox(height: getPropHeight(2)),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: getPropWidth(8),
+              ),
+              child: Text(
+                "$price NGN",
+                style: (homeColor == true)
+                    ? inventoryPriceText
+                    : inventoryPriceText.copyWith(
+                        color: regularTextColor,
+                      ),
+              ),
             ),
             SizedBox(height: getPropHeight(2)),
             (homeColor == false)
                 ? (colors.isNotEmpty)
-                    ? SizedBox(
-                        height: getPropHeight(25),
-                        width: getPropWidth(105),
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          shrinkWrap: true,
-                          physics: const ScrollPhysics(),
-                          itemCount: colors.length,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.only(right: 5),
-                              child: Container(
-                                width: getPropWidth(18),
-                                height: getPropHeight(18),
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: hexToColor(
-                                    colors[index],
+                    ? Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: getPropWidth(8),
+                        ),
+                        child: SizedBox(
+                          height: getPropHeight(25),
+                          width: getPropWidth(105),
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            shrinkWrap: true,
+                            physics: const ScrollPhysics(),
+                            itemCount: colors.length,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding: const EdgeInsets.only(right: 5),
+                                child: Container(
+                                  width: getPropWidth(18),
+                                  height: getPropHeight(18),
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: hexToColor(
+                                      colors[index],
+                                    ),
                                   ),
                                 ),
-                              ),
-                            );
-                          },
+                              );
+                            },
+                          ),
                         ),
                       )
-                    : Text(
-                        'No Colors available',
-                        style: subTextStyle.copyWith(
-                          fontSize: 14,
+                    : Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: getPropWidth(8),
+                        ),
+                        child: Text(
+                          'No Colors available',
+                          style: subTextStyle.copyWith(
+                            fontSize: 14,
+                          ),
                         ),
                       )
                 : const SizedBox()

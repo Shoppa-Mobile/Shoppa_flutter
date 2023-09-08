@@ -133,9 +133,7 @@ class _UploadProductFormState extends State<UploadProductForm> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20, vertical: 15),
-                    child: Flexible(
-                      child: buildProductDescriptionField(),
-                    ),
+                    child: buildProductDescriptionField(),
                   ),
                 ),
               ),
@@ -160,7 +158,8 @@ class _UploadProductFormState extends State<UploadProductForm> {
                     ref.read(globalLoading.notifier).state = true;
                     List<Color> selectedColors =
                         ref.read(colorListProvider.notifier).state;
-                    List<String> colorList = convertColorsToMaps(selectedColors);
+                    List<String> colorList =
+                        convertColorsToMaps(selectedColors);
                     Map productsPayload = {
                       'name': productName,
                       'in_stock': 100,
