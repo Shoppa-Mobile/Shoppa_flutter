@@ -1,6 +1,5 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, use_build_context_synchronously
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
@@ -10,8 +9,18 @@ import 'package:shoppa_app/constants/colors.dart';
 import 'package:shoppa_app/constants/constants.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
 import 'package:shoppa_app/models/screenArguments.dart';
+import 'package:shoppa_app/providers/AuthStateProvider.dart';
+import 'package:shoppa_app/providers/GlobalStateProvider.dart';
 import 'package:shoppa_app/providers/coloursProvider.dart';
+import 'package:shoppa_app/providers/productServiceProvider.dart';
+import 'package:shoppa_app/screens/shop/shopScreen.dart';
+import 'package:shoppa_app/services/ProductsServiceClass.dart';
 import 'package:shoppa_app/widgets/defaultButton.dart';
+import 'dart:developer' as devtools show log;
+
+extension Log on Object {
+  void log() => devtools.log(toString());
+}
 
 class EditProductForm extends StatefulWidget {
   const EditProductForm({super.key});
@@ -29,6 +38,7 @@ class _EditProductFormState extends State<EditProductForm> {
   var pickedColor = <Color>[];
   double? price;
   final List<String> errors = [];
+  List<File> imagePayload = [];
 
   void removeError({required String error}) {
     if (errors.contains(error)) {
@@ -54,6 +64,21 @@ class _EditProductFormState extends State<EditProductForm> {
 
   String? selectedCur;
 
+  List<String> convertColorsToMaps(List<Color> colors) {
+    List<String> colorMaps = [];
+
+    for (Color color in colors) {
+      // String colorName =
+      //     "colorName"; // Get the color name (e.g., "Color(0xffRRGGBB)")
+      String colorHex = colorToHex(color); // Get the hex value of the color
+
+      // Create a map for the color and add it to the list
+      colorMaps.add(colorHex);
+    }
+
+    return colorMaps;
+  }
+
   @override
   Widget build(BuildContext context) {
     final args =
@@ -61,6 +86,8 @@ class _EditProductFormState extends State<EditProductForm> {
 
     return Consumer(
       builder: (context, ref, child) {
+        final productsAsyncValue = ref.watch(productsProvider);
+        final refreshProducts = ref.read(refreshProductsProvider);
         return Form(
           key: _formkey,
           child: Column(
@@ -99,7 +126,7 @@ class _EditProductFormState extends State<EditProductForm> {
               SizedBox(height: getPropHeight(16)),
               Text("Photos", style: regTextStyle),
               SizedBox(height: getPropHeight(8)),
-              buildProductImageField(args.images),
+              buildProductImageField(args.images.cast()),
               SizedBox(height: getPropHeight(16)),
               Text("Colors Available in...", style: regTextStyle),
               SizedBox(height: getPropHeight(8)),
@@ -115,7 +142,84 @@ class _EditProductFormState extends State<EditProductForm> {
               SizedBox(height: getPropHeight(48)),
               DefaultButton(
                 text: 'Update Item',
-                press: () {},
+                press: () async {
+                  if (_formkey.currentState!.validate()) {
+                    _formkey.currentState!.save();
+                    ref.read(globalLoading.notifier).state = true;
+                    List<Color> selectedColors =
+                        ref.read(colorListProvider.notifier).state;
+                    List<String> colorList =
+                        convertColorsToMaps(selectedColors);
+                    Map productsPayload = {
+                      'ID': args.productID,
+                      'name': productName,
+                      'in_stock': 100,
+                      'description': description,
+                      'price': price,
+                      'colours': colorList,
+                      'images': imagePayload,
+                    };
+                    String authKey = ref.watch(authKeyProvider);
+                    // ignore: unnecessary_null_comparison
+                    Log(authKey).log();
+                    Log(productsPayload).log();
+
+                    try {
+                      int response = await const ProductsAPI().updateProduct(
+                        productID: args.productID,
+                        productName: productName!,
+                        productDescription: description!,
+                        price: price!,
+                        authKey: authKey,
+                        colors: colorList,
+                        images: imagePayload,
+                      );
+                      if (response == 201) {
+                        refreshProducts(productsAsyncValue);
+                        ref.read(globalLoading.notifier).state = false;
+                        ref.read(colorListProvider.notifier).state.clear();
+                        await ConstantFunction.showSuccessDialog(
+                          context,
+                          'Item Successfully added',
+                          () {
+                            Navigator.of(context).pushReplacementNamed(
+                              ShopScreen.routeName,
+                            );
+                          },
+                        );
+                      } else {
+                        ref.read(globalLoading.notifier).state = false;
+                        await ConstantFunction.showFailureDialog(
+                          context,
+                          'Your item could not be updated at this time, Check your internet connection.',
+                          () {
+                            Navigator.pop(context);
+                          },
+                        );
+                        Log(response).log();
+                      }
+                    } catch (error) {
+                      error.toString();
+                      ref.read(globalLoading.notifier).state = false;
+                      await ConstantFunction.showFailureDialog(
+                        context,
+                        'Your item could not be updated at this time, Check your internet connection.',
+                        () {
+                          Navigator.pop(context);
+                        },
+                      );
+                    }
+                  } else {
+                    ref.read(globalLoading.notifier).state = false;
+                    await ConstantFunction.showFailureDialog(
+                      context,
+                      'Your item could not be updated at this time, Check that form is complete.',
+                      () {
+                        Navigator.pop(context);
+                      },
+                    );
+                  }
+                },
               )
             ],
           ),
@@ -264,7 +368,7 @@ class _EditProductFormState extends State<EditProductForm> {
     );
   }
 
-  buildProductImageField(List<dynamic> imageList) {
+  buildProductImageField(List<File> imageList) {
     File? itemImage;
     Future<XFile?> imagePicker(ImageSource source) async {
       try {
@@ -276,6 +380,7 @@ class _EditProductFormState extends State<EditProductForm> {
         setState(() {
           itemImage = image;
           imageList.add(itemImage!);
+          imagePayload.addAll(imageList.map((image) => image));
         });
       } on PlatformException catch (e) {
         debugPrint('Failed to pick image: $e');
@@ -368,9 +473,9 @@ class _EditProductFormState extends State<EditProductForm> {
                               getPropWidth(8),
                             ),
                             clipBehavior: Clip.hardEdge,
-                            child: (imageList[index] is String)
+                            child: (imageList[index] is String) // Work on this.
                                 ? Image.network(
-                                    imageList[index],
+                                    imageList[index].toString(),
                                     fit: BoxFit.fill,
                                   )
                                 : Image.file(
