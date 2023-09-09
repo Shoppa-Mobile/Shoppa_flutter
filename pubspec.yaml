@@ -47,6 +47,8 @@ dependencies:
   flutter_colorpicker: ^1.0.3
   permission_handler: ^10.4.3
   hexcolor: ^3.0.1
+  image_picker_ios: ^0.8.8+2
+  expandable: ^5.0.1
 
 dev_dependencies:
   flutter_test:

@@ -22,7 +22,7 @@ class ProfileCard extends StatelessWidget {
         color: primaryColor.withOpacity(0.3),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         child: SizedBox(
-          height: getPropHeight(64),
+          height: getPropHeight(70),
           child: Padding(
             padding: EdgeInsets.symmetric(
               vertical: getPropHeight(8),
@@ -151,7 +151,7 @@ class ProfileDetailsCard2 extends StatelessWidget {
       color: bgColor,
       elevation: 0,
       child: SizedBox(
-        height: getPropHeight(75),
+        height: getPropHeight(85),
         width: SizeConfig.screenWidth - 30,
         child: Padding(
           padding: EdgeInsets.symmetric(

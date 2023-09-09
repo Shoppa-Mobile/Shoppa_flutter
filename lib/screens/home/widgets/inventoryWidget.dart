@@ -5,6 +5,7 @@ import 'package:shoppa_app/constants/colors.dart';
 import 'package:shoppa_app/constants/constants.dart';
 import 'package:shoppa_app/constants/size_configurations.dart';
 import 'package:shoppa_app/models/productsModel.dart';
+import 'package:shoppa_app/models/screenArguments.dart';
 import 'package:shoppa_app/providers/AuthStateProvider.dart';
 import 'package:shoppa_app/providers/GlobalStateProvider.dart';
 import 'package:shoppa_app/providers/productServiceProvider.dart';
@@ -86,7 +87,15 @@ class Inventory2 extends StatelessWidget {
                           colors: products[index].colors,
                           press1: () {
                             Navigator.of(context)
-                                .pushNamed(EditItemScreen.routeName);
+                                .pushNamed(EditItemScreen.routeName, arguments: ItemDisplayArguments(
+                                productID: products[index].productID,
+                                productName: products[index].productName,
+                                productDescription:
+                                    products[index].productDescription,
+                                productPrice: products[index].productPrice,
+                                images: products[index].images,
+                                colors: products[index].colors,
+                              ),);
                           },
                           press2: () async {
                             Navigator.pop(context);
@@ -129,8 +138,18 @@ class Inventory2 extends StatelessWidget {
                             }
                           },
                           press3: () {
-                            Navigator.of(context)
-                                .pushNamed(ItemDisplayScreen.routeName);
+                            Navigator.of(context).pushNamed(
+                              ItemDisplayScreen.routeName,
+                              arguments: ItemDisplayArguments(
+                                productID: products[index].productID,
+                                productName: products[index].productName,
+                                productDescription:
+                                    products[index].productDescription,
+                                productPrice: products[index].productPrice,
+                                images: products[index].images,
+                                colors: products[index].colors,
+                              ),
+                            );
                           },
                         ),
                       );

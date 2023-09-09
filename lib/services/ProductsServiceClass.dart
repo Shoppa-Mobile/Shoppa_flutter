@@ -178,32 +178,80 @@ class ProductsAPI {
     }
   }
 
-  updateProduct(
-    int productID,
-    Map updatePayload,
-    String endpoint,
-    String authKey,
-  ) async {
+  updateProduct({
+    required int productID,
+    required String productName,
+    required String productDescription,
+    required double price,
+    List<String>? colors,
+    required String authKey,
+    List<File>? images,
+  }) async {
     try {
       String url = "$baseUrl/product/$productID";
-      Response response = await http.post(
-        Uri.parse("$url/$productID"),
-        body: jsonEncode(updatePayload),
-        headers: setHeaders(
-          authKey,
-          "multipart/form-data",
-        ),
+      print('URL: $url');
+      var uri = Uri.parse(url);
+      var formData = http.MultipartRequest(
+        'POST',
+        uri,
       );
+      // Add data from the form
+      formData.fields['name'] = productName;
+      formData.fields['description'] = productDescription;
+      formData.fields['price'] = price.toString();
+      formData.fields['in_stock'] = '100';
+      if (colors != []) {
+        for (int i = 0; i < colors!.length; i++) {
+          var color = colors[i];
+          formData.fields['colours[$i][hex]'] = color;
+        }
+      }
+      // Add product image file
+      if (images != []) {
+        for (int i = 0; i < images!.length; i++) {
+          var image = images[i];
+          formData.files.add(
+            http.MultipartFile(
+              'images[$i]', // Form field name for the file
+              image.readAsBytes().asStream(),
+              image.lengthSync(),
+              filename: image.path
+                  .split('/')
+                  .last, // Use the file name as the filename
+              contentType:
+                  MediaType('application', 'octet-stream'), // Set content type
+            ),
+          );
+        }
+      }
+      // Set Headers
+      formData.headers['Authorization'] = 'Bearer $authKey';
+      formData.headers['Content-Type'] = 'multipart/form-data';
+      formData.headers['Accept'] = 'application/json';
 
-      if (response.statusCode == 200) {
-        response.body.log();
+      var response = await formData.send().timeout(const Duration(seconds: 30));
+      var responseBody = await response.stream.bytesToString();
+
+      if (response.statusCode == 201) {
+        // Request successful
+        debugPrint(responseBody);
+        response.statusCode.log();
       } else {
-        response.body.log();
+        // Request failed
+        print(
+            'Request failed with status ${response.statusCode}: $responseBody');
       }
       return response.statusCode;
     } catch (e) {
-      // Handle other types of errors
-      ('Error: $e').log();
+      if (e is TimeoutException) {
+        // Handle the timeout error
+        print('Connection timed out');
+        return e;
+        // Provide feedback to the user or retry the request
+      } else {
+        // Handle other types of errors
+        ('Error: $e').log();
+      }
     }
   }
 
