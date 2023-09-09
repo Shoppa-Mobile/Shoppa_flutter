@@ -31,7 +31,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       builder: (context, ref, child) {
         bool loading = ref.watch(globalLoading);
         final vendor = ref.watch(vendorProvider);
-        
+
         return Loading(
           isLoading: loading,
           text: 'Logging Out Vendor...',
@@ -48,6 +48,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   letterSpacing: 1.2,
                 ),
               ),
+              centerTitle: false,
             ),
             body: SafeArea(
                 child: SingleChildScrollView(
@@ -63,7 +64,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       height: getPropHeight(16),
                     ),
                     Text(
-                      "${vendor?.firstname}'s Boutique",
+                      "${vendor?.firstname}'s Shoppa",
                       style: headerStyle.copyWith(fontSize: 28),
                     ),
                     SizedBox(
@@ -78,7 +79,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       },
                     ),
                     SizedBox(
-                      height: getPropHeight(32),
+                      height: getPropHeight(28),
                     ),
                     Column(
                       children: [
@@ -174,13 +175,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ProfileDetailsCard2(
                           press: () {},
                           topText: 'Store Link',
-                          bottomText:
-                              "shoppa.com/${vendor?.firstname}'s boutique",
+                          bottomText: "shoppa.com/${vendor?.firstname}_shoppa",
                           iconData1: const Icon(Icons.share),
                           iconData2: const Icon(Icons.content_copy_outlined),
                         ),
                         SizedBox(
-                          height: getPropHeight(16),
+                          height: getPropHeight(12),
                         ),
                         const LogOutCard(),
                       ],

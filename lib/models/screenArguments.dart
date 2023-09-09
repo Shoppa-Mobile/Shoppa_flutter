@@ -28,3 +28,21 @@ class UserData1Arguments {
     required this.email,
   });
 }
+
+class ItemDisplayArguments {
+  final int productID;
+  final String productName;
+  final String productDescription;
+  final double productPrice;
+  final List<dynamic> images;
+  final List<dynamic> colors;
+
+  ItemDisplayArguments({
+    required this.productID,
+    required this.productName,
+    required this.productDescription,
+    required this.productPrice,
+    required this.images,
+    required this.colors,
+  });
+}

@@ -75,6 +75,30 @@ class _UploadProductFormState extends State<UploadProductForm> {
     return null;
   }
 
+  Future<void> _chooseImageSource(BuildContext context) async {
+    final source = await showDialog<ImageSource>(
+      context: context,
+      builder: (BuildContext context) {
+        return SimpleDialog(
+          title: const Text("Choose Image Source"),
+          children: <Widget>[
+            SimpleDialogOption(
+              onPressed: () => Navigator.pop(context, ImageSource.camera),
+              child: const Text("Camera"),
+            ),
+            SimpleDialogOption(
+              onPressed: () => Navigator.pop(context, ImageSource.gallery),
+              child: const Text("Gallery"),
+            ),
+          ],
+        );
+      },
+    );
+    if (source != null) {
+      imagePicker(source);
+    }
+  }
+
   List<String> currency = [
     'NGN',
     'USD',
@@ -166,7 +190,7 @@ class _UploadProductFormState extends State<UploadProductForm> {
                       'description': description,
                       'price': price,
                       'colours': colorList,
-                      'images': imageList,
+                      'images': [_itemImage],
                     };
                     String authKey = ref.watch(authKeyProvider);
                     // ignore: unnecessary_null_comparison
@@ -281,109 +305,13 @@ class _UploadProductFormState extends State<UploadProductForm> {
     );
   }
 
-  buildProductColorField() {
-    Color defaultcolor = Colors.transparent;
-    Widget buildColorPicker() => ColorPicker(
-          pickerColor: defaultcolor,
-          enableAlpha: false,
-          // ignore: deprecated_member_use
-          showLabel: false,
-          onColorChanged: (color) {
-            setState(
-              () => defaultcolor = color,
-            );
-          },
-        );
-
-    return Stack(
-      children: [
-        Container(
-          height: getPropHeight(60),
-          decoration: BoxDecoration(
-            shape: BoxShape.rectangle,
-            border: Border.all(
-                style: BorderStyle.solid, color: textFieldBorderColor),
-            borderRadius: BorderRadius.circular(8),
-          ),
-        ),
-        Positioned(
-          top: 14,
-          left: 30,
-          child: (pickedColor != [])
-              ? Wrap(
-                  direction: Axis.horizontal,
-                  spacing: 4.0, // Adjust the spacing as needed
-                  runSpacing: 4.0, // Adjust the run spacing as needed
-                  children: pickedColor.map((color) {
-                    // Build individual widgets here based on the data in the list
-                    debugPrint(color.toString());
-                    return CircleAvatar(
-                      backgroundColor: color,
-                      radius: 12,
-                    );
-                  }).toList(),
-                )
-              : Text(
-                  'Select Color',
-                  style: subTextStyle.copyWith(
-                    fontSize: 18,
-                  ),
-                ),
-        ),
-        Positioned(
-          top: 14,
-          right: 30,
-          child: InkWell(
-            onTap: () => showDialog(
-              context: context,
-              builder: (context) => AlertDialog(
-                title: Text(
-                  'Pick your Product Color',
-                  style: headerStyle3.copyWith(
-                    color: primaryColor,
-                  ),
-                ),
-                content: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    buildColorPicker(),
-                    TextButton(
-                      child: Text(
-                        'Add Product Color',
-                        style: headerStyle3.copyWith(
-                          color: primaryColor,
-                        ),
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          pickedColor.add(defaultcolor);
-                        });
-                        debugPrint(pickedColor.toString());
-                        Navigator.pop(context);
-                      },
-                    )
-                  ],
-                ),
-              ),
-            ),
-            child: const Icon(
-              Icons.arrow_circle_down_outlined,
-              size: 20,
-              color: primaryColor,
-            ),
-          ),
-        )
-      ],
-    );
-  }
-
   buildProductImageField() {
-    return InkWell(
-      onTap: () {
-        imagePicker(ImageSource.camera);
-      },
-      child: _itemImage == null
-          ? Container(
+    return (imageList.isEmpty)
+        ? InkWell(
+            onTap: () {
+              _chooseImageSource(context);
+            },
+            child: Container(
               height: getPropHeight(169),
               width: getPropWidth(385),
               decoration: BoxDecoration(
@@ -412,22 +340,59 @@ class _UploadProductFormState extends State<UploadProductForm> {
                   ],
                 ),
               ),
-            )
-          : SizedBox(
-              height: getPropHeight(169),
-              width: getPropWidth(385),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(
-                  getPropWidth(8),
+            ))
+        : SizedBox(
+            height: getPropHeight(175),
+            width: double.infinity,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    shrinkWrap: true,
+                    physics: const ScrollPhysics(),
+                    itemCount: imageList.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Padding(
+                        padding: EdgeInsets.only(
+                          right: getPropWidth(7),
+                        ),
+                        child: SizedBox(
+                          height: getPropHeight(169),
+                          width: getPropWidth(175),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(
+                              getPropWidth(8),
+                            ),
+                            clipBehavior: Clip.hardEdge,
+                            child: Image.file(
+                              imageList[index],
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
                 ),
-                clipBehavior: Clip.hardEdge,
-                child: Image.file(
-                  _itemImage!,
-                  fit: BoxFit.fill,
+                SizedBox(
+                  width: getPropWidth(.05),
                 ),
-              ),
+                IconButton(
+                  onPressed: () {
+                    _chooseImageSource(context);
+                  },
+                  icon: Icon(
+                    Icons.add_a_photo_outlined,
+                    size: 16,
+                    color: regularTextColor.withOpacity(0.3),
+                  ),
+                )
+              ],
             ),
-    );
+          );
   }
 
   buildProductPriceField() {
@@ -519,6 +484,7 @@ class _UploadProductFormState extends State<UploadProductForm> {
       ),
     );
   }
+
 }
 
 class ColorField extends ConsumerWidget {
@@ -526,12 +492,14 @@ class ColorField extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    buildColorPicker() => MaterialPicker(
-          pickerColor: Colors.transparent,
-          enableLabel: false,
-          onColorChanged: (color) {
-            ref.read(colorListProvider.notifier).state.add(color);
-          },
+    buildColorPicker() => Expanded(
+          child: MaterialPicker(
+            pickerColor: Colors.transparent,
+            enableLabel: false,
+            onColorChanged: (color) {
+              ref.read(colorListProvider.notifier).state.add(color);
+            },
+          ),
         );
     final colorList = ref.watch(readColorList);
     final refreshColors = ref.read(refreshColorList);

@@ -86,7 +86,7 @@ class _ShopScreenState extends State<ShopScreen> with TickerProviderStateMixin {
                       height: getPropHeight(32),
                     ),
                     Container(
-                      width: getPropWidth(225),
+                      width: getPropWidth(240),
                       height: getPropHeight(36),
                       padding: const EdgeInsets.symmetric(
                           horizontal: 1, vertical: 1),
