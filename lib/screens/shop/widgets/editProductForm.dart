@@ -56,6 +56,8 @@ class _EditProductFormState extends State<EditProductForm> {
     }
   }
 
+  List<String> colorList = [];
+
   List<String> currency = [
     'NGN',
     'USD',
@@ -77,6 +79,12 @@ class _EditProductFormState extends State<EditProductForm> {
     }
 
     return colorMaps;
+  }
+
+  @override
+  void dispose() {
+    colorList.clear();
+    super.dispose();
   }
 
   @override
@@ -148,8 +156,7 @@ class _EditProductFormState extends State<EditProductForm> {
                     ref.read(globalLoading.notifier).state = true;
                     List<Color> selectedColors =
                         ref.read(colorListProvider.notifier).state;
-                    List<String> colorList =
-                        convertColorsToMaps(selectedColors);
+                    var colorList = convertColorsToMaps(selectedColors);
                     Map productsPayload = {
                       'ID': args.productID,
                       'name': productName,
@@ -368,7 +375,7 @@ class _EditProductFormState extends State<EditProductForm> {
     );
   }
 
-  buildProductImageField(List<File> imageList) {
+  buildProductImageField(List<dynamic> imageList) {
     File? itemImage;
     Future<XFile?> imagePicker(ImageSource source) async {
       try {
@@ -379,8 +386,7 @@ class _EditProductFormState extends State<EditProductForm> {
         final image = File(imageT.path);
         setState(() {
           itemImage = image;
-          imageList.add(itemImage!);
-          imagePayload.addAll(imageList.map((image) => image));
+          imagePayload.add(itemImage!);
         });
       } on PlatformException catch (e) {
         debugPrint('Failed to pick image: $e');
@@ -528,14 +534,6 @@ class ColorField extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    if (!operationExecuted) {
-      ref.read(colorListProvider.notifier).state.addAll(
-            listColors.map(
-              (hexValue) => hexToColor(hexValue),
-            ),
-          );
-      operationExecuted = true; // Mark the operation as executed
-    }
     buildColorPicker() => Expanded(
           child: MaterialPicker(
             pickerColor: Colors.transparent,
@@ -575,24 +573,27 @@ class ColorField extends ConsumerWidget {
                           fontSize: 18,
                         ),
                       )
-                    : ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        shrinkWrap: true,
-                        physics: const ScrollPhysics(),
-                        itemCount: colors.length,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.only(right: 5),
-                            child: Container(
-                              width: getPropWidth(24),
-                              height: getPropHeight(24),
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: colors[index],
+                    : SizedBox(
+                        width: getPropWidth(300),
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          shrinkWrap: true,
+                          physics: const ScrollPhysics(),
+                          itemCount: colors.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.only(right: 5),
+                              child: Container(
+                                width: getPropWidth(24),
+                                height: getPropHeight(24),
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: colors[index],
+                                ),
                               ),
-                            ),
-                          );
-                        },
+                            );
+                          },
+                        ),
                       );
               },
               error: (error, stackTrace) {
@@ -632,6 +633,11 @@ class ColorField extends ConsumerWidget {
                           ),
                         ),
                         onPressed: () {
+                          ref.read(colorListProvider.notifier).state.addAll(
+                                listColors.map(
+                                  (hexValue) => hexToColor(hexValue),
+                                ),
+                              );
                           refreshColors(colorList);
                           final colorListNew = ref.watch(colorListProvider);
                           debugPrint(colorListNew.toString());
