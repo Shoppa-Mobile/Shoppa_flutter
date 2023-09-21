@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">349283684780-a8dkpcg7puljlv256co8dmticctskk4m.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">349283684780</string>
+    <string name="google_api_key" translatable="false">AIzaSyDWY8gyh0oG32nfuYXxDb1YZtCM_62fx_0</string>
+    <string name="google_app_id" translatable="false">1:349283684780:android:770ede9680acbd0d966a09</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDWY8gyh0oG32nfuYXxDb1YZtCM_62fx_0</string>
+    <string name="google_storage_bucket" translatable="false">shoppa-fed7e.appspot.com</string>
+    <string name="project_id" translatable="false">shoppa-fed7e</string>
+</resources>

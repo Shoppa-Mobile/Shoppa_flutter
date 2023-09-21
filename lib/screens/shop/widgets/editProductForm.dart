@@ -36,9 +36,9 @@ class _EditProductFormState extends State<EditProductForm> {
   String? description;
   File? itemImage;
   var pickedColor = <Color>[];
+  var imageList = <File>[];
   double? price;
   final List<String> errors = [];
-  List<File> imagePayload = [];
 
   void removeError({required String error}) {
     if (errors.contains(error)) {
@@ -53,6 +53,49 @@ class _EditProductFormState extends State<EditProductForm> {
       setState(() {
         errors.add(error);
       });
+    }
+  }
+
+  File? _itemImage;
+  Future<XFile?> imagePicker(ImageSource source) async {
+    try {
+      var imageT = await ImagePicker().pickImage(source: source);
+      if (imageT == null) {
+        return null;
+      }
+      final image = File(imageT.path);
+      setState(() {
+        _itemImage = image;
+        itemImage = _itemImage;
+        imageList.add(itemImage!);
+      });
+    } on PlatformException catch (e) {
+      debugPrint('Failed to pick image: $e');
+    }
+    return null;
+  }
+
+  Future<void> _chooseImageSource(BuildContext context) async {
+    final source = await showDialog<ImageSource>(
+      context: context,
+      builder: (BuildContext context) {
+        return SimpleDialog(
+          title: const Text("Choose Image Source"),
+          children: <Widget>[
+            SimpleDialogOption(
+              onPressed: () => Navigator.pop(context, ImageSource.camera),
+              child: const Text("Camera"),
+            ),
+            SimpleDialogOption(
+              onPressed: () => Navigator.pop(context, ImageSource.gallery),
+              child: const Text("Gallery"),
+            ),
+          ],
+        );
+      },
+    );
+    if (source != null) {
+      imagePicker(source);
     }
   }
 
@@ -79,6 +122,10 @@ class _EditProductFormState extends State<EditProductForm> {
     }
 
     return colorMaps;
+  }
+
+  String colorToHex(Color color) {
+    return '#${color.value.toRadixString(16).padLeft(8, '0').substring(2)}';
   }
 
   @override
@@ -134,11 +181,11 @@ class _EditProductFormState extends State<EditProductForm> {
               SizedBox(height: getPropHeight(16)),
               Text("Photos", style: regTextStyle),
               SizedBox(height: getPropHeight(8)),
-              buildProductImageField(args.images.cast()),
+              buildProductImageField(),
               SizedBox(height: getPropHeight(16)),
               Text("Colors Available in...", style: regTextStyle),
               SizedBox(height: getPropHeight(8)),
-              ColorField(listColors: args.colors),
+              const ColorField(),
               SizedBox(height: getPropHeight(16)),
               Text("Price", style: regTextStyle),
               SizedBox(height: getPropHeight(8)),
@@ -164,7 +211,7 @@ class _EditProductFormState extends State<EditProductForm> {
                       'description': description,
                       'price': price,
                       'colours': colorList,
-                      'images': imagePayload,
+                      'images': imageList,
                     };
                     String authKey = ref.watch(authKeyProvider);
                     // ignore: unnecessary_null_comparison
@@ -179,7 +226,7 @@ class _EditProductFormState extends State<EditProductForm> {
                         price: price!,
                         authKey: authKey,
                         colors: colorList,
-                        images: imagePayload,
+                        images: imageList,
                       );
                       if (response == 201) {
                         refreshProducts(productsAsyncValue);
@@ -375,53 +422,11 @@ class _EditProductFormState extends State<EditProductForm> {
     );
   }
 
-  buildProductImageField(List<dynamic> imageList) {
-    File? itemImage;
-    Future<XFile?> imagePicker(ImageSource source) async {
-      try {
-        var imageT = await ImagePicker().pickImage(source: source);
-        if (imageT == null) {
-          return null;
-        }
-        final image = File(imageT.path);
-        setState(() {
-          itemImage = image;
-          imagePayload.add(itemImage!);
-        });
-      } on PlatformException catch (e) {
-        debugPrint('Failed to pick image: $e');
-      }
-      return null;
-    }
-
-    Future<void> chooseImageSource(BuildContext context) async {
-      final source = await showDialog<ImageSource>(
-        context: context,
-        builder: (BuildContext context) {
-          return SimpleDialog(
-            title: const Text("Choose Image Source"),
-            children: <Widget>[
-              SimpleDialogOption(
-                onPressed: () => Navigator.pop(context, ImageSource.camera),
-                child: const Text("Camera"),
-              ),
-              SimpleDialogOption(
-                onPressed: () => Navigator.pop(context, ImageSource.gallery),
-                child: const Text("Gallery"),
-              ),
-            ],
-          );
-        },
-      );
-      if (source != null) {
-        imagePicker(source);
-      }
-    }
-
+  buildProductImageField() {
     return (imageList.isEmpty)
         ? InkWell(
             onTap: () {
-              chooseImageSource(context);
+              _chooseImageSource(context);
             },
             child: Container(
               height: getPropHeight(169),
@@ -479,15 +484,10 @@ class _EditProductFormState extends State<EditProductForm> {
                               getPropWidth(8),
                             ),
                             clipBehavior: Clip.hardEdge,
-                            child: (imageList[index] is String) // Work on this.
-                                ? Image.network(
-                                    imageList[index].toString(),
-                                    fit: BoxFit.fill,
-                                  )
-                                : Image.file(
-                                    imageList[index],
-                                    fit: BoxFit.cover,
-                                  ),
+                            child: Image.file(
+                              imageList[index],
+                              fit: BoxFit.fill,
+                            ),
                           ),
                         ),
                       );
@@ -499,7 +499,7 @@ class _EditProductFormState extends State<EditProductForm> {
                 ),
                 IconButton(
                   onPressed: () {
-                    chooseImageSource(context);
+                    _chooseImageSource(context);
                   },
                   icon: Icon(
                     Icons.add_a_photo_outlined,
@@ -515,22 +515,7 @@ class _EditProductFormState extends State<EditProductForm> {
 
 // ignore: must_be_immutable
 class ColorField extends ConsumerWidget {
-  ColorField({
-    super.key,
-    required this.listColors,
-  });
-  List<dynamic> listColors;
-  Color hexToColor(String hexString) {
-    final buffer = StringBuffer();
-    if (hexString.length == 6 || hexString.length == 7) {
-      buffer.write('ff'); // Add alpha if it's not included in the hex string
-    }
-    buffer.write(hexString.replaceAll('#', ''));
-
-    return Color(int.parse(buffer.toString(), radix: 16));
-  }
-
-  bool operationExecuted = false;
+  const ColorField({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -547,7 +532,6 @@ class ColorField extends ConsumerWidget {
     final refreshColors = ref.read(refreshColorList);
     return Container(
       height: getPropHeight(60),
-      width: double.infinity,
       decoration: BoxDecoration(
         color: Colors.transparent,
         shape: BoxShape.rectangle,
@@ -573,27 +557,24 @@ class ColorField extends ConsumerWidget {
                           fontSize: 18,
                         ),
                       )
-                    : SizedBox(
-                        width: getPropWidth(300),
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          shrinkWrap: true,
-                          physics: const ScrollPhysics(),
-                          itemCount: colors.length,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.only(right: 5),
-                              child: Container(
-                                width: getPropWidth(24),
-                                height: getPropHeight(24),
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: colors[index],
-                                ),
+                    : ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        shrinkWrap: true,
+                        physics: const ScrollPhysics(),
+                        itemCount: colors.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.only(right: 5),
+                            child: Container(
+                              width: getPropWidth(24),
+                              height: getPropHeight(24),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: colors[index],
                               ),
-                            );
-                          },
-                        ),
+                            ),
+                          );
+                        },
                       );
               },
               error: (error, stackTrace) {
@@ -633,11 +614,6 @@ class ColorField extends ConsumerWidget {
                           ),
                         ),
                         onPressed: () {
-                          ref.read(colorListProvider.notifier).state.addAll(
-                                listColors.map(
-                                  (hexValue) => hexToColor(hexValue),
-                                ),
-                              );
                           refreshColors(colorList);
                           final colorListNew = ref.watch(colorListProvider);
                           debugPrint(colorListNew.toString());
