@@ -84,7 +84,10 @@ class ProductsAPI {
             newRequest.fields['price'] = price.toString();
             newRequest.fields['in_stock'] = '100';
             if (colors != []) {
-              newRequest.fields['colours'] = jsonEncode(colors);
+              for (int i = 0; i < colors!.length; i++) {
+                var color = colors[i];
+                newRequest.fields['colours[$i][hex]'] = color;
+              }
             }
             // Add product image file
             if (images != []) {

@@ -190,7 +190,7 @@ class _UploadProductFormState extends State<UploadProductForm> {
                       'description': description,
                       'price': price,
                       'colours': colorList,
-                      'images': [_itemImage],
+                      'images': imageList,
                     };
                     String authKey = ref.watch(authKeyProvider);
                     // ignore: unnecessary_null_comparison
